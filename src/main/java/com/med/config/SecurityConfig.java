@@ -68,8 +68,10 @@ public class SecurityConfig {
                                 .requestMatchers("/api/payment").permitAll()
                                 .requestMatchers("/oauth2/authorization/google").permitAll()
                                 .requestMatchers("/chat-medical").permitAll()
-                                .requestMatchers("/auth/login", "/auth/register", "/", "/auth/verify").permitAll()
-                                .requestMatchers("/test", "/api/appointment").access("hasRole('ROLE_PATIENT')")
+                                .requestMatchers("/auth/login", "/auth/register", "/", "/auth/verify", "/api").permitAll()
+                                .requestMatchers("/test", "/api/appointment").access("hasRole('ROLE_PATIENT') or hasRole('ROLE_DOCTOR')")
+                                .requestMatchers("/auth/current-user").access("hasRole('ROLE_PATIENT') or hasRole('ROLE_DOCTOR')")
+
                 )
                 .oauth2Login(oauth2 -> {
                     oauth2.userInfoEndpoint(userInfo ->
