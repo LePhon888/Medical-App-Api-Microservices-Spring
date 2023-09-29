@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.Doc;
-import java.text.DateFormat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +19,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/appointment")
 public class AppointmentController {
+
+    private static final Logger logger = LoggerFactory.getLogger(AppointmentController.class);
+
+
     @Autowired
     private AppointmentService appointmentService;
     @Autowired
@@ -104,6 +108,13 @@ public class AppointmentController {
         return appointmentService.getAll();
     }
 
+    @GetMapping("/")
+    public ResponseEntity<List<Appointment>> getAppointments(@RequestParam Map<String, Object> params) {
+        System.out.println(this.appointmentService.getAppointments(params));
+        System.out.println((params.get("date")));
+        return new ResponseEntity<>(this.appointmentService.getAppointments(params), HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public List<Appointment> getByRegisterUser(@PathVariable Integer id) {
         User u = this.userService.getById(id);
@@ -113,16 +124,24 @@ public class AppointmentController {
     @PutMapping("/{id}/is-confirm")
     public ResponseEntity updateIsConfirm(@PathVariable Integer id, @RequestParam Short isConfirm) {
         try {
-            Optional<Appointment> optionalAppointment =
-                    Optional.ofNullable(appointmentService.getById(id));
+            Optional<Appointment> optionalAppointment = Optional.ofNullable(appointmentService.getById(id));
 
             if (optionalAppointment.isPresent()) {
                 Appointment appointment = optionalAppointment.get();
                 appointment.setIsConfirm(isConfirm);
 
-                appointmentService.create(appointment);
+                boolean updated = appointmentService.update(appointment);
 
-                return new ResponseEntity<>(appointment, HttpStatus.OK);
+                if (updated) {
+                    if (updated && appointment.getIsConfirm() == 1)
+                        this.appointmentService.sendConfirmAppointmentMail(appointment);
+                    return new ResponseEntity<>(HttpStatus.OK);
+                } else {
+                    return new ResponseEntity<>("Failed to update appointment", HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+
+
+
             } else {
                 return new ResponseEntity<>("Appointment not found", HttpStatus.NOT_FOUND);
             }
@@ -131,6 +150,4 @@ public class AppointmentController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
-
-
 }
