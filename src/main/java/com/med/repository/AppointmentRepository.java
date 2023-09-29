@@ -17,9 +17,9 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
     List<Appointment> findByRegisterUser(@Param("registerUser") User registerUser);
 
     @Query("SELECT a FROM Appointment a WHERE " +
-            "(:#{#params['date']} IS NULL OR STR_TO_DATE(:#{#params['date']}, '%Y-%m-%d') = a.date) AND " +
-            "(:#{#params['kw']} IS NULL OR a.user.firstName = :#{#params['param2']})")
+            "(:#{#params['doctorId']} IS NULL OR a.doctor.id = :#{#params['doctorId']})")
     List<Appointment> findAppointmentsByParams(@Param("params") Map<String, Object> params);
+
 
     @Modifying(clearAutomatically = true)
     @Query("UPDATE Appointment a SET a.isConfirm = :isConfirm WHERE a.id = :id")

@@ -22,6 +22,8 @@ public class AppointmentService {
     private AppointmentRepository appointmentRepository;
     @Autowired
     private JavaMailSender mailSender;
+    @Autowired
+    private DoctorService doctorService;
 
     public Appointment create(Appointment appointment) {
         return appointmentRepository.save(appointment);
@@ -31,6 +33,12 @@ public class AppointmentService {
     }
 
     public List<Appointment> getAppointments(Map<String, Object> params) {
+        if (params != null) {
+            String userId = params.get("userId").toString();
+            if (userId != null && !userId.isEmpty()) {
+                params.put("doctorId", doctorService.getByUserId(Integer.parseInt(userId)).getId());
+            }
+        }
         return appointmentRepository.findAppointmentsByParams(params);
     }
 
