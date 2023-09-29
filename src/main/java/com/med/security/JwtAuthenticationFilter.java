@@ -43,10 +43,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
         String requestHeader = request.getHeader(TOKEN_HEADER);
         String authToken = null;
         String email = null;
+
+        // Check if the request path matches the endpoint you want to allow
+        String requestPath = request.getRequestURI();
+        if (requestPath.contains("/api/appointment")) {
+            // Allow unauthenticated access to this specific endpoint
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         if (requestHeader != null && requestHeader.startsWith("Bearer")) {
             authToken = requestHeader.substring(7);
         }
