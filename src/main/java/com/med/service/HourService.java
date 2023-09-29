@@ -7,6 +7,8 @@ import com.med.repository.HourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class HourService {
     @Autowired
@@ -14,4 +16,8 @@ public class HourService {
     public Hour getById (int id) {
         return hourRepository.findById(id).orElse(null);
     }
+    public List<Hour> getAll () {
+        return hourRepository.findAll();
+    }
+
 }

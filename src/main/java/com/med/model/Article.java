@@ -12,6 +12,9 @@ import lombok.Setter;
 public class Article {
     private int id;
     private String header;
+    private String author;
+    private String authorImage;
+    private String date;
     private String image;
     private String content;
 }

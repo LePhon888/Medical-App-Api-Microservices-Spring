@@ -44,12 +44,28 @@ public class WebScrapingService {
                     Element articleHeader = articleDocument.select("h1").first();
                     Element articleContent = articleDocument.select("div.css-z468a2").first();
                     Element articleImage = articleDocument.select("[data-share-url]").first();
+                    Element articleAuthor = articleDocument.select("a.css-1dkklb9").first();
+                    Element articleAuthorImage = articleDocument.select("div.css-1edxg1f img").first();
+                    Element articleDate = articleDocument.select("section[data-testid=byline] span:contains(on)").first();
 
-                    if (articleHeader != null && articleContent != null && articleImage != null) {
+                    System.out.println("articleAuthorImage " + articleAuthorImage);
+                    if (articleHeader != null &&
+                            articleContent != null &&
+                            articleImage != null &&
+                            articleAuthor != null &&
+                            articleDate != null) {
                         String header = articleHeader.text();
                         String content = articleContent.text();
                         String image = articleImage.attr("data-share-url");
-                        return new Article(articleId.getAndIncrement(), header, image, content);
+                        String author = articleAuthor.text();
+                        String authorImage;
+                        if (articleAuthorImage != null) {
+                            authorImage = articleAuthorImage.attr("src");
+                        }
+                        else
+                            authorImage = null;
+                        String date = articleDate.text().trim();
+                        return new Article(articleId.getAndIncrement(), header, author, authorImage, date, image, content);
                     }
                     return null;
                 };

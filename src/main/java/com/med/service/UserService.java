@@ -130,7 +130,9 @@ public class UserService implements UserDetailsService {
         helper.setSubject(subject);
 
         content = content.replace("[[name]]", user.getFirstName());
-        String verifyURL = siteURL + "/auth/verify?code=" + user.getVerificationCode();
+//        String verifyURL = siteURL + "/auth/verify?code=" + user.getVerificationCode();
+
+        String verifyURL = "http://192.168.1.5:8080" + "/auth/verify?code=" + user.getVerificationCode();
 
         content = content.replace("[[URL]]", verifyURL);
 

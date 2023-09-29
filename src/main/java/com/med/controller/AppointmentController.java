@@ -43,45 +43,35 @@ public class AppointmentController {
             Appointment savedAppointment = new Appointment();
             Map<String, Object> userObject = (Map<String, Object>) appointment.get("user");
             Map<String, Object> hourObject = (Map<String, Object>) appointment.get("hour");
-            Map<String, Object> doctorObject = (Map<String, Object>) appointment.get("doctor");
-            Map<String, Object> doctorUser = (Map<String, Object>) doctorObject.get("user");
-            Map<String, Object> departmentObject = (Map<String, Object>) doctorObject.get("department");
-            Map<String, Object> feeObject = (Map<String, Object>) appointment.get("fee");
+            int doctorId = (int) appointment.get("doctorId");
+//            Map<String, Object> doctorUser = (Map<String, Object>) doctorObject.get("user");
+//            Map<String, Object> departmentObject = (Map<String, Object>) doctorObject.get("department");
+//            Map<String, Object> feeObject = (Map<String, Object>) appointment.get("fee");
             Map<String, Object> registerUserObject = (Map<String, Object>) appointment.get("registerUser");
 
             User u = new User();
             u.setFirstName((String) userObject.get("firstName"));
-            u.setLastName((String) userObject.get("lastName"));
             String dateString = (String) userObject.get("birthday");
-
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date = dateFormat.parse(dateString);
-
             u.setBirthday(date);
-            u.setAddress((String) userObject.get("address"));
             u.setGender((Integer) userObject.get("gender"));
-            u.setPhoneNumber((String) userObject.get("phoneNumber"));
             u.setEmail((String) userObject.get("email"));
             u.setIsActive((short) 1);
             u.setUserRole("ROLE_PATIENT");
             userService.create(u);
 
 
-            Doctor doctor = new Doctor();
-            User user = userService.getById((Integer) doctorUser.get("id"));
-            Department department = departmentService.getById((Integer) departmentObject.get("id"));
-            doctor.setUser(user);
-            doctor.setDepartment(department);
-            doctorService.create(doctor);
+            Doctor doctor = this.doctorService.getById(doctorId);
 
             Hour hour = this.hourService.getById((Integer) hourObject.get("id"));
-            Fee fee = this.feeService.getById((Integer) feeObject.get("id"));
+            Fee fee = this.feeService.getNew();
 
             User registerUser = this.userService.getById((Integer) registerUserObject.get("id"));
 
 
             savedAppointment.setReason((String) appointment.get("reason"));
-            savedAppointment.setReportImage((String) appointment.get("reportImage"));
+//            savedAppointment.setReportImage((String) appointment.get("reportImage"));
             savedAppointment.setDate(dateFormat.parse((String) appointment.get("date")));
             savedAppointment.setIsConfirm((short) 0);
             savedAppointment.setIsPaid((short) 0);
