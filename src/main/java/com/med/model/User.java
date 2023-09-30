@@ -68,4 +68,6 @@ public class User implements Serializable {
     private String verificationCode;
     @Column(name = "enabled")
     private boolean enabled;
+    @Column(name = "image")
+    private String image;
 }
