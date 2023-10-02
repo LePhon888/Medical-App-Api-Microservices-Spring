@@ -1,5 +1,5 @@
 package com.med.service;
-
+import net.coobird.thumbnailator.Thumbnails;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.med.model.Provider;
@@ -17,7 +17,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
@@ -162,14 +164,26 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public boolean update (User user) {
-            if (!user.getFile().isEmpty()) {
-                try {
-                    Map res = this.cloudinary.uploader().upload(user.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
-                    user.setImage(res.get("secure_url").toString());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+    public boolean update(User user) {
+        MultipartFile file = user.getFile();
+        if (!file.isEmpty()) {
+            try {
+                // Compress the image using Thumbnails library
+                ByteArrayOutputStream compressedImageStream = new ByteArrayOutputStream();
+                Thumbnails.of(file.getInputStream())
+                        .size(800, 600) // Specify your desired dimensions
+                        .outputQuality(0.8) // Adjust the compression quality (0.0 - 1.0)
+                        .toOutputStream(compressedImageStream);
+
+                // Upload the compressed image to Cloudinary
+                Map uploadResult = this.cloudinary.uploader().upload(compressedImageStream.toByteArray(),
+                        ObjectUtils.asMap("resource_type", "auto"));
+
+                user.setImage(uploadResult.get("secure_url").toString());
+            } catch (IOException e) {
+                throw new RuntimeException("Error compressing or uploading the image", e);
+            }
+
             this.userRepository.save(user);
             return true;
         }
