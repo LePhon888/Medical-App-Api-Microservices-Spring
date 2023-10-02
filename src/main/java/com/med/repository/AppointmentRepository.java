@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Map;
 
-@Transactional
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer> {
     @Query("SELECT a FROM Appointment a WHERE a.registerUser = :registerUser")
     List<Appointment> findByRegisterUser(@Param("registerUser") User registerUser);

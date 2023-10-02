@@ -14,4 +14,7 @@ public class FeeService {
     public Fee getById (int id) {
         return feeRepository.findById(id).orElse(null);
     }
+    public Fee getNew () {
+        return feeRepository.findFirstByOrderByIdDesc();
+    }
 }
