@@ -11,16 +11,16 @@ import java.util.logging.Logger;
 @RequestMapping("/home")
 public class HomeController {
 
-   @GetMapping("/users")
+    @GetMapping("/users")
     public String getUser() {
-       System.out.println("aaa");
-       return "Users";
-   }
+        System.out.println("aaa");
+        return "Users";
+    }
 
-   @GetMapping("/current-user")
+    @GetMapping("/current-user")
     public String getLoggedInUser(Principal p) {
-       return p.getName();
-   }
+        return p.getName();
+    }
 
 
 }
