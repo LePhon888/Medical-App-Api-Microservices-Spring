@@ -1,5 +1,7 @@
 package com.med.service;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.med.model.Provider;
 import com.med.model.User;
 import com.med.repository.UserRepository;
@@ -16,11 +18,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -36,6 +40,9 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private JavaMailSender mailSender;
+
+    @Autowired
+    private Cloudinary cloudinary;
 
     public User getById (int id) {
         return userRepository.findById(id).orElse(null);
@@ -151,6 +158,20 @@ public class UserService implements UserDetailsService {
 
             return true;
         }
-
     }
+
+    public boolean update (User user) {
+            if (!user.getFile().isEmpty()) {
+                try {
+                    Map res = this.cloudinary.uploader().upload(user.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+                    user.setImage(res.get("secure_url").toString());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            this.userRepository.save(user);
+            return true;
+        }
+        return false;
+    }
+
 }
