@@ -15,12 +15,14 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
     @Query("SELECT a FROM Appointment a WHERE a.registerUser = :registerUser")
     List<Appointment> findByRegisterUser(@Param("registerUser") User registerUser);
 
-    @Query("SELECT a FROM Appointment a WHERE " +
+    @Query("SELECT a FROM Appointment a WHERE a.isPaid = 1 AND " +
             "(:#{#params['doctorId']} IS NULL OR a.doctor.id = :#{#params['doctorId']})")
     List<Appointment> findAppointmentsByParams(@Param("params") Map<String, Object> params);
-
 
     @Modifying(clearAutomatically = true)
     @Query("UPDATE Appointment a SET a.isConfirm = :isConfirm WHERE a.id = :id")
     int update(@Param("id") Integer id, @Param("isConfirm") Short isConfirm);
+
+    @Query("SELECT a FROM Appointment a WHERE a.registerUser.id = :id or a.user.id = :id or a.doctor.user.id = :id")
+    List<Appointment> findByUserId(@Param("id") Integer id);
 }
