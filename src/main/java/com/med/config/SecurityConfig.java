@@ -96,22 +96,6 @@ public class SecurityConfig {
                             throw new RuntimeException(e);
                         }
 
-                        // Retrieve the OAuth2AuthorizedClientRegistrationId
-                        OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
-                        String authorizedClientRegistrationId = oauthToken.getAuthorizedClientRegistrationId();
-
-                        // Retrieve the OAuth2AuthorizedClient for the current registration ID
-                        OAuth2AuthorizedClient authorizedClient = authorizedClientService.loadAuthorizedClient(
-                                authorizedClientRegistrationId, oauthToken.getName());
-
-                        // Get the access token
-                        OAuth2AccessToken accessToken = authorizedClient.getAccessToken();
-
-                        // Now, you can use the access token as needed
-                        String tokenValue = accessToken.getTokenValue();
-                        System.out.println("tokenValue " + tokenValue);
-
-                        String code = request.getParameter("code");
                         response.sendRedirect("/");
                     });
                 })
