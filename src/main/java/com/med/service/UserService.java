@@ -197,7 +197,7 @@ public class UserService implements UserDetailsService {
                     throw new RuntimeException("Error compressing or uploading the image", e);
                 }
             }
-            if (!user.getPassword().contains("$2$"))
+            if (!user.getPassword().contains("$2a$"))
                 user.setPassword(passwordEncoder.encode(user.getPassword()));
 
             this.userRepository.save(user);
