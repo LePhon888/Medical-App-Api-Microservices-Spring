@@ -111,6 +111,12 @@ public class AppointmentController {
         return appointmentService.getAppointmentsByRegisterUser(u);
     }
 
+    @GetMapping("/detail/{id}")
+    public ResponseEntity getByUserId(@PathVariable Integer id) {
+        User u = this.userService.getById(id);
+        return new ResponseEntity<>(this.appointmentService.getByUserId(id), HttpStatus.OK);
+    }
+
     @PutMapping("/{id}/is-confirm")
     public ResponseEntity updateIsConfirm(@PathVariable Integer id, @RequestParam Short isConfirm) {
         try {

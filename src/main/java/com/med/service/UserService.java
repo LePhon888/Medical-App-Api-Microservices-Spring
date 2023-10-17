@@ -9,6 +9,10 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,10 +28,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -54,6 +55,9 @@ public class UserService implements UserDetailsService {
     }
     public User create (User u) {
         return this.userRepository.save(u);
+    }
+    public Page<User> getUsers (Pageable pageable) {
+        return this.userRepository.findAll(pageable);
     }
 
     public User registerUser(Map<String, String> params) {
@@ -164,30 +168,70 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public boolean update(User user) {
-        MultipartFile file = user.getFile();
-        if (!file.isEmpty()) {
-            try {
-                // Compress the image using Thumbnails library
-                ByteArrayOutputStream compressedImageStream = new ByteArrayOutputStream();
-                Thumbnails.of(file.getInputStream())
-                        .size(800, 600) // Specify your desired dimensions
-                        .outputQuality(0.8) // Adjust the compression quality (0.0 - 1.0)
-                        .toOutputStream(compressedImageStream);
-
-                // Upload the compressed image to Cloudinary
-                Map uploadResult = this.cloudinary.uploader().upload(compressedImageStream.toByteArray(),
-                        ObjectUtils.asMap("resource_type", "auto"));
-
-                user.setImage(uploadResult.get("secure_url").toString());
-            } catch (IOException e) {
-                throw new RuntimeException("Error compressing or uploading the image", e);
-            }
-
-            this.userRepository.save(user);
+    public boolean delete(int id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
             return true;
         }
         return false;
+    }
+
+    public boolean update(User user) {
+        try {
+            MultipartFile file = user.getFile();
+            if (file != null && !file.isEmpty()) {
+                try {
+                    // Compress the image using Thumbnails library
+                    ByteArrayOutputStream compressedImageStream = new ByteArrayOutputStream();
+                    Thumbnails.of(file.getInputStream())
+                            .size(800, 600) // Specify your desired dimensions
+                            .outputQuality(0.8) // Adjust the compression quality (0.0 - 1.0)
+                            .toOutputStream(compressedImageStream);
+
+                    // Upload the compressed image to Cloudinary
+                    Map uploadResult = this.cloudinary.uploader().upload(compressedImageStream.toByteArray(),
+                            ObjectUtils.asMap("resource_type", "auto" ));
+
+                    user.setImage(uploadResult.get("secure_url" ).toString());
+                } catch (IOException e) {
+                    throw new RuntimeException("Error compressing or uploading the image", e);
+                }
+            }
+            if (!user.getPassword().contains("$2a$"))
+                user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+            this.userRepository.save(user);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    public ResponseEntity isUserValidation(User user) {
+        List<String> validRoles = Arrays.asList("ROLE_DOCTOR", "ROLE_PATIENT");
+        if (user == null)
+            return new ResponseEntity<>("User is null", HttpStatus.BAD_REQUEST);
+        else if (user.getEmail() == null || user.getEmail().isEmpty())
+            return new ResponseEntity<>("Email is required.", HttpStatus.BAD_REQUEST);
+        else if (!user.getEmail().matches("^[A-Za-z0-9+_.-]+@(.+)$"))
+            return new ResponseEntity<>("Email is not correct pattern.", HttpStatus.BAD_REQUEST);
+        else if (user.getFirstName() == null || user.getFirstName().isEmpty())
+            return new ResponseEntity<>("First name is requried.", HttpStatus.BAD_REQUEST);
+        else if (user.getBirthday() == null)
+            return new ResponseEntity<>("Date of birth is requried.", HttpStatus.BAD_REQUEST);
+        else if (user.getLastName() == null || user.getLastName().isEmpty())
+            return new ResponseEntity<>("Last name is requried.", HttpStatus.BAD_REQUEST);
+        else if (user.getAddress() == null || user.getAddress().isEmpty())
+            return new ResponseEntity<>("Address is requried.", HttpStatus.BAD_REQUEST);
+        else if (user.getPassword() == null || user.getPassword().isEmpty())
+            return new ResponseEntity<>("Password is requried.", HttpStatus.BAD_REQUEST);
+        else if (user.getUserRole() == null || user.getUserRole().isEmpty())
+            return new ResponseEntity<>("User role is requried.", HttpStatus.BAD_REQUEST);
+        else if (!validRoles.contains(user.getUserRole()))
+            return new ResponseEntity<>("User role should be either ROLE_DOCTOR or ROLE_PATIENT.", HttpStatus.BAD_REQUEST);
+        else
+            return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
 }

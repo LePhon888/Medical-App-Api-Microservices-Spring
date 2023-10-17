@@ -56,10 +56,10 @@ public class User implements Serializable {
     private Short isActive;
     @Column(name = "user_role")
     private String userRole;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private Collection<Doctor> doctorCollection;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private Collection<Appointment> appointmentCollection;
     @Column(name = "auth_provider")

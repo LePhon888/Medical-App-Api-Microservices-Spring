@@ -75,9 +75,14 @@ public class SecurityConfig {
                                         "/api/hours",
                                         "/api/departments",
                                         "/api/scrape",
-                                        "/api/doctors/department").permitAll()
+                                        "/api/doctors/department",
+                                        "/api/doctors/**",
+                                        "/api/user/**",
+                                        "/auth/current-user"
+                                        ).permitAll()
                                 .requestMatchers("/test", "/api/appointment").access("hasRole('ROLE_PATIENT') or hasRole('ROLE_DOCTOR')")
-                                .requestMatchers("/auth/current-user").access("hasRole('ROLE_PATIENT') or hasRole('ROLE_DOCTOR')")
+//                                .requestMatchers("/auth/current-user").access("hasRole('ROLE_PATIENT') " +
+//                                        "or hasRole('ROLE_DOCTOR') or hasRole('ROLE_ADMIN')")
 
                 )
                 .oauth2Login(oauth2 -> {
