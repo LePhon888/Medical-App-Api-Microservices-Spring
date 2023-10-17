@@ -13,6 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Arrays;
 import java.util.List;
 
 @CrossOrigin
@@ -24,7 +28,7 @@ public class UserController {
 
     @PostMapping("/")
     public ResponseEntity<String> createOrUpdate(@RequestPart(value = "user", required = false) User user, @RequestPart(value = "file",required = false) MultipartFile file) {
-       ResponseEntity response = userService.isUserValidation(user);
+       ResponseEntity response = this.isUserValidation(user);
         if (response.getStatusCode().equals(HttpStatus.OK)) {
             if (file != null && !file.isEmpty())
                 user.setFile(file);
@@ -59,5 +63,40 @@ public class UserController {
         if (deleteSuccessful)
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity isUserValidation(User user) {
+        List<String> validRoles = Arrays.asList("ROLE_DOCTOR", "ROLE_PATIENT");
+        if (user == null)
+            return new ResponseEntity<>("Người dùng không hợp lệ", HttpStatus.BAD_REQUEST);
+        else if (user.getEmail() == null || user.getEmail().isEmpty())
+            return new ResponseEntity("Email là bắt buộc.", HttpStatus.BAD_REQUEST);
+        else if (!user.getEmail().matches("^[A-Za-z0-9+_.-]+@(.+)$"))
+            return new ResponseEntity("Email không đúng định dạng.", HttpStatus.BAD_REQUEST);
+        else if (user.getFirstName() == null || user.getFirstName().isEmpty())
+            return new ResponseEntity("Họ tên không được để trống.", HttpStatus.BAD_REQUEST);
+        else if (user.getBirthday() == null)
+            return new ResponseEntity("Ngày sinh là bắt buộc.", HttpStatus.BAD_REQUEST);
+        else if (user.getLastName() == null || user.getLastName().isEmpty())
+            return new ResponseEntity("Tên không được để trống.", HttpStatus.BAD_REQUEST);
+        else if (user.getAddress() == null || user.getAddress().isEmpty())
+            return new ResponseEntity("Địa chỉ là bắt buộc.", HttpStatus.BAD_REQUEST);
+        else if (user.getPassword() == null || user.getPassword().isEmpty())
+            return new ResponseEntity("Mật khẩu là bắt buộc.", HttpStatus.BAD_REQUEST);
+        else if (user.getUserRole() == null || user.getUserRole().isEmpty())
+            return new ResponseEntity("Vai trò người dùng là bắt buộc.", HttpStatus.BAD_REQUEST);
+        else if (!validRoles.contains(user.getUserRole()))
+            return new ResponseEntity("Vai trò người dùng phải là ROLE_DOCTOR hoặc ROLE_PATIENT.", HttpStatus.BAD_REQUEST);
+        else {
+            LocalDate currentDate = LocalDate.now();
+            LocalDate birthdate = user.getBirthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            int age = Period.between(birthdate, currentDate).getYears();
+
+            if (age < 18 || age > 60) {
+                return new ResponseEntity("Tuổi phải từ 18 đến 60.", HttpStatus.BAD_REQUEST);
+            }
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
     }
 }
