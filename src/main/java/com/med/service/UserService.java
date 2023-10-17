@@ -28,6 +28,9 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.*;
 
 @Service
@@ -181,14 +184,14 @@ public class UserService implements UserDetailsService {
             MultipartFile file = user.getFile();
             if (file != null && !file.isEmpty()) {
                 try {
-                    // Compress the image using Thumbnails library
+
                     ByteArrayOutputStream compressedImageStream = new ByteArrayOutputStream();
                     Thumbnails.of(file.getInputStream())
-                            .size(800, 600) // Specify your desired dimensions
-                            .outputQuality(0.8) // Adjust the compression quality (0.0 - 1.0)
+                            .size(800, 600)
+                            .outputQuality(0.8)
                             .toOutputStream(compressedImageStream);
 
-                    // Upload the compressed image to Cloudinary
+
                     Map uploadResult = this.cloudinary.uploader().upload(compressedImageStream.toByteArray(),
                             ObjectUtils.asMap("resource_type", "auto" ));
 
@@ -210,28 +213,38 @@ public class UserService implements UserDetailsService {
     public ResponseEntity isUserValidation(User user) {
         List<String> validRoles = Arrays.asList("ROLE_DOCTOR", "ROLE_PATIENT");
         if (user == null)
-            return new ResponseEntity<>("User is null", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Người dùng không hợp lệ", HttpStatus.BAD_REQUEST);
         else if (user.getEmail() == null || user.getEmail().isEmpty())
-            return new ResponseEntity<>("Email is required.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity("Email là bắt buộc.", HttpStatus.BAD_REQUEST);
         else if (!user.getEmail().matches("^[A-Za-z0-9+_.-]+@(.+)$"))
-            return new ResponseEntity<>("Email is not correct pattern.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity("Email không đúng định dạng.", HttpStatus.BAD_REQUEST);
         else if (user.getFirstName() == null || user.getFirstName().isEmpty())
-            return new ResponseEntity<>("First name is requried.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity("Họ tên không được để trống.", HttpStatus.BAD_REQUEST);
         else if (user.getBirthday() == null)
-            return new ResponseEntity<>("Date of birth is requried.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity("Ngày sinh là bắt buộc.", HttpStatus.BAD_REQUEST);
         else if (user.getLastName() == null || user.getLastName().isEmpty())
-            return new ResponseEntity<>("Last name is requried.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity("Tên không được để trống.", HttpStatus.BAD_REQUEST);
         else if (user.getAddress() == null || user.getAddress().isEmpty())
-            return new ResponseEntity<>("Address is requried.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity("Địa chỉ là bắt buộc.", HttpStatus.BAD_REQUEST);
         else if (user.getPassword() == null || user.getPassword().isEmpty())
-            return new ResponseEntity<>("Password is requried.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity("Mật khẩu là bắt buộc.", HttpStatus.BAD_REQUEST);
         else if (user.getUserRole() == null || user.getUserRole().isEmpty())
-            return new ResponseEntity<>("User role is requried.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity("Vai trò người dùng là bắt buộc.", HttpStatus.BAD_REQUEST);
         else if (!validRoles.contains(user.getUserRole()))
-            return new ResponseEntity<>("User role should be either ROLE_DOCTOR or ROLE_PATIENT.", HttpStatus.BAD_REQUEST);
-        else
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity("Vai trò người dùng phải là ROLE_DOCTOR hoặc ROLE_PATIENT.", HttpStatus.BAD_REQUEST);
+        else {
+            LocalDate currentDate = LocalDate.now();
+            LocalDate birthdate = user.getBirthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            int age = Period.between(birthdate, currentDate).getYears();
 
+            if (age < 18 || age > 60) {
+                return new ResponseEntity("Tuổi phải từ 18 đến 60.", HttpStatus.BAD_REQUEST);
+            }
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
     }
+
+
 
 }
