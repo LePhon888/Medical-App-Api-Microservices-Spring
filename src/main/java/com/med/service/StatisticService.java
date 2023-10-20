@@ -37,7 +37,10 @@ public class StatisticService {
             }
 
         }
-        return this.statsRepository.countFrequentPatientVisitsByTime(params);
+        List<Object[]> list = new ArrayList<>();
+        list.addAll(this.statsRepository.countTotalPatientsByTime(params));
+        list.addAll(this.statsRepository.countFrequentPatientVisitsByTime(params));
+        return list;
     }
 
     public List<Object[]> getRevenueByTime(Map<String, Object> params) {
