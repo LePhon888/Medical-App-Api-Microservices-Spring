@@ -28,6 +28,9 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.*;
 
 @Service
@@ -181,14 +184,14 @@ public class UserService implements UserDetailsService {
             MultipartFile file = user.getFile();
             if (file != null && !file.isEmpty()) {
                 try {
-                    // Compress the image using Thumbnails library
+
                     ByteArrayOutputStream compressedImageStream = new ByteArrayOutputStream();
                     Thumbnails.of(file.getInputStream())
-                            .size(800, 600) // Specify your desired dimensions
-                            .outputQuality(0.8) // Adjust the compression quality (0.0 - 1.0)
+                            .size(800, 600)
+                            .outputQuality(0.8)
                             .toOutputStream(compressedImageStream);
 
-                    // Upload the compressed image to Cloudinary
+
                     Map uploadResult = this.cloudinary.uploader().upload(compressedImageStream.toByteArray(),
                             ObjectUtils.asMap("resource_type", "auto" ));
 
@@ -207,31 +210,6 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public ResponseEntity isUserValidation(User user) {
-        List<String> validRoles = Arrays.asList("ROLE_DOCTOR", "ROLE_PATIENT");
-        if (user == null)
-            return new ResponseEntity<>("Không tìm thấy người dùng", HttpStatus.BAD_REQUEST);
-        else if (user.getEmail() == null || user.getEmail().isEmpty())
-            return new ResponseEntity<>("Email bị trống", HttpStatus.BAD_REQUEST);
-        else if (!user.getEmail().matches("^[A-Za-z0-9+_.-]+@(.+)$"))
-            return new ResponseEntity<>("Email không đúng định dạng", HttpStatus.BAD_REQUEST);
-        else if (user.getFirstName() == null || user.getFirstName().isEmpty())
-            return new ResponseEntity<>("Tên bị trống", HttpStatus.BAD_REQUEST);
-        else if (user.getBirthday() == null)
-            return new ResponseEntity<>("Ngày sinh bị trống.", HttpStatus.BAD_REQUEST);
-        else if (user.getLastName() == null || user.getLastName().isEmpty())
-            return new ResponseEntity<>("Họ bị trống", HttpStatus.BAD_REQUEST);
-        else if (user.getAddress() == null || user.getAddress().isEmpty())
-            return new ResponseEntity<>("Địa chỉ bị trống.", HttpStatus.BAD_REQUEST);
-        else if (user.getPassword() == null || user.getPassword().isEmpty())
-            return new ResponseEntity<>("Mật khẩu bị trống.", HttpStatus.BAD_REQUEST);
-        else if (user.getUserRole() == null || user.getUserRole().isEmpty())
-            return new ResponseEntity<>("Quyền user bị trống.", HttpStatus.BAD_REQUEST);
-        else if (!validRoles.contains(user.getUserRole()))
-            return new ResponseEntity<>("User role should be either ROLE_DOCTOR or ROLE_PATIENT.", HttpStatus.BAD_REQUEST);
-        else
-            return new ResponseEntity<>(HttpStatus.OK);
 
-    }
 
 }
