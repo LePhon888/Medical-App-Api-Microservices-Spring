@@ -23,7 +23,8 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/")
-    public ResponseEntity<String> createOrUpdate(@RequestPart(value = "user", required = false) User user, @RequestPart(value = "file",required = false) MultipartFile file) {
+    public ResponseEntity<String> createOrUpdate(@RequestPart(value = "user", required = false) User user,
+                                                 @RequestPart(value = "file",required = false) MultipartFile file) {
        ResponseEntity response = userService.isUserValidation(user);
         if (response.getStatusCode().equals(HttpStatus.OK)) {
             if (file != null && !file.isEmpty())

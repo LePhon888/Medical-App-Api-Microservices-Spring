@@ -126,10 +126,10 @@ public class AppointmentController {
                 Appointment appointment = optionalAppointment.get();
                 appointment.setIsConfirm(isConfirm);
 
-                boolean updated = appointmentService.update(appointment);
+                Appointment updated = appointmentService.update(appointment);
 
-                if (updated) {
-                    if (updated && appointment.getIsConfirm() == 1)
+                if (updated != null) {
+                    if (appointment.getIsConfirm() == 1)
                         this.appointmentService.sendConfirmAppointmentMail(appointment);
                     return new ResponseEntity<>(HttpStatus.OK);
                 } else {

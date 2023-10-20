@@ -145,7 +145,7 @@ public class UserService implements UserDetailsService {
         content = content.replace("[[name]]", user.getFirstName());
 //        String verifyURL = siteURL + "/auth/verify?code=" + user.getVerificationCode();
 
-        String verifyURL = "http://192.168.1.5:8080" + "/auth/verify?code=" + user.getVerificationCode();
+        String verifyURL = "http://192.168.1.4:8080" + "/auth/verify?code=" + user.getVerificationCode();
 
         content = content.replace("[[URL]]", verifyURL);
 
@@ -160,7 +160,7 @@ public class UserService implements UserDetailsService {
         if (user == null || user.isEnabled()) {
             return false;
         } else {
-            user.setVerificationCode(null);
+            user.setVerificationCode(verificationCode);
             user.setEnabled(true);
             this.userRepository.save(user);
 
@@ -210,23 +210,23 @@ public class UserService implements UserDetailsService {
     public ResponseEntity isUserValidation(User user) {
         List<String> validRoles = Arrays.asList("ROLE_DOCTOR", "ROLE_PATIENT");
         if (user == null)
-            return new ResponseEntity<>("User is null", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Không tìm thấy người dùng", HttpStatus.BAD_REQUEST);
         else if (user.getEmail() == null || user.getEmail().isEmpty())
-            return new ResponseEntity<>("Email is required.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Email bị trống", HttpStatus.BAD_REQUEST);
         else if (!user.getEmail().matches("^[A-Za-z0-9+_.-]+@(.+)$"))
-            return new ResponseEntity<>("Email is not correct pattern.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Email không đúng định dạng", HttpStatus.BAD_REQUEST);
         else if (user.getFirstName() == null || user.getFirstName().isEmpty())
-            return new ResponseEntity<>("First name is requried.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Tên bị trống", HttpStatus.BAD_REQUEST);
         else if (user.getBirthday() == null)
-            return new ResponseEntity<>("Date of birth is requried.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Ngày sinh bị trống.", HttpStatus.BAD_REQUEST);
         else if (user.getLastName() == null || user.getLastName().isEmpty())
-            return new ResponseEntity<>("Last name is requried.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Họ bị trống", HttpStatus.BAD_REQUEST);
         else if (user.getAddress() == null || user.getAddress().isEmpty())
-            return new ResponseEntity<>("Address is requried.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Địa chỉ bị trống.", HttpStatus.BAD_REQUEST);
         else if (user.getPassword() == null || user.getPassword().isEmpty())
-            return new ResponseEntity<>("Password is requried.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Mật khẩu bị trống.", HttpStatus.BAD_REQUEST);
         else if (user.getUserRole() == null || user.getUserRole().isEmpty())
-            return new ResponseEntity<>("User role is requried.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Quyền user bị trống.", HttpStatus.BAD_REQUEST);
         else if (!validRoles.contains(user.getUserRole()))
             return new ResponseEntity<>("User role should be either ROLE_DOCTOR or ROLE_PATIENT.", HttpStatus.BAD_REQUEST);
         else

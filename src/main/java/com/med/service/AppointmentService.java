@@ -9,9 +9,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -42,9 +39,8 @@ public class AppointmentService {
         return appointmentRepository.findAppointmentsByParams(params);
     }
 
-    public boolean update(Appointment appointment) {
-        boolean result = appointmentRepository.update(appointment.getId(), appointment.getIsConfirm()) > 0;
-        return result;
+    public Appointment update(Appointment appointment) {
+      return appointmentRepository.save(appointment);
     }
 
     @Async

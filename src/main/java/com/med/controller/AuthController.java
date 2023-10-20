@@ -47,11 +47,18 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Map<String, String> params) {
         Boolean authResult = this.userService.authUser(params.get("email"), params.get("password"));
+        User user = this.userService.getUserByEmail(params.get("email"));
+        Boolean enable = user.isEnabled();
+        System.out.println("enableeee " + enable);
         if (authResult) {
-            String token = this.jwtHelper.generateToken(params.get("email"));
-            return new ResponseEntity<>(token, HttpStatus.OK);
+            if (enable) {
+                String token = this.jwtHelper.generateToken(params.get("email"));
+                return new ResponseEntity<>(token, HttpStatus.OK);
+            }
+            else
+                return new ResponseEntity<>("Vui lòng xác thực tài khoản qua email đã đăng ký", HttpStatus.UNAUTHORIZED);
         } else {
-            return new ResponseEntity<>("Error", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("Không tìm thấy tài khoản", HttpStatus.UNAUTHORIZED);
         }
     }
 
