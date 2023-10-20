@@ -8,6 +8,18 @@ import java.util.List;
 import java.util.Map;
 
 public interface StatisticRepository extends JpaRepository<Appointment, Long> {
+
+    @Query(
+            "SELECT CASE WHEN :#{#params['month']} <> 0 THEN MONTH(a.date)" +
+                    " WHEN :#{#params['quarter']} <> 0 THEN QUARTER(a.date) " +
+                    "ELSE YEAR(a.date) END AS time, COUNT(a.user.id)" +
+                    "FROM Appointment a " +
+                    "WHERE a.isConfirm = 1 AND a.isPaid = 1 " +
+                    "AND (:#{#params['year']} = 0 OR :#{#params['year']} = YEAR(a.date)) " +
+                    "GROUP BY time  ORDER BY time ASC "
+    )
+    List<Object[]> countTotalPatientsByTime(@Param("params") Map<String, Object> params);
+
     @Query(nativeQuery = true, value =
             "WITH cte AS (" +
                     "    SELECT " +
