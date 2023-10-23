@@ -131,11 +131,11 @@ public class UserService implements UserDetailsService {
         String toAddress = user.getEmail();
         String fromAddress = "lephon888@gmail.com";
         String senderName = "Medical App";
-        String subject = "Please verify your registration";
-        String content = "Dear [[name]],<br>"
-                + "Please click the link below to verify your registration:<br>"
+        String subject = "Xác thực tài khoản Medical App";
+        String content = "Gửi [[name]],<br>"
+                + "Vui lòng nhấn vào vefiry để hoàn tất quá trình đăng ký tài khoản của bạn:<br>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
-                + "Thank you,<br>"
+                + "Cảm ơn,<br>"
                 + "Medical App.";
 
         MimeMessage message = mailSender.createMimeMessage();
@@ -148,7 +148,9 @@ public class UserService implements UserDetailsService {
         content = content.replace("[[name]]", user.getFirstName());
 //        String verifyURL = siteURL + "/auth/verify?code=" + user.getVerificationCode();
 
-        String verifyURL = "http://192.168.1.4:8080" + "/auth/verify?code=" + user.getVerificationCode();
+//        String verifyURL = "http://192.168.1.4:8080" + "/auth/verify?code=" + user.getVerificationCode();
+        String verifyURL = "http://192.168.43.97" + "/auth/verify?code=" + user.getVerificationCode();
+
 
         content = content.replace("[[URL]]", verifyURL);
 

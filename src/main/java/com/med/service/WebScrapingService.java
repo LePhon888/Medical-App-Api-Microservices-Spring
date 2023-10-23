@@ -28,9 +28,9 @@ public class WebScrapingService {
 
             Elements liElements = document.select("li.css-kbq0t");
 
-            ExecutorService executorService = Executors.newFixedThreadPool(30);
-
             List<Future<Article>> futures = new ArrayList<>();
+
+            ExecutorService executorService = Executors.newFixedThreadPool(30);
 
             for (Element li : liElements) {
                 String link = li.select("a.css-1mttucs").attr("href");
