@@ -78,7 +78,9 @@ public class SecurityConfig {
                                         "/api/doctors/department",
                                         "/api/doctors/**",
                                         "/api/user/**",
-                                        "/auth/current-user"
+                                        "/auth/current-user",
+                                        "/api/rating/**",
+                                        "/api/doctor-details/**"
                                         ).permitAll()
                                 .requestMatchers("/test", "/api/appointment").access("hasRole('ROLE_PATIENT') or hasRole('ROLE_DOCTOR')")
 //                                .requestMatchers("/auth/current-user").access("hasRole('ROLE_PATIENT') " +

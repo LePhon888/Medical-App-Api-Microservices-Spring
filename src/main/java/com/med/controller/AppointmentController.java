@@ -146,4 +146,10 @@ public class AppointmentController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("/count")
+    public Long countAppointmentsByUserId(@RequestParam("doctorId") String doctorId,
+                                          @RequestParam("userId") String userId) {
+        return this.appointmentService.countAppointmentsByUserId(userId, doctorId);
+    }
 }

@@ -1,5 +1,6 @@
 package com.med.controller;
 
+import com.med.dto.DoctorDTO;
 import com.med.model.Doctor;
 import com.med.service.DoctorService;
 import jakarta.websocket.server.PathParam;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @CrossOrigin("*")
 @RestController
@@ -16,6 +18,16 @@ import java.util.List;
 public class DoctorController {
     @Autowired
     private DoctorService doctorService;
+
+    @GetMapping("/")
+    public List<DoctorDTO> getDoctorList() {
+        return this.doctorService.getDoctorList();
+    }
+
+    @GetMapping("/detail/{id}")
+    public DoctorDTO getDoctorById(@PathVariable(value = "id") String id) {
+        return this.doctorService.getDoctorById(id);
+    }
 
     @GetMapping("/department")
     public List<Doctor> getByDepartmentId (@PathParam(value = "departmentId") String departmentId) {

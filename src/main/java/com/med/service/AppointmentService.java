@@ -104,4 +104,11 @@ public class AppointmentService {
     public List<Appointment> getByUserId(int id) {
         return appointmentRepository.findByUserId(id);
     }
+
+    public Long countAppointmentsByUserId(String userId, String doctorId) {
+        if (userId.isEmpty() || doctorId.isEmpty()) {
+            return (long) -1;
+        }
+        return this.appointmentRepository.countAppointmentsByUserId(userId, doctorId);
+    }
 }
