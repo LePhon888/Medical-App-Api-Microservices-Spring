@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -41,8 +42,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Value("${jwt.filter.enabled}")
+    private boolean isJwtFilterEnabled;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
+        // Temporary code to enable jwt token or not. Will delete in the future.
+        if (!isJwtFilterEnabled) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         String requestHeader = request.getHeader(TOKEN_HEADER);
         String authToken = null;
         String email = null;

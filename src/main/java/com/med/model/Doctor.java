@@ -30,10 +30,10 @@ public class Doctor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
-    @JoinColumn(name = "department_id", referencedColumnName = "id")
     @ManyToOne
+    @JoinColumn(name = "department_id", referencedColumnName = "id")
     private Department department;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
@@ -41,4 +41,23 @@ public class Doctor implements Serializable {
     @OneToMany(mappedBy = "doctor")
     @JsonIgnore
     private Collection<Appointment> appointmentCollection;
+    @Column(name = "hospital_address", nullable = true, length = 250)
+    private String hospitalAddress;
+    @Basic
+    @Column(name = "information", nullable = true, length = 250)
+    private String information;
+    @ManyToOne
+    @JoinColumn(name = "consultation_id", referencedColumnName = "id")
+    private Consultation consultation;
+    @ManyToOne
+    @JoinColumn(name = "fee_id", referencedColumnName = "id")
+    private Fee fee;
+    @JsonIgnore
+    @OneToMany(mappedBy = "doctor")
+    private Collection<DoctorDetails> doctorDetailsById;
+    @Column(name = "hospital", nullable = true, length = 50)
+    private String hospital;
+    @JsonIgnore
+    @OneToMany(mappedBy = "doctor")
+    private Collection<Rating> ratings;
 }

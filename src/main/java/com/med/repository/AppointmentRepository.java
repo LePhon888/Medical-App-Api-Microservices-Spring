@@ -25,4 +25,9 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 
     @Query("SELECT a FROM Appointment a WHERE a.registerUser.id = :id or a.user.id = :id or a.doctor.user.id = :id")
     List<Appointment> findByUserId(@Param("id") Integer id);
+
+    @Query("SELECT Count(*) " +
+            "FROM Appointment a " +
+            "WHERE a.isPaid = 1 AND a.isConfirm = 1 AND a.user.id = :userId AND a.doctor.id = :doctorId")
+    Long countAppointmentsByUserId(String userId, String doctorId);
 }
