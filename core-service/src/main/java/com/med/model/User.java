@@ -84,6 +84,9 @@ public class User implements Serializable {
     @Basic
     @Column(name = "image", nullable = true, length = 255)
     private String image;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Collection<Rating> ratings;
     @Transient
     @JsonIgnore
     private MultipartFile file;
