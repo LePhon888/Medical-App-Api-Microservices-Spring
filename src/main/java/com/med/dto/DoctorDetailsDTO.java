@@ -3,12 +3,13 @@ package com.med.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Getter
 @Setter
-public class DoctorDetailsDTO {
+public class DoctorDetailsDTO implements Serializable {
     private String category;
     private String title;
     private String place;

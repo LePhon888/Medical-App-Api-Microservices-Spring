@@ -21,9 +21,10 @@ public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
             "d.hospitalAddress, " +
             "d.information, " +
             "d.consultation.label, " +
-            "( SELECT GROUP_CONCAT(t.target.label) FROM DoctorTarget t WHERE t.doctor.id = d.id), " +
+            "(SELECT GROUP_CONCAT(t.target.label) FROM DoctorTarget t WHERE t.doctor.id = d.id), " +
             "d.fee.fee, " +
-            "(SELECT AVG(r.star) FROM Rating r WHERE r.doctor.id = d.id) " +
+            "(SELECT ROUND(AVG(r.star),1) FROM Rating r WHERE r.doctor.id = d.id)" +
+            "  " +
             "FROM Doctor d " +
             "WHERE :doctorId IS NULL OR d.id = cast(:doctorId as int)")
     List<Object[]> getDoctorList(@Param("doctorId") String doctorId);

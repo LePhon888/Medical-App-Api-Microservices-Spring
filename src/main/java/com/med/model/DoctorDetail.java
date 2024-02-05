@@ -4,14 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.print.Doc;
 import java.util.Date;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "doctor_details")
-public class DoctorDetails {
+@Table(name = "doctor_detail")
+public class DoctorDetail {
     @Id
     @Column(name = "id")
     private Integer id;

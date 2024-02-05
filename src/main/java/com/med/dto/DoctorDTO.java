@@ -2,6 +2,7 @@ package com.med.dto;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Getter
@@ -9,7 +10,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class DoctorDTO {
+public class DoctorDTO implements Serializable {
     private Integer userId;
     private String fullName;
     private String image;
