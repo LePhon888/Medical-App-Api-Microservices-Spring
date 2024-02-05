@@ -1,25 +1,18 @@
 package com.med.controller;
 
-import com.med.dto.DoctorDTO;
 import com.med.dto.DoctorDetailsDTO;
-import com.med.model.Doctor;
-import com.med.model.DoctorDetails;
-import com.med.service.DoctorDetailsService;
-import com.med.service.DoctorService;
-import jakarta.websocket.server.PathParam;
+import com.med.service.DoctorDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/doctor-details")
-public class DoctorDetailsController {
+@RequestMapping("/api/doctor-detail")
+public class DoctorDetailController {
     @Autowired
-    private DoctorDetailsService service;
+    private DoctorDetailService service;
 
     @GetMapping("/{id}")
     public List<DoctorDetailsDTO> getDoctorDetailsByDoctorId(@PathVariable(value = "id") String doctorId) {

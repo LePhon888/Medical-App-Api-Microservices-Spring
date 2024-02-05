@@ -19,4 +19,8 @@ public class RatingController {
         return serivce.getRatingByDoctorId(id);
     }
 
+    @GetMapping("/stats/{id}")
+    public List<Object[]> getRatingStatsByDoctorId(@PathVariable("id") String id) {
+        return serivce.getRatingStatsByDoctorId(id);
+    }
 }

@@ -54,7 +54,7 @@ public class Doctor implements Serializable {
     private Fee fee;
     @JsonIgnore
     @OneToMany(mappedBy = "doctor")
-    private Collection<DoctorDetails> doctorDetailsById;
+    private Collection<DoctorDetail> doctorDetailById;
     @Column(name = "hospital", nullable = true, length = 50)
     private String hospital;
     @JsonIgnore

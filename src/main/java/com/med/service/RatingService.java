@@ -18,4 +18,8 @@ public class RatingService {
         List<Object[]> result = this.repository.getRatingByDoctorId(id);
         return result.stream().map(RatingDTO::new).collect(Collectors.toList());
     }
+
+    public List<Object[]> getRatingStatsByDoctorId(String id) {
+        return this.repository.getRatingStatsByDoctorId(id);
+    }
 }
