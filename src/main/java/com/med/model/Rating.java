@@ -1,7 +1,9 @@
 package com.med.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.print.Doc;
@@ -13,6 +15,7 @@ import java.util.Objects;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Rating implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
