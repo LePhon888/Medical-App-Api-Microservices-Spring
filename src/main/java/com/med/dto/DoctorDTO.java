@@ -4,12 +4,11 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Data
 public class DoctorDTO implements Serializable {
     private Integer userId;
     private String fullName;
@@ -21,19 +20,6 @@ public class DoctorDTO implements Serializable {
     private String consultation;
     private String target;
     private BigDecimal fee;
-    private Double rating;
-
-    public DoctorDTO(Object[] row) {
-        this.userId = (Integer) row[0];
-        this.fullName = (String) row[1];
-        this.image = (String) row[2];
-        this.departmentName = (String) row[3];
-        this.hospital = (String) row[4];
-        this.hospitalAddress = (String) row[5];
-        this.information = (String) row[6];
-        this.consultation = (String) row[7];
-        this.target = (String) row[8];
-        this.fee = (BigDecimal) row[9];
-        this.rating = (Double) row[10];
-    }
+    @Builder.Default
+    private Double rating = 0.0;
 }

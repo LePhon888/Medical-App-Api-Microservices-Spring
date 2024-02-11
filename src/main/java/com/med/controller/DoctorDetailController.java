@@ -1,6 +1,6 @@
 package com.med.controller;
 
-import com.med.dto.DoctorDetailsDTO;
+import com.med.dto.DoctorDetailDTO;
 import com.med.service.DoctorDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ public class DoctorDetailController {
     private DoctorDetailService service;
 
     @GetMapping("/{id}")
-    public List<DoctorDetailsDTO> getDoctorDetailsByDoctorId(@PathVariable(value = "id") String doctorId) {
+    public List<DoctorDetailDTO> getDoctorDetailsByDoctorId(@PathVariable(value = "id") String doctorId) {
         return this.service.getDoctorDetailsByDoctorId(doctorId);
     }
 }

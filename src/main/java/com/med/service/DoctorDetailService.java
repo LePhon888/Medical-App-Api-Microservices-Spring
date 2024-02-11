@@ -1,6 +1,6 @@
 package com.med.service;
 
-import com.med.dto.DoctorDetailsDTO;
+import com.med.dto.DoctorDetailDTO;
 import com.med.repository.DoctorDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +13,7 @@ public class DoctorDetailService {
     @Autowired
     private DoctorDetailRepository repository;
 
-    public List<DoctorDetailsDTO> getDoctorDetailsByDoctorId(String doctorId) {
-        List<Object[]> result = this.repository.getDoctorDetailsByDoctorId(doctorId);
-        return result.stream()
-                .map(DoctorDetailsDTO::new)
-                .collect(Collectors.toList());
+    public List<DoctorDetailDTO> getDoctorDetailsByDoctorId(String doctorId) {
+        return this.repository.getDoctorDetailsByDoctorId(doctorId);
     }
 }

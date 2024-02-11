@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin("*")
 @RestController
@@ -22,5 +23,10 @@ public class RatingController {
     @GetMapping("/stats/{id}")
     public List<Object[]> getRatingStatsByDoctorId(@PathVariable("id") String id) {
         return serivce.getRatingStatsByDoctorId(id);
+    }
+
+    @PostMapping
+    public String createRating(@RequestBody Map<String, String> Payload) {
+        return this.serivce.createOrUpdateRating(Payload);
     }
 }
