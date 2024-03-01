@@ -33,14 +33,14 @@ public class RatingService {
         return this.ratingRepository.getRatingStatsByDoctorId(id);
     }
 
-    public String createOrUpdateRating(Map<String, String> Payload) {
+    public String createOrUpdateRating(Map<String, String> payload) {
         try {
             Rating rating = new Rating();
             rating.setCreatedDate(new Timestamp(System.currentTimeMillis()));
-            rating.setStar(Integer.valueOf(Payload.get("star")));
-            rating.setComment(Payload.get("comment"));
-            rating.setUser(userRepository.findById(Integer.valueOf(Payload.get("userId"))).get());
-            rating.setDoctor(doctorRepository.findById(Integer.valueOf(Payload.get("doctorId"))).get());
+            rating.setStar(Integer.valueOf(payload.get("star")));
+            rating.setComment(payload.get("comment"));
+            rating.setUser(userRepository.findById(Integer.valueOf(payload.get("userId"))).get());
+            rating.setDoctor(doctorRepository.findById(Integer.valueOf(payload.get("doctorId"))).get());
             ratingRepository.save(rating);
             return "";
         } catch (Exception ex) {
