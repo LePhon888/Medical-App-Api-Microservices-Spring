@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Objects;
 
 
 /**
@@ -29,32 +30,41 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
-    @Column(name = "first_name")
+    @Basic
+    @Column(name = "first_name", nullable = true, length = 50)
     private String firstName;
-    @Column(name = "last_name")
+    @Basic
+    @Column(name = "last_name", nullable = true, length = 50)
     private String lastName;
-    @Column(name = "birthday")
+    @Basic
+    @Column(name = "birthday", nullable = true)
     @Temporal(TemporalType.DATE)
     private Date birthday;
-    @Column(name = "address")
+    @Basic
+    @Column(name = "address", nullable = true, length = 100)
     private String address;
-    @Column(name = "gender")
+    @Basic
+    @Column(name = "gender", nullable = true)
     private Integer gender;
-    @Column(name = "phone_number")
+    @Basic
+    @Column(name = "phone_number", nullable = true, length = 15)
     private String phoneNumber;
-    @Column(name = "email")
+    @Basic
+    @Column(name = "email", nullable = true, length = 30)
     private String email;
-    @Column(name = "password")
+    @Basic
+    @Column(name = "password", nullable = true, length = 100)
     private String password;
-    @Column(name = "is_active")
+    @Basic
+    @Column(name = "is_active", nullable = true)
     private Short isActive;
-    @Column(name = "user_role")
+    @Basic
+    @Column(name = "user_role", nullable = true, length = 45)
     private String userRole;
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     @JsonIgnore
@@ -65,18 +75,16 @@ public class User implements Serializable {
     @Column(name = "auth_provider")
     @Enumerated(EnumType.STRING)
     private Provider provider;
-    @Column(name = "verification_code", length = 64)
+    @Basic
+    @Column(name = "verification_code", length = 64, nullable = true)
     private String verificationCode;
-    @Column(name = "enabled")
+    @Basic
+    @Column(name = "enabled", nullable = true)
     private boolean enabled;
-    @Column(name = "image")
+    @Basic
+    @Column(name = "image", nullable = true, length = 255)
     private String image;
-    @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    private Collection<Rating> ratings;
     @Transient
     @JsonIgnore
     private MultipartFile file;
-
-
 }

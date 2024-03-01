@@ -20,6 +20,5 @@ public class DoctorDTO implements Serializable {
     private String consultation;
     private String target;
     private BigDecimal fee;
-    @Builder.Default
-    private Double rating = 0.0;
+    private Double rating;
 }
