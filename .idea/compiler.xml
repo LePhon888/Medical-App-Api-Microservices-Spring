@@ -8,21 +8,22 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="demo" />
-        <module name="fcm-module" />
-      </profile>
-      <profile name="Gradle Imported" enabled="true">
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.30/f195ee86e6c896ea47a1d39defbe20eb59cd149d/lombok-1.18.30.jar" />
-        </processorPath>
-        <module name="fcm-module.main" />
+        <module name="notification-module" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="fcm-module" target="17" />
+      <module name="fcm-module.main" target="17" />
+      <module name="fcm-module.test" target="17" />
+      <module name="firebase-module.main" target="17" />
+      <module name="firebase-module.test" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="demo" options="-parameters" />
       <module name="fcm-module" options="-parameters" />
+      <module name="notification-module" options="-parameters" />
     </option>
   </component>
 </project>

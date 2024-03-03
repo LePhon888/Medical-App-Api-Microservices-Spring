@@ -20,22 +20,22 @@ public interface MedicationScheduleRepository extends JpaRepository<MedicationSc
     IFNULL(
             ( -- Check if there are time that greater than current date time
                 SELECT
-                    TIMESTAMP(CURRENT_DATE, s.time)
+                    TIMESTAMP(CAST(TIMESTAMPADD(HOUR, 7, CURRENT_TIMESTAMP) AS DATE), s.time)
                 FROM
                     medicalapp.schedule_time s
                 WHERE
                     s.medication_schedule_id = ms.id
-                  AND ms.start_date <= CAST(TIMESTAMPADD(HOUR,7, CURRENT_DATE) AS DATE)
+                  AND ms.start_date <= CAST(TIMESTAMPADD(HOUR,7, CURRENT_TIMESTAMP) AS DATE)
                   AND s.time > TIMESTAMPADD(HOUR,7, CURRENT_TIME)
                   AND (
                       -- This is for the daily so we only compare the time part
                       (ms.frequency = 1)
                        OR
                        -- Check if the current date is belong to the frequency
-                      (ms.frequency > 1 AND DATEDIFF(CAST(TIMESTAMPADD(HOUR,7, CURRENT_DATE) AS DATE), ms.start_date) % ms.frequency = 0)
+                      (ms.frequency > 1 AND DATEDIFF(CAST(TIMESTAMPADD(HOUR,7, CURRENT_TIMESTAMP) AS DATE), ms.start_date) % ms.frequency = 0)
                        OR
                         -- Check if the current date in schedule selected days
-                      (ms.frequency IS NULL AND FIND_IN_SET(DAYOFWEEK(CAST(TIMESTAMPADD(HOUR,7, CURRENT_DATE) AS DATE)), ms.selected_days) > 0)
+                      (ms.frequency IS NULL AND FIND_IN_SET(DAYOFWEEK(CAST(TIMESTAMPADD(HOUR,7, CURRENT_TIMESTAMP) AS DATE)), ms.selected_days) > 0)
                   )
                 ORDER BY s.time
                 LIMIT 1
@@ -46,9 +46,11 @@ public interface MedicationScheduleRepository extends JpaRepository<MedicationSc
                     -- For the frequency = 1, pick the greatest date between startDate and current date after that add 1 more day
                     WHEN frequency = 1 THEN 
                         CASE 
-                            WHEN ms.start_date <= CAST(TIMESTAMPADD(HOUR,7, CURRENT_DATE) AS DATE)
-                                    THEN TIMESTAMP(TIMESTAMPADD(DAY, 1, ms.start_date), s.time)
-                            ELSE 
+                            -- If the current date greater than start date, add 1 day to current date
+                            WHEN ms.start_date <= CAST(TIMESTAMPADD(HOUR,7, CURRENT_TIMESTAMP)  AS DATE)
+                                    THEN TIMESTAMP(CAST(TIMESTAMPADD(DAY ,1, CURRENT_TIMESTAMP) AS DATE), s.time)
+                            ELSE  
+                            -- If the current date less than start date, select start date
                                 TIMESTAMP(ms.start_date, s.time)
                         END
                     WHEN frequency > 1 THEN (
@@ -66,7 +68,7 @@ public interface MedicationScheduleRepository extends JpaRepository<MedicationSc
                         */
                         SELECT TIMESTAMP(x,s.time) AS result
                         FROM DateSequence
-                        WHERE x > CAST(TIMESTAMPADD(HOUR,7, CURRENT_DATE) AS DATE)
+                        WHERE x > CAST(TIMESTAMPADD(HOUR,7, CURRENT_TIMESTAMP) AS DATE)
                           AND DATEDIFF(ms.start_date, x) % frequency = 0
                         LIMIT 1
                     )
@@ -75,7 +77,7 @@ public interface MedicationScheduleRepository extends JpaRepository<MedicationSc
                         -- Loop through each date
                         WITH RECURSIVE DateSequence AS (
                             SELECT 
-                                GREATEST(ms.start_date, CAST(TIMESTAMPADD(HOUR,7, CURRENT_DATE) AS DATE)) AS x
+                                GREATEST(ms.start_date, CAST(TIMESTAMPADD(HOUR,7, CURRENT_TIMESTAMP) AS DATE)) AS x
                             UNION ALL
                             SELECT x + INTERVAL 1 DAY
                             FROM DateSequence
@@ -87,7 +89,7 @@ public interface MedicationScheduleRepository extends JpaRepository<MedicationSc
                         */
                         SELECT TIMESTAMP(x, s.time) AS result
                         FROM DateSequence
-                        WHERE x > CAST(TIMESTAMPADD(HOUR,7, CURRENT_DATE) AS DATE)
+                        WHERE x > CAST(TIMESTAMPADD(HOUR,7, CURRENT_TIMESTAMP) AS DATE)
                           AND FIND_IN_SET(DAYOFWEEK(x), ms.selected_days) > 0
                           AND x >= ms.start_date
                         LIMIT 1
