@@ -1,13 +1,13 @@
-package com.med.fcmmodule;
+package com.med.firebase;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FcmModuleApplicationTests {
+class FirebaseModuleApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+	@Test
+	void contextLoads() {
+	}
 
 }
