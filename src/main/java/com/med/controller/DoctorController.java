@@ -22,8 +22,7 @@ public class DoctorController {
         return this.doctorService.getByDepartmentId(departmentId);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity getByDepartmentId (@PathVariable(value = "id") Integer id) {
+   public ResponseEntity getByDepartmentId (@PathVariable(value = "id") Integer id) {
         return new ResponseEntity<>(this.doctorService.getByUserId(id), HttpStatus.OK);
     }
 }
