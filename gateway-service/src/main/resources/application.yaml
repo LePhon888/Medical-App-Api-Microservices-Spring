@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: eureka-server
+          uri: http://localhost:8761
+          predicates:
+            - Path=/eureka
+          filters:
+            - SetPath=/
+
+        - id: eureka-server-static
+          uri: http://localhost:8761
+          predicates:
+            - Path=/eureka/**
+
+        - id: core-service
+          uri: lb://core-service
+          predicates:
+            - Path=/api/hours/**,
+              /auth/**,
+              /api/doctors/**, 
+              /api/doctor-detail/**, 
+              /api/rating/**, 
+              /api/departments/**,
+              /api/appointment/**,
+              /api/payment/**, 
+              /api/user/**, 
+              /ws, 
+              /api/scrape/**, 
+              /login-google/auth-google/**, 
+              /api/medicine/**, 
+              /api/medicine-unit/**, 
+              /api/medication-schedule/**, 
+              /api/schedule-time/**, 
+              /api/schedule-time-detail/**
+
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/notification/**,
+              /api/user-device/**
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"

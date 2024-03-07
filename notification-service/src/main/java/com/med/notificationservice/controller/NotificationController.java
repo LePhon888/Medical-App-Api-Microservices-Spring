@@ -16,7 +16,7 @@ public class NotificationController {
     private NotificationService service;
 
     @PostMapping("/create")
-    public ResponseEntity<String> createNotification(@RequestBody NotificationRequest request) {
+    public ResponseEntity<Integer> createNotification(@RequestBody NotificationRequest request) {
         return this.service.createNotification(request);
     }
 
@@ -31,7 +31,7 @@ public class NotificationController {
     }
 
 
-    @PutMapping("/{id}")
+    @PutMapping("/update-read/{id}")
     public ResponseEntity<String> updateReadNotificationById(@PathVariable(name = "id") Integer id) {
         return this.service.updateReadById(id);
     }

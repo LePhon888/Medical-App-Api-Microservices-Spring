@@ -24,7 +24,7 @@ public class NotificationService {
     @Autowired
     private FirebaseMessaging firebaseMessaging;
 
-    public ResponseEntity<String> createNotification(NotificationRequest request) {
+    public ResponseEntity<Integer> createNotification(NotificationRequest request) {
         try {
             Notification notification = new Notification(
                     0,
@@ -35,12 +35,15 @@ public class NotificationService {
                     request.getClickActionParams(),
                     LocalDateTime.now()
             );
-            repository.save(notification);
-            return ResponseEntity.ok("Create Notification Successfully");
+            Notification savedNotification = repository.save(notification);
+
+            // Return the ID of the created notification
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedNotification.getId());
         } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(-1); // Return a default value for error
         }
     }
+
 
     public ResponseEntity<String> sendNotificationToUser(NotificationRequest request) {
         try {
@@ -49,6 +52,14 @@ public class NotificationService {
                     || request.getToken() == null) {
                 return ResponseEntity.badRequest().body("Invalid notification request");
             }
+
+            ResponseEntity<Integer> responseEntity = createNotification(request);
+
+            if (responseEntity.getStatusCode() == HttpStatus.CREATED) {
+                Integer notificationId = responseEntity.getBody();
+                request.getClickActionParams().put("notificationId", String.valueOf(notificationId));
+            }
+
 
             com.google.firebase.messaging.Notification notification = com.google.firebase.messaging.Notification
                     .builder()
@@ -72,7 +83,7 @@ public class NotificationService {
             firebaseMessaging.send(message);
 
             // Create a notification in your application
-            createNotification(request);
+
 
             // Return a meaningful success response
             return ResponseEntity.status(HttpStatus.CREATED).body("Notification sent successfully");

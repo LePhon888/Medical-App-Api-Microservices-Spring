@@ -25,8 +25,8 @@ public class RatingService {
     @Autowired
     private DoctorRepository doctorRepository;
 
-    public List<RatingDTO> getRatingByDoctorId(String id) {
-        return this.ratingRepository.getRatingByDoctorId(id);
+    public List<RatingDTO> getRatingByDoctorId(Integer doctorId) {
+        return this.ratingRepository.getRatingByDoctorId(doctorId);
     }
 
     public List<Object[]> getRatingStatsByDoctorId(String id) {
