@@ -2,6 +2,7 @@ package com.med.notificationservice.service;
 
 import com.med.notificationservice.model.UserDevice;
 import com.med.notificationservice.repository.UserDeviceRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,5 +39,10 @@ public class UserDeviceService {
 
     public UserDevice getUserDeviceByUserId (Integer userId) {
         return repository.findUserDeviceByUserId(userId);
+    }
+
+    @Transactional
+    public void deleteUserDeviceByUserId(Integer userId) {
+        repository.deleteUserDeviceByUserId(userId);
     }
 }
