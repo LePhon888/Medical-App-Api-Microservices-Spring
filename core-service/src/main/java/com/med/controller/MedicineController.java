@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @CrossOrigin("*")
@@ -19,4 +20,10 @@ public class MedicineController {
     public Page<Medicine> getMedicine(@RequestParam Map<String, String> params) {
         return this.service.getMedicines(params);
     }
+
+    @GetMapping("/all")
+    public List<Medicine> getMedicineAll() {
+        return this.service.getAllMedicines();
+    }
+
 }
