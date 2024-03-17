@@ -1,19 +1,16 @@
 package com.med.schedule;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.med.dto.MedicationScheduleDetailProjection;
-import com.med.dto.NotificationRequestDTO;
-import com.med.dto.UserDeviceDTO;
-import com.med.feignclient.NotificationFeignClient;
-import com.med.model.ScheduleTime;
 import com.med.service.ScheduleTimeService;
 import com.med.utils.Screen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -26,45 +23,37 @@ public class ReminderMedication {
     @Autowired
     private ScheduleTimeService scheduleTimeService;
 
-    @Autowired
-    private NotificationFeignClient notificationFeignClient;
-
     @Value("${schedule.enable}")
     private boolean isScheduledEnabled;
 
-    @Scheduled(fixedRate = 60000) // Set schedule every minute. Khuong: will consider to increase to 5 minutes.
-    public void notifyScheduleTimeToUser() {
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
 
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
+    @Value("${kafka.topic.notification}")
+    private String notificationTopic;
+
+    @Scheduled(fixedRate = 180000) // Set schedule every 3 minutes. Khuong: will consider to increase to 5 minutes.
+    public void notifyScheduleTimeToUser() throws JsonProcessingException {
         if (!isScheduledEnabled) {
             return;
         }
-
         List<MedicationScheduleDetailProjection> list = scheduleTimeService.getScheduleTimeToSendNotification();
         if (!list.isEmpty()) {
-            list.forEach((s) -> {
-                // Check whether the user device already existed
-                UserDeviceDTO userDevice = notificationFeignClient.getUserDeviceByUserId(s.getId());
-                if (userDevice != null) {
-
-                    // Add params when click the notification
-                    Map<String, String> clickActionParams = new HashMap<>();
-                    clickActionParams.put("screen", Screen.MedicationBox.getName());
-                    clickActionParams.put("startDate", LocalDate.now().toString());
-
-                    // Create a notification with format
-                    notificationFeignClient.sendPushNotification(new NotificationRequestDTO(
-                            userDevice.getTokenRegistration(),
-                            "Từ hộp thuốc của bạn ",
-                            String.format("Đã đến giờ uống thuốc %s: %s %s vào lúc %s",
-                                    s.getMedicineName(),
-                                    s.getQuantity(),
-                                    s.getUnitName(),
-                                    s.getTime().format(DateTimeFormatter.ofPattern("hh:mm a"))),
-                            "",
-                            s.getId(),
-                            clickActionParams));
-                }
-            });
+            for (MedicationScheduleDetailProjection scheduleDetail : list) {
+                // Assuming MedicationReminder is a class representing the reminder details
+                Map<String, Object> reminder = new HashMap<>();
+                reminder.put("medicineName",scheduleDetail.getMedicineName());
+                reminder.put("unitName",scheduleDetail.getUnitName());
+                reminder.put("quantity",scheduleDetail.getQuantity());
+                reminder.put("userId", scheduleDetail.getId());
+                reminder.put("time", scheduleDetail.getTime().format(DateTimeFormatter.ofPattern("hh:mm a")));
+                reminder.put("screen", Screen.MedicationBox.getName());
+                reminder.put("startDate", LocalDate.now().toString());
+                // Send the reminder to the notification-service via Kafka
+                kafkaTemplate.send(notificationTopic, objectMapper.writeValueAsString(reminder));
+            }
         }
     }
 }

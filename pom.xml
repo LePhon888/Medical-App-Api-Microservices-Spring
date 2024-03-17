@@ -21,7 +21,8 @@
     <module>core-service</module>
     <module>notification-service</module>
     <module>gateway-service</module>
-    <module>eureka-server</module>
+    <module>discovery-service</module>
+    <module>websocket-service</module>
   </modules>
 
   <properties>

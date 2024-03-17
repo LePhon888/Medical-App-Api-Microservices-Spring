@@ -76,7 +76,7 @@ public interface ScheduleTimeRepository extends JpaRepository<ScheduleTime, Inte
      INNER JOIN
          medicalapp.schedule_time s
              ON ms.id = s.medication_schedule_id 
-                     AND TIMESTAMPDIFF(MINUTE, TIMESTAMPADD(HOUR, 7, CURRENT_TIME), s.time) <= 5
+                     AND TIMESTAMPDIFF(MINUTE, TIMESTAMPADD(HOUR, 7, CURRENT_TIME), s.time) BETWEEN 1 AND 3
      INNER JOIN
          medicalapp.medicine m on ms.medicine_id = m.id
      INNER JOIN
