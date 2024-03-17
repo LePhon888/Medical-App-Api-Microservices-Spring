@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="2168a6bf-7a8d-400c-a0ba-f1a695b2ea93" name="Changes" comment="" />
+=======
+    <list default="true" id="d05985a3-e047-4c8f-806c-7fb2a3ab51cb" name="Changes" comment="rebase from khuong into main" />
+>>>>>>> 137e8a0 (rebase khuong onto main)
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +17,14 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/websocket-service">
+      <ProjectState />
+    </projectState>
+  </component>
+>>>>>>> 137e8a0 (rebase khuong onto main)
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -25,6 +37,7 @@
       </state>
     </system>
   </component>
+<<<<<<< HEAD
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
@@ -47,6 +60,132 @@
     <configuration name="CoreServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="core-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.med.CoreServiceApplication" />
+=======
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="khuong" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2dBRttvIMagj7M0FqRiY56ZhIM7" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "android.gradle.sync.needed": "true",
+    "jdk.selected.JAVA_MODULE": "jbr-17",
+    "last_opened_file_path": "D:/Medical-App-Api-SpringBoot/medication-schedule-service",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "Docker",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Medical-App-Api-SpringBoot\medication-schedule-service" />
+      <recent name="D:\Medical-App-Api-SpringBoot" />
+      <recent name="D:\Medical-App-Api-SpringBoot\medical-app-microservice\notification-service" />
+      <recent name="D:\Medical-App-Api-SpringBoot\medical-app-microservice" />
+      <recent name="D:\Medical-App-Api-SpringBoot\medical-app-microservice\core-service" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean" />
+      <command value="mvn clean install" />
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.WebsocketServiceApplication">
+    <configuration name="CoreServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="core-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.med.CoreServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.med.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DiscoveryServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="discovery-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.medical.discoveryservice.DiscoveryServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="eureka-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.medical.eurekaserver.EurekaServerApplication" />
+>>>>>>> 137e8a0 (rebase khuong onto main)
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -65,6 +204,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
     <list>
       <item itemvalue="Spring Boot.GatewayServiceApplication" />
       <item itemvalue="Spring Boot.NotificationServiceApplication" />
@@ -74,6 +214,88 @@
   <component name="TaskManager">
     <servers />
   </component>
+=======
+    <configuration name="WebsocketServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="websocket-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.medical.websocketservice.WebsocketServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.EurekaServerApplication" />
+      <item itemvalue="Spring Boot.WebsocketServiceApplication" />
+      <item itemvalue="Spring Boot.GatewayServiceApplication" />
+      <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
+      <item itemvalue="Spring Boot.NotificationServiceApplication" />
+      <item itemvalue="Spring Boot.CoreServiceApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.CoreServiceApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d05985a3-e047-4c8f-806c-7fb2a3ab51cb" name="Changes" comment="" />
+      <created>1709479705242</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1709479705242</updated>
+      <workItem from="1709479706256" duration="6178000" />
+      <workItem from="1709516704842" duration="3997000" />
+      <workItem from="1709542391530" duration="126000" />
+      <workItem from="1709555931350" duration="655000" />
+      <workItem from="1709558106283" duration="505000" />
+      <workItem from="1709558663725" duration="145000" />
+      <workItem from="1709560914992" duration="800000" />
+      <workItem from="1709561744864" duration="948000" />
+      <workItem from="1709564863875" duration="602000" />
+      <workItem from="1709566519212" duration="841000" />
+      <workItem from="1709611252995" duration="6588000" />
+      <workItem from="1709632947574" duration="12106000" />
+      <workItem from="1709699003568" duration="1090000" />
+      <workItem from="1709701935939" duration="7397000" />
+      <workItem from="1709815883249" duration="4560000" />
+      <workItem from="1709820967640" duration="4027000" />
+      <workItem from="1709865252773" duration="3036000" />
+      <workItem from="1709889230009" duration="2730000" />
+      <workItem from="1709894353698" duration="6878000" />
+      <workItem from="1709948584888" duration="2663000" />
+      <workItem from="1709968759045" duration="20825000" />
+      <workItem from="1710121563386" duration="172000" />
+      <workItem from="1710121780830" duration="22316000" />
+      <workItem from="1710228917715" duration="10274000" />
+      <workItem from="1710298185184" duration="17553000" />
+      <workItem from="1710574234885" duration="35565000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+    </ignored-roots>
+    <MESSAGE value="add setup for gate way, add history medical" />
+    <MESSAGE value="rebase from khuong into main" />
+    <option name="LAST_COMMIT_MESSAGE" value="rebase from khuong into main" />
+  </component>
+>>>>>>> 137e8a0 (rebase khuong onto main)
   <component name="XDebuggerManager">
     <pin-to-top-manager>
       <pinned-members>
@@ -84,5 +306,20 @@
         <PinnedItemInfo parentTag="org.springframework.web.socket.messaging.SessionDisconnectEvent" memberName="message" />
       </pinned-members>
     </pin-to-top-manager>
+<<<<<<< HEAD
+=======
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="roomId" />
+        <watch expression="nativeHeaders" />
+        <watch expression="((java.util.concurrent.ConcurrentHashMap.MapEntry)((java.util.concurrent.ConcurrentHashMap)roomParticipants).entrySet().toArray()[0]).getValue()" custom="java.util.concurrent.ConcurrentHashMap,java.util.concurrent.ConcurrentHashMap.MapEntry" />
+        <watch expression="messagingTemplate" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+>>>>>>> 137e8a0 (rebase khuong onto main)
   </component>
 </project>
