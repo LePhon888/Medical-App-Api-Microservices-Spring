@@ -1,5 +1,6 @@
 package com.med.service;
 
+import com.med.dto.AppointmentPatient;
 import com.med.model.Appointment;
 import com.med.model.User;
 import com.med.repository.AppointmentRepository;
@@ -9,6 +10,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -29,15 +32,24 @@ public class AppointmentService {
         return appointmentRepository.findAll();
     }
 
-    public List<Appointment> getAppointments(Map<String, Object> params) {
-        if (params != null) {
-            String userId = params.get("userId").toString();
-            if (userId != null && !userId.isEmpty()) {
-                params.put("doctorId", doctorService.getByUserId(Integer.parseInt(userId)).getId());
+    public List<AppointmentPatient> getAppointments(Integer userId, Map<String, Object> params) {
+        if (params.get("startDate") != null) {
+            try {
+                params.put("startDate", LocalDate.parse(params.get("startDate").toString()));
+            } catch (DateTimeParseException e) {
+                params.put("startDate", null);
             }
         }
-        return appointmentRepository.findAppointmentsByParams(params);
+        if (params.get("endDate") != null) {
+            try {
+                params.put("endDate", LocalDate.parse(params.get("endDate").toString()));
+            } catch (DateTimeParseException e) {
+                params.put("endDate", null);
+            }
+        }
+        return appointmentRepository.findAppointmentsByParams(userId, params);
     }
+
 
     public Appointment update(Appointment appointment) {
       return appointmentRepository.save(appointment);

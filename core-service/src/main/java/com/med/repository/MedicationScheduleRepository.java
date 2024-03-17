@@ -125,7 +125,8 @@ public interface MedicationScheduleRepository extends JpaRepository<MedicationSc
     FROM 
         MedicationSchedule ms
     WHERE 
-        ms.isActive = false 
+        ms.isActive = false
+        AND ms.user.id = :userId 
     """)
     List<MedicationScheduleProjection> getInactiveMedicationScheduleByUserId(@Param("userId") Integer userId);
 

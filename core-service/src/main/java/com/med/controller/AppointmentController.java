@@ -1,5 +1,6 @@
 package com.med.controller;
 
+import com.med.dto.AppointmentPatient;
 import com.med.model.*;
 import com.med.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,11 +99,11 @@ public class AppointmentController {
         return appointmentService.getAll();
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<Appointment>> getAppointments(@RequestParam Map<String, Object> params) {
-        System.out.println(this.appointmentService.getAppointments(params));
-        System.out.println((params.get("date")));
-        return new ResponseEntity<>(this.appointmentService.getAppointments(params), HttpStatus.OK);
+    @GetMapping("/doctor/{userId}")
+    public ResponseEntity<List<AppointmentPatient>> getAppointments(
+            @PathVariable("userId") Integer userId,
+            @RequestParam Map<String, Object> params) {
+        return new ResponseEntity<>(this.appointmentService.getAppointments(userId, params), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

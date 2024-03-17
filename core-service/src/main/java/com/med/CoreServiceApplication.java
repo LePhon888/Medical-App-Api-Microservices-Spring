@@ -11,7 +11,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableAsync
 @EnableScheduling
 @EnableDiscoveryClient
-@EnableFeignClients
 public class CoreServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CoreServiceApplication.class, args);

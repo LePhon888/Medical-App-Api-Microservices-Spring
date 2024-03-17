@@ -4,14 +4,14 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: eureka-server
+        - id: discovery-service
           uri: http://localhost:8761
           predicates:
             - Path=/eureka
           filters:
             - SetPath=/
 
-        - id: eureka-server-static
+        - id: discovery-service-static
           uri: http://localhost:8761
           predicates:
             - Path=/eureka/**
@@ -28,7 +28,6 @@ spring:
               /api/appointment/**,
               /api/payment/**, 
               /api/user/**, 
-              /ws, 
               /api/scrape/**, 
               /login-google/auth-google/**, 
               /api/medicine/**, 
@@ -36,6 +35,11 @@ spring:
               /api/medication-schedule/**, 
               /api/schedule-time/**, 
               /api/schedule-time-detail/**
+
+        - id: websocket-service
+          uri: lb://websocket-service
+          predicates:
+            - Path=/ws/**
 
         - id: notification-service
           uri: lb://notification-service

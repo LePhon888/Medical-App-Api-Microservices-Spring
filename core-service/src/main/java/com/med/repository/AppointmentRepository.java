@@ -1,5 +1,6 @@
 package com.med.repository;
 
+import com.med.dto.AppointmentPatient;
 import com.med.model.Appointment;
 import com.med.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,9 +16,22 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
     @Query("SELECT a FROM Appointment a WHERE a.registerUser = :registerUser")
     List<Appointment> findByRegisterUser(@Param("registerUser") User registerUser);
 
-    @Query("SELECT a FROM Appointment a WHERE a.isPaid = 1 AND " +
-            "(:#{#params['doctorId']} IS NULL OR a.doctor.id = :#{#params['doctorId']})")
-    List<Appointment> findAppointmentsByParams(@Param("params") Map<String, Object> params);
+    @Query("""
+    SELECT new com.med.dto.AppointmentPatient(
+        concat(a.user.lastName, ' ', a.user.firstName),
+        a.user.image,
+        a.reason,
+        a.date,
+        a.hour.hour   
+    )
+    FROM Appointment a 
+    WHERE a.doctor.user.id = :userId AND a.isPaid = 1
+    AND (:#{#params['startDate']} IS NULL OR a.date >= :#{#params['startDate']})
+    AND (:#{#params['endDate']} IS NULL OR a.date <= :#{#params['endDate']})
+    ORDER BY a.date DESC, CAST(a.hour.hour AS LOCALTIME) DESC
+    """)
+    List<AppointmentPatient> findAppointmentsByParams(Integer userId, @Param("params") Map<String, Object> params);
+
 
     @Modifying(clearAutomatically = true)
     @Query("UPDATE Appointment a SET a.isConfirm = :isConfirm WHERE a.id = :id")
