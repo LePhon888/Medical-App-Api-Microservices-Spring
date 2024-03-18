@@ -13,20 +13,20 @@ import java.util.Map;
 @RequestMapping("/api/rating")
 public class RatingController {
     @Autowired
-    private RatingService serivce;
+    private RatingService service;
 
     @GetMapping("/{id}")
-    public List<RatingDTO> getRatingByDoctorId(@PathVariable("id") String id) {
-        return serivce.getRatingByDoctorId(id);
+    public List<RatingDTO> getRatingByDoctorId(@PathVariable("id") Integer id) {
+        return service.getRatingByDoctorId(id);
     }
 
     @GetMapping("/stats/{id}")
     public List<Object[]> getRatingStatsByDoctorId(@PathVariable("id") String id) {
-        return serivce.getRatingStatsByDoctorId(id);
+        return service.getRatingStatsByDoctorId(id);
     }
 
     @PostMapping
     public String createRating(@RequestBody Map<String, String> Payload) {
-        return this.serivce.createOrUpdateRating(Payload);
+        return this.service.createOrUpdateRating(Payload);
     }
 }

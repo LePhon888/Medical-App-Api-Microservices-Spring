@@ -1,10 +1,13 @@
 package com.med.service;
 
+import com.med.dto.HistoryMedication;
 import com.med.dto.ScheduleTimeDetailDTO;
 import com.med.model.ScheduleTimeDetail;
 import com.med.repository.ScheduleTimeDetailRepository;
 import com.med.repository.ScheduleTimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -40,6 +43,10 @@ public class ScheduleTimeDetailService {
             repository.save(newDetail);
             return ResponseEntity.status(HttpStatus.CREATED).body("Created successfully");
         }
+    }
+
+    public Page<HistoryMedication> getHistoryMedicationByUserId(Integer userId, Pageable pageable) {
+        return this.repository.getHistoryMedicationByUserId(userId, pageable);
     }
 
 }
