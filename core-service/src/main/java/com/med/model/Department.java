@@ -40,4 +40,9 @@ public class Department implements Serializable {
     @OneToMany(mappedBy = "department")
     @JsonIgnore
     private Collection<Doctor> doctorCollection;
+
+    @Lob
+    @Column(name = "image")
+    private String image;
+
 }

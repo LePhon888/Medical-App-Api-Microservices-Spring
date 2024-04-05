@@ -37,7 +37,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
     @Query("UPDATE Appointment a SET a.isConfirm = :isConfirm WHERE a.id = :id")
     int update(@Param("id") Integer id, @Param("isConfirm") Short isConfirm);
 
-    @Query("SELECT a FROM Appointment a WHERE a.registerUser.id = :id or a.user.id = :id or a.doctor.user.id = :id")
+    @Query("SELECT a FROM Appointment a WHERE a.registerUser.id = :id or a.user.id = :id or a.doctor.user.id = :id ORDER BY a.id DESC")
     List<Appointment> findByUserId(@Param("id") Integer id);
 
     @Query("SELECT Count(*) " +

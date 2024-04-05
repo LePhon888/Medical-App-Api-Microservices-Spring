@@ -112,7 +112,7 @@ public class VNPayController {
                 appointment.setPaymentTime(parsedDate);
 
                 appointmentService.create(appointment);
-
+                appointmentService.sendConfirmAppointmentMail(appointment);
                 return new ResponseEntity<>(HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Appointment not found", HttpStatus.NOT_FOUND);

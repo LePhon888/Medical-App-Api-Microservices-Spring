@@ -43,4 +43,8 @@ public class Post {
     @Column(name = "author", length = 100)
     private String author;
 
+    @Lob
+    @Column(name = "audio")
+    private String audio;
+
 }
