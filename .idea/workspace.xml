@@ -5,24 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2168a6bf-7a8d-400c-a0ba-f1a695b2ea93" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/JPAMappingSettings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/POJOGeneratorSettings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/dto/DoctorDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/dto/DoctorDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/dto/RatingDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/dto/RatingDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/model/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/model/Doctor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/model/Rating.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/model/Rating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/repository/DoctorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/repository/DoctorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/repository/RatingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/repository/RatingRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/AppointmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/AppointmentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/RatingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/RatingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/websocket-service/src/main/java/com/medical/websocketservice/service/WebSocketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/websocket-service/src/main/java/com/medical/websocketservice/service/WebSocketService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/855f286c-ac67-46e5-8895-686c14ea8878.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/855f286c-ac67-46e5-8895-686c14ea8878.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
