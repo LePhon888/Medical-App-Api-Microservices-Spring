@@ -264,6 +264,10 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added sentiment for Rating" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added sentiment for Rating" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
