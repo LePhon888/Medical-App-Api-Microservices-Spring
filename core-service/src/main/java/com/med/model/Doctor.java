@@ -47,9 +47,6 @@ public class Doctor implements Serializable {
     @Column(name = "information", nullable = true, length = 250)
     private String information;
     @ManyToOne
-    @JoinColumn(name = "consultation_id", referencedColumnName = "id")
-    private Consultation consultation;
-    @ManyToOne
     @JoinColumn(name = "fee_id", referencedColumnName = "id")
     private Fee fee;
     @JsonIgnore

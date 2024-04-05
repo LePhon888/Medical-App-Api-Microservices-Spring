@@ -17,8 +17,6 @@ public class DoctorDTO implements Serializable {
     private String hospital;
     private String hospitalAddress;
     private String information;
-    private String consultation;
-    private String target;
     private BigDecimal fee;
     private Double rating;
 }
