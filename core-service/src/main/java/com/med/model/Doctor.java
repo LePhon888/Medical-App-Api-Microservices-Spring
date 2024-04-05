@@ -7,6 +7,7 @@ package com.med.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -57,4 +58,9 @@ public class Doctor implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "doctor")
     private Collection<Rating> ratings;
+
+    @Size(max = 20)
+    @Column(name = "title", length = 20)
+    private String title;
+
 }

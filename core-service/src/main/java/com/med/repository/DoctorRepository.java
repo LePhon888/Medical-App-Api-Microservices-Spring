@@ -23,7 +23,8 @@ public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
             d.hospital,  
             d.hospitalAddress, 
             d.information, 
-            d.fee.fee, 
+            d.title,
+            d.fee.fee,
             (SELECT ROUND(AVG(r.star),1) FROM Rating r WHERE r.doctor.id = d.id)
             ) 
             FROM Doctor d 
@@ -31,5 +32,6 @@ public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
             """)
     List<DoctorDTO> getDoctorList(@Param("doctorId") String doctorId);
 
-
+//    d.consultation.label,
+//    (SELECT LISTAGG(t.target.label, ',') FROM DoctorTarget t WHERE t.doctor.id = d.id),
 }

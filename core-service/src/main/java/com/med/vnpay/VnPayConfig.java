@@ -20,7 +20,10 @@ public class VnPayConfig {
     public static String vnp_TmnCode = "TODNUHPX";
     public static String secretKey = "DGKXZXHYHGSFGVZCBQFKJAQHODXIBHTS";
     public static String vnp_ApiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
-    public static String vnp_ReturnUrl = "http://192.168.43.97:8080/api/payment/payment-response";
+    public static String vnp_ReturnUrl = "http://192.168.1.7:8080/api/payment/payment-response";
+//    public static String vnp_ReturnUrl = "MedicallApp://medicalapp.com/path/to/resource";
+
+
 
 
     public static String md5(String message) {

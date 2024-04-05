@@ -53,67 +53,66 @@ public class AppointmentService {
 
 
     public Appointment update(Appointment appointment) {
-      return appointmentRepository.save(appointment);
+        return appointmentRepository.save(appointment);
     }
 
     @Async
     public void sendConfirmAppointmentMail(Appointment appointment) {
         String code = UUID.randomUUID().toString().substring(0, 6);
-        String doctorName = appointment.getDoctor().getUser().getFirstName() + " " + appointment.getDoctor().getUser().getLastName();
-        String patientName = appointment.getUser().getFirstName() + " " + appointment.getUser().getLastName();
+        String doctorName = appointment.getDoctor().getUser().getLastName() + " " + appointment.getDoctor().getUser().getFirstName();
+        String patientName = appointment.getUser().getLastName() + " " + appointment.getUser().getFirstName() ;
         String date = appointment.getDate().toString();
-        String time =  appointment.getHour().getHour();
+        String time = appointment.getHour().getHour();
 
         SimpleMailMessage patientMessage = new SimpleMailMessage();
         patientMessage.setTo(appointment.getUser().getEmail());
-        patientMessage.setSubject("Xác Nhận Lịch Hẹn và Mã Truy Cập Phòng Chat");
+        patientMessage.setSubject("Xác Nhận Lịch Hẹn và Mã truy cập phòng gọi Video/Chat");
         patientMessage.setText(
-                "Kính gửi Quý khách thân mến,\n\n" +
-                "Chúng tôi rất vui thông báo xác nhận lịch hẹn của bạn với bác sĩ " + doctorName +" vào ngày "+ date +" vào lúc "+ time +".\n\n" +
-                "Chi Tiết Lịch Hẹn:\n" +
-                "- Ngày: " + appointment.getDate().toString() + "\n" +
-                "- Thời Gian: "+ time +"\n" +
-                "- Bác Sĩ: " +  doctorName
-                +"\n\n" +
-                "Để chuẩn bị cho cuộc hẹn của bạn, vui lòng đảm bảo bạn đã có bất kỳ hồ sơ y tế cần thiết hoặc câu hỏi mà bạn muốn thảo luận với bác sĩ.\n\n" +
-                "Mã Truy Cập Phòng Chat: "+ code +"\n\n" +
-                "Để tham gia vào phòng chat và bắt đầu cuộc tư vấn với bác sĩ, đơn giản là nhập mã truy cập được cung cấp vào nền tảng của chúng tôi vào thời gian đã lên lịch. \n" +
-                 "Nếu bạn gặp bất kỳ khó khăn về mặt kỹ thuật nào, đội ngũ hỗ trợ của chúng tôi sẽ luôn sẵn sàng giúp đỡ.\n\n" +
-                "Nếu bạn có bất kỳ câu hỏi hoặc cần phải thay đổi lịch hẹn, xin vui lòng liên hệ với phòng khám của chúng tôi theo email lephon888@gmail.com.\n\n" +
-                "Chúng tôi rất mong được hỗ trợ bạn với các nhu cầu chăm sóc sức khỏe của bạn.\n\n" +
-                "Trân trọng,\n\n" +
-                "Ứng dụng y tế\n" +
-                "Thông tin liên hệ: lephon888@gmail.com");
+                "Chào  " + patientName + "\n\n" +
+                        "Chúng tôi rất vui thông báo xác nhận lịch hẹn của bạn với bác sĩ " + doctorName + " vào ngày " + date + " vào lúc " + time + ".\n\n" +
+                        "Chi Tiết Lịch Hẹn:\n" +
+                        "- Ngày: " + appointment.getDate().toString() + "\n" +
+                        "- Thời Gian: " + time + "\n" +
+                        "- Bác Sĩ: " + doctorName
+                        + "\n\n" +
+                        "Để chuẩn bị cho cuộc hẹn của bạn, vui lòng đảm bảo bạn đã có bất kỳ hồ sơ y tế cần thiết hoặc câu hỏi mà bạn muốn thảo luận với bác sĩ.\n\n" +
+                        "Mã truy cập phòng gọi Video/Chat: " + code + "\n\n" +
+                        "Để tham gia vào phòng chat và bắt đầu cuộc tư vấn với bác sĩ, đơn giản là nhập mã truy cập được cung cấp vào nền tảng của chúng tôi vào thời gian đã lên lịch. \n" +
+                        "Nếu bạn gặp bất kỳ khó khăn về mặt kỹ thuật nào, đội ngũ hỗ trợ của chúng tôi sẽ luôn sẵn sàng giúp đỡ.\n\n" +
+                        "Chúng tôi rất mong được hỗ trợ bạn với các nhu cầu chăm sóc sức khỏe của bạn.\n\n" +
+                        "Trân trọng,\n\n" +
+                        "Medcare\n" +
+                        "Luôn vì bạn\n");
+
         mailSender.send(patientMessage);
 
         SimpleMailMessage doctorMessage = new SimpleMailMessage();
         doctorMessage.setTo(appointment.getDoctor().getUser().getEmail());
         doctorMessage.setSubject("Thông Báo Cuộc Hẹn Mới");
         doctorMessage.setText(
-                "Chào bác sĩ " + appointment.getDoctor().getUser().getLastName() + ",\n\n" +
+                "Chào bác sĩ " + appointment.getDoctor().getUser().getLastName() + " " + appointment.getDoctor().getUser().getFirstName() + ",\n\n" +
                         "Bạn có một cuộc hẹn mới với bệnh nhân " + patientName + " vào ngày " + date + " lúc " + time + ".\n\n" +
                         "Chi Tiết Cuộc Hẹn:\n" +
                         "- Ngày: " + date + "\n" +
                         "- Thời Gian: " + time + "\n" +
                         "- Bệnh Nhân: " + patientName + "\n\n" +
-                        "Để chuẩn bị cho cuộc hẹn, vui lòng xem xét sử y lịch bệnh nhân và bất kỳ câu hỏi nào họ có thể đặt.\n\n" +
-                        "Mã Truy Cập Phòng Chat: " + code + "\n\n" +
-                        "Để tham gia vào phòng chat và bắt đầu tư vấn với bệnh nhân, đơn giản là nhập mã truy cập này trên nền tảng của chúng tôi vào thời gian đã lên lịch.\n" +
+                        "Mã truy cập phòng gọi Video/Chat: " + code + "\n\n" +
+                        "Để tham gia vào phòng gọi Video hoặc Chat bạn chỉ nhập mã truy cập này trên ứng dụng của chúng tôi vào thời gian đã lên lịch.\n" +
                         "Nếu bạn gặp bất kỳ khó khăn kỹ thuật nào, đội ngũ hỗ trợ của chúng tôi luôn sẵn sàng giúp đỡ.\n\n" +
-                        "Nếu bạn có bất kỳ câu hỏi nào hoặc cần phải đổi lịch hẹn, xin vui lòng liên hệ với phòng khám của chúng tôi qua địa chỉ email lephon888@gmail.com.\n\n" +
-                        "Chúng tôi rất mong được hỗ trợ bạn với các nhu cầu chăm sóc sức khỏe của bệnh nhân.\n\n" +
                         "Trân trọng,\n\n" +
-                        "Ứng Dụng Y Tế\n" +
-                        "Thông Tin Liên Hệ: lephon888@gmail.com");
+                        "Medcare\n" +
+                        "Luôn vì bạn\n");
         mailSender.send(doctorMessage);
     }
 
     public Appointment getById(int id) {
         return appointmentRepository.findById(id).orElse(null);
     }
+
     public List<Appointment> getAppointmentsByRegisterUser(User u) {
         return appointmentRepository.findByRegisterUser(u);
     }
+
     public List<Appointment> getByUserId(int id) {
         return appointmentRepository.findByUserId(id);
     }

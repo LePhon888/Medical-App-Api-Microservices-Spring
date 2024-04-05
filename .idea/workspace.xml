@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2168a6bf-7a8d-400c-a0ba-f1a695b2ea93" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/855f286c-ac67-46e5-8895-686c14ea8878.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/855f286c-ac67-46e5-8895-686c14ea8878.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/91ba7d62-341d-4e7a-b03d-89086badea78.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/91ba7d62-341d-4e7a-b03d-89086badea78.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,16 +27,25 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="com.haulmont.jpb.JpaEntity" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 3
-}</component>
-  <component name="ProjectId" id="2drO95ieMt33v3oZDBNmefnUAGf" />
+  <component name="ProjectId" id="2duVuLUUNjhM0qHxEvqtMNe72Ts" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
@@ -44,49 +53,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;khuong&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "database.data.extractors.current.export.id": "SQL Inserts",
+    "database.data.extractors.current.id": "SQL Inserts",
+    "git-widget-placeholder": "a38a0d2f",
+    "last_opened_file_path": "D:/Study/DoAnNganh/spring-boot-microservices",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "com.haulmont.jpb.viewMode",
+    "spring.configuration.checksum": "c1a07637bf44fd76e36358a10cc11a72",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory",
+      "module"
     ],
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
-      <command value="mvn clean install" />
+      <command value="mvn clean" />
     </option>
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
-        <option value="Application" />
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
@@ -129,37 +141,53 @@
     </configuration>
     <list>
       <item itemvalue="Spring Boot.WebsocketServiceApplication" />
+      <item itemvalue="Spring Boot.CoreServiceApplication" />
       <item itemvalue="Spring Boot.GatewayServiceApplication" />
       <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
       <item itemvalue="Spring Boot.NotificationServiceApplication" />
-      <item itemvalue="Spring Boot.CoreServiceApplication" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="2168a6bf-7a8d-400c-a0ba-f1a695b2ea93" name="Changes" comment="" />
-      <created>1710762586600</created>
+      <created>1710858222369</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1710762586600</updated>
-      <workItem from="1710762593274" duration="2466000" />
-      <workItem from="1710778220683" duration="2196000" />
-      <workItem from="1711204939133" duration="1183000" />
-      <workItem from="1711792590105" duration="12355000" />
-      <workItem from="1711901006347" duration="673000" />
-      <workItem from="1712090956450" duration="1629000" />
-      <workItem from="1712139499944" duration="1823000" />
-      <workItem from="1712227943497" duration="4148000" />
-      <workItem from="1712301328983" duration="11889000" />
+      <updated>1710858222369</updated>
+      <workItem from="1710858249917" duration="2835000" />
+      <workItem from="1710943980284" duration="1848000" />
+      <workItem from="1711163784188" duration="2229000" />
+      <workItem from="1711173336064" duration="796000" />
+      <workItem from="1711174652346" duration="42000" />
+      <workItem from="1711176279391" duration="55000" />
+      <workItem from="1711191428553" duration="3501000" />
+      <workItem from="1711202212289" duration="989000" />
+      <workItem from="1711260594224" duration="2468000" />
+      <workItem from="1711377390471" duration="59000" />
+      <workItem from="1711463406673" duration="10000" />
+      <workItem from="1711697748329" duration="48000" />
+      <workItem from="1711725675754" duration="635000" />
+      <workItem from="1711804824133" duration="7020000" />
+      <workItem from="1711859344396" duration="3242000" />
+      <workItem from="1711891780810" duration="6266000" />
+      <workItem from="1711940132178" duration="5496000" />
+      <workItem from="1711956043514" duration="2329000" />
+      <workItem from="1711978754233" duration="3682000" />
+      <workItem from="1712029521431" duration="8410000" />
+      <workItem from="1712063531241" duration="5004000" />
+      <workItem from="1712116564818" duration="18184000" />
+      <workItem from="1712149940397" duration="2212000" />
+      <workItem from="1712204858929" duration="203000" />
+      <workItem from="1712210442124" duration="8424000" />
+      <workItem from="1712230282873" duration="2521000" />
+      <workItem from="1712241231195" duration="3436000" />
+      <workItem from="1712289931246" duration="38000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

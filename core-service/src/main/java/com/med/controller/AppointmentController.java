@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @CrossOrigin("*")
 @RestController
@@ -43,56 +42,23 @@ public class AppointmentController {
 
 
     @PostMapping
-    public ResponseEntity create(@RequestBody Map<String, Object> appointment) {
-        try {
-            Appointment savedAppointment = new Appointment();
-            Map<String, Object> userObject = (Map<String, Object>) appointment.get("user");
-            Map<String, Object> hourObject = (Map<String, Object>) appointment.get("hour");
-            int doctorId = (int) appointment.get("doctorId");
-//            Map<String, Object> doctorUser = (Map<String, Object>) doctorObject.get("user");
-//            Map<String, Object> departmentObject = (Map<String, Object>) doctorObject.get("department");
-//            Map<String, Object> feeObject = (Map<String, Object>) appointment.get("fee");
-            Map<String, Object> registerUserObject = (Map<String, Object>) appointment.get("registerUser");
-
-            User u = new User();
-            u.setFirstName((String) userObject.get("firstName"));
-            String dateString = (String) userObject.get("birthday");
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = dateFormat.parse(dateString);
-            u.setBirthday(date);
-            u.setGender((Integer) userObject.get("gender"));
-            u.setEmail((String) userObject.get("email"));
-            u.setIsActive((short) 1);
-            u.setUserRole("ROLE_PATIENT");
-            userService.create(u);
-
-
-            Doctor doctor = this.doctorService.getById(doctorId);
-
-            Hour hour = this.hourService.getById((Integer) hourObject.get("id"));
-            Fee fee = this.feeService.getNew();
-
-            User registerUser = this.userService.getById((Integer) registerUserObject.get("id"));
-
-
-            savedAppointment.setReason((String) appointment.get("reason"));
-//            savedAppointment.setReportImage((String) appointment.get("reportImage"));
-            savedAppointment.setDate(dateFormat.parse((String) appointment.get("date")));
-            savedAppointment.setIsConfirm((short) 0);
-            savedAppointment.setIsPaid((short) 0);
-            savedAppointment.setFee(fee);
-            savedAppointment.setHour(hour);
-            savedAppointment.setDoctor(doctor);
-            savedAppointment.setUser(u);
-            savedAppointment.setRegisterUser(registerUser);
-            appointmentService.create(savedAppointment);
+    public ResponseEntity create(@RequestBody Map<String, String> appointment) throws ParseException {
+        SimpleDateFormat inputDateFormat = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.US);
+        Date date = inputDateFormat.parse(appointment.get("date"));
+        Appointment savedAppointment = Appointment.builder()
+                .user(userService.getById(Integer.parseInt(appointment.get("userId"))))
+                .reason( appointment.get("reason"))
+                .hour(hourService.getById(Integer.parseInt(appointment.get("hour"))))
+                .doctor(doctorService.getById(Integer.parseInt(appointment.get("doctorId"))))
+                .fee(feeService.getNew())
+                .date(date)
+                .isConfirm((short) 0)
+                .isPaid((short) 0)
+                .build();
+        appointmentService.create(savedAppointment);
             return new ResponseEntity<>(savedAppointment, HttpStatus.CREATED);
-        } catch(Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        }
 
-}
+    }
 
     @GetMapping
     public List<Appointment> getAll() {

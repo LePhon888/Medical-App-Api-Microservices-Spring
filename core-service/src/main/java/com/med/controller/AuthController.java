@@ -2,8 +2,10 @@ package com.med.controller;
 
 import com.med.model.JWTRequest;
 import com.med.model.JWTResponse;
+import com.med.model.RefreshToken;
 import com.med.model.User;
 import com.med.security.JwtHelper;
+import com.med.service.RefreshTokenService;
 import com.med.service.UserService;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,6 +25,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -32,7 +35,8 @@ import java.util.Map;
 public class AuthController {
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private RefreshTokenService refreshTokenService;
+
 
     @Autowired
     private UserService userService;
@@ -41,30 +45,45 @@ public class AuthController {
     @Autowired
     private JwtHelper jwtHelper;
 
-    private Logger logger = LoggerFactory.getLogger(AuthController.class);
-
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Map<String, String> params) {
+    public ResponseEntity<Map<String, String>> login(@RequestBody Map<String, String> params) {
         Boolean authResult = this.userService.authUser(
                 params.get("email"),
                 params.get("password"));
         User user = this.userService.getUserByEmail(params.get("email"));
         Boolean enable = user.isEnabled();
-        System.out.println("enableeee " + enable);
         if (authResult) {
             if (enable) {
-                String token = this.jwtHelper.generateToken(params.get("email"));
-                return new ResponseEntity<>(token, HttpStatus.OK);
+                Map<String, String> tokens = new HashMap<>();
+                String accessToken = this.jwtHelper.generateToken(params.get("email"));
+                RefreshToken refreshToken = this.refreshTokenService.createRefreshToken(params.get("email"));
+                tokens.put("accessToken", accessToken);
+                tokens.put("refreshToken", refreshToken.getToken());
+                return new ResponseEntity<>(tokens, HttpStatus.OK);
             }
             else
-                return new ResponseEntity<>("Vui lòng xác thực tài khoản qua email đã đăng ký",
-                        HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         } else {
-            return new ResponseEntity<>("Không tìm thấy tài khoản",
-                    HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
     }
+
+    @PostMapping("/refreshToken")
+    public ResponseEntity<Map<String, String>> refreshToken(@RequestBody Map<String, String> params) {
+        Map<String, String> tokens = new HashMap<>();
+        return refreshTokenService.findByToken(params.get("refreshToken"))
+                .map(refreshTokenService::verifyExpiration)
+                .map(RefreshToken::getUser)
+                .map(userInfo -> {
+                    String accessToken = this.jwtHelper.generateToken(params.get("email"));
+                    tokens.put("accessToken", accessToken);
+                    tokens.put("refreshToken", params.get("refreshToken"));
+                    return new ResponseEntity<>(tokens, HttpStatus.OK);
+                }).orElseThrow(() -> new RuntimeException(
+                        "Refresh token is not in database!"));
+    }
+
 
     @PostMapping("/register")
     public ResponseEntity addUser(@RequestBody Map<String, String> params, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
@@ -86,6 +105,7 @@ public class AuthController {
         User u = this.userService.getUserByEmail(principal.getName());
         return new ResponseEntity<>(u, HttpStatus.OK);
     }
+
 
     private String getSiteURL(HttpServletRequest request) {
         String siteURL = request.getRequestURL().toString();
