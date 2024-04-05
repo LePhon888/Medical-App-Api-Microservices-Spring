@@ -1,5 +1,6 @@
 package com.med.service;
 
+import com.med.dto.FeeMinMax;
 import com.med.model.Doctor;
 import com.med.model.Fee;
 import com.med.repository.DoctorRepository;
@@ -17,4 +18,5 @@ public class FeeService {
     public Fee getNew () {
         return feeRepository.findFirstByOrderByIdDesc();
     }
+    public FeeMinMax getFeeMinMax() {return feeRepository.getFeeMinMax();}
 }
