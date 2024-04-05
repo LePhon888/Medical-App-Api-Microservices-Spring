@@ -15,6 +15,7 @@ public interface RatingRepository extends JpaRepository<Rating, Integer> {
             r.user.image,
             r.star,
             r.comment,
+            r.sentiment,
             r.createdDate)
             FROM Rating r
             WHERE r.doctor.id = :doctorId

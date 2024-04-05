@@ -15,5 +15,6 @@ public class RatingDTO implements Serializable {
     private String userImage;
     private int star;
     private String comment;
+    private String sentiment;
     private Timestamp createdDate;
 }

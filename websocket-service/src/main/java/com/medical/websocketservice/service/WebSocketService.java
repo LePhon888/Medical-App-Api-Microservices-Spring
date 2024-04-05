@@ -59,6 +59,9 @@ public class WebSocketService {
                 Participant participant = new Participant(Integer.parseInt(userId), userName, sessionId, LocalDateTime.now());
                 participants.add(participant);
 
+                messagingTemplate.convertAndSend("/topic/chat/" + roomId,
+                        new Response<>("joinRoom", participant));
+
                 // Send the updated list of participants to subscribers
                 messagingTemplate.convertAndSend("/topic/video-call/" + roomId,
                         new Response<>("joinRoom", participant));
@@ -88,6 +91,10 @@ public class WebSocketService {
             // If the disconnected participant is found, remove it from the list and send the updated participant list and notification to subscribers
             disconnectedParticipantOptional.ifPresent(disconnectedParticipant -> {
                 participants.remove(disconnectedParticipant);
+
+                messagingTemplate.convertAndSend("/topic/chat/" + roomId,
+                        new Response<>("leaveRoom", disconnectedParticipant));
+
                 messagingTemplate.convertAndSend("/topic/video-call/" + roomId,
                         new Response<>("leaveRoom", disconnectedParticipant));
             });
