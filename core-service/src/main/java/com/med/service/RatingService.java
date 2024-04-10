@@ -41,6 +41,7 @@ public class RatingService {
             rating.setComment(payload.get("comment"));
             rating.setUser(userRepository.findById(Integer.valueOf(payload.get("userId"))).get());
             rating.setDoctor(doctorRepository.findById(Integer.valueOf(payload.get("doctorId"))).get());
+            rating.setSentiment(payload.getOrDefault("sentiment", ""));
             ratingRepository.save(rating);
             return "";
         } catch (Exception ex) {
