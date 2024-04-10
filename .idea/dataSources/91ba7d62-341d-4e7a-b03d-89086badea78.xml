@@ -7,21 +7,21 @@
       <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
       <ServerVersion>8.0.35</ServerVersion>
     </root>
-    <schema id="2" parent="1" name="information_schema">
+    <schema id="2" parent="1" name="mysql">
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="3" parent="1" name="information_schema">
       <CollationName>utf8mb3_general_ci</CollationName>
     </schema>
-    <schema id="3" parent="1" name="medicalapp">
+    <schema id="4" parent="1" name="performance_schema">
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="5" parent="1" name="sys">
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="6" parent="1" name="medicalapp">
       <Current>1</Current>
       <CollationName>utf8mb3_general_ci</CollationName>
-    </schema>
-    <schema id="4" parent="1" name="mysql">
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </schema>
-    <schema id="5" parent="1" name="performance_schema">
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </schema>
-    <schema id="6" parent="1" name="sys">
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
   </database-model>
 </dataSource>
