@@ -110,12 +110,13 @@ public interface MedicationScheduleRepository extends JpaRepository<MedicationSc
         medicalapp.medication_schedule ms
         INNER JOIN medicalapp.medicine m ON ms.medicine_id = m.id
     WHERE
-        ms.user_id = :userId
+        ms.user_id = :userId OR :userId IS NULL
         AND ms.is_active = true
     ORDER BY
-        dateTime 
+        dateTime
+    LIMIT :limit
         """, nativeQuery = true)
-    List<MedicationScheduleProjection> getMedicationScheduleByUserId(@Param("userId") Integer userId);
+    List<MedicationScheduleProjection> getMedicationScheduleByUserId(@Param("userId") Integer userId, @Param("limit") Integer limit);
 
     @Query("""
     SELECT 

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin("*")
 @RestController
@@ -19,8 +20,8 @@ public class DoctorController {
     private DoctorService doctorService;
 
     @GetMapping("/")
-    public List<DoctorDTO> getDoctorList() {
-        return this.doctorService.getDoctorList();
+    public List<DoctorDTO> getDoctorList(@RequestParam Map<String, String> params) {
+        return this.doctorService.getDoctorList(params);
     }
 
     @GetMapping("/detail/{id}")

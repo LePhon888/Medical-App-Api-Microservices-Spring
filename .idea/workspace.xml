@@ -13,6 +13,9 @@
       <change beforePath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/model/RefreshToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/model/RefreshToken.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/service/RefreshTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/service/RefreshTokenService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/med/notificationservice/listener/MedicationReminderListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/med/notificationservice/listener/MedicationReminderListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/med/notificationservice/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/med/notificationservice/service/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +55,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2duVuLUUNjhM0qHxEvqtMNe72Ts" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -86,8 +92,14 @@
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Medical-App-Api-SpringBoot\gateway-service\src\main\resources" />
+    </key>
+  </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
+      <command value="mvn clean package" />
       <command value="mvn clean" />
       <command value="mvn install" />
     </option>
@@ -183,7 +195,6 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.WebsocketServiceApplication" />
       <item itemvalue="Spring Boot.CoreServiceApplication" />
       <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
       <item itemvalue="Spring Boot.NotificationServiceApplication" />

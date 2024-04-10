@@ -8,6 +8,7 @@ import com.med.notificationservice.service.NotificationService;
 import com.med.notificationservice.service.UserDeviceService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,9 @@ public class MedicationReminderListener {
     @Autowired
     private NotificationService notificationService;
 
+    @Value("${medicineImage}")
+    private String imageUrl;
+
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @KafkaListener(topics = "medication-reminder-topic", groupId = "notification-medication-consumer")
@@ -41,12 +45,11 @@ public class MedicationReminderListener {
                 notificationService.sendNotificationToUser(new NotificationRequest(
                         userDevice.getTokenRegistration(),
                         "Từ hộp thuốc của bạn ",
-                        String.format("Đã đến giờ uống thuốc %s: %s %s vào lúc %s",
+                        String.format("Đã đến giờ uống thuốc %s: %s %s",
                                 reminder.get("medicineName"),
                                 reminder.get("quantity"),
-                                reminder.get("unitName"),
-                                reminder.get("time")),
-                        "",
+                                reminder.get("unitName")),
+                        imageUrl,
                         (Integer) reminder.get("userId"),
                         clickActionParams));
             }
