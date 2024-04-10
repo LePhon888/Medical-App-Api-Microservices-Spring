@@ -40,6 +40,7 @@ spring:
               /api/category,
               /api/weight,
               /api/weight/**,
+              /api/fee/**,
 
         - id: websocket-service
           uri: lb://websocket-service

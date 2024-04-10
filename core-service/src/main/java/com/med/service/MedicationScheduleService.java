@@ -6,6 +6,7 @@ import com.med.dto.MedicationScheduleProjection;
 import com.med.dto.ScheduleTimeDTO;
 import com.med.model.*;
 import com.med.repository.*;
+import com.med.schedule.ReminderMedicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +23,9 @@ public class MedicationScheduleService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    private MedicineRepository medicineRepository;
-    @Autowired
-    private MedicineUnitRepository medicineUnitRepository;
-    @Autowired
     private ScheduleTimeRepository scheduleTimeRepository;
+    @Autowired
+    private ReminderMedicationService reminderMedicationService;
 
     public ResponseEntity<String> createOrUpdateMedicationSchedule(CreateOrUpdateMedicationScheduleDTO payload) {
         try {
@@ -107,6 +106,9 @@ public class MedicationScheduleService {
                     scheduleTimeRepository.save(object);
                 });
             }
+
+            reminderMedicationService.updateFixedDelay();
+
             return ResponseEntity.status(HttpStatus.CREATED).body("MedicationSchedule created or updated successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
@@ -116,10 +118,14 @@ public class MedicationScheduleService {
 
     public List<MedicationScheduleProjection> getMedicationScheduleByUserId(Integer userId, Boolean isActive) {
         if (isActive) {
-            return this.repository.getMedicationScheduleByUserId(userId);
+            return this.repository.getMedicationScheduleByUserId(userId, 9999);
         } else {
             return this.repository.getInactiveMedicationScheduleByUserId(userId);
         }
+    }
+
+    public List<MedicationScheduleProjection> getNextScheduleToReminder() {
+        return this.repository.getMedicationScheduleByUserId(null, 99);
     }
 
     public MedicationScheduleDTO getMedicationScheduleById(Integer id) {

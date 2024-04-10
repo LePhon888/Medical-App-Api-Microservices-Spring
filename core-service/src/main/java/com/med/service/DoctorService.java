@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,19 +29,12 @@ public class DoctorService {
             return doctorRepository.findByDepartmentId(Integer.parseInt(departmentId));
         else return null;
     }
-    public List<DoctorDTO> getDoctorList() {
-        return this.doctorRepository.getDoctorList(null);
-//        List<Object[]> result = doctorRepository.getDoctorList(null);
-//        return result.stream()
-//                .map(DoctorDTO::new)
-//                .collect(Collectors.toList());
+    public List<DoctorDTO> getDoctorList(Map<String, String> params) {
+        return this.doctorRepository.getDoctorList(null, params);
     }
 
     public DoctorDTO getDoctorById(String id) {
-        List<DoctorDTO> list = this.doctorRepository.getDoctorList(id);
-        if (list.isEmpty())
-             return null;
-        return this.doctorRepository.getDoctorList(id).get(0);
+        return this.doctorRepository.getDoctorById(id);
     }
 
 }
