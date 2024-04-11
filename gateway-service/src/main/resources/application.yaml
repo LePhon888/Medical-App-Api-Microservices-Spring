@@ -26,7 +26,6 @@ spring:
               /api/rating/**,
               /api/departments/**,
               /api/appointment/**,
-              /api/payment/**,
               /api/user/**,
               /api/scrape/**,
               /login-google/auth-google/**,
@@ -51,6 +50,11 @@ spring:
           predicates:
             - Path=/api/notification/**,
               /api/user-device/**
+
+        - id: vnpay-service
+          uri: lb://vnpay-service
+          predicates:
+            - Path=/api/payment/**
 
 eureka:
   client:

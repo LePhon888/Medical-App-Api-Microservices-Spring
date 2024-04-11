@@ -1,6 +1,7 @@
 package com.med.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.io.Serializable;
@@ -42,5 +43,9 @@ public class Weight implements Serializable {
 
     @Column(name = "height")
     private Float height;
+
+    @Size(max = 30)
+    @Column(name = "classification", length = 30)
+    private String classification;
 
 }

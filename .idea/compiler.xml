@@ -7,9 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="vnpay-service" />
+        <module name="gateway-service" />
+        <module name="email-service" />
         <module name="core-service" />
         <module name="discovery-service" />
-        <module name="gateway-service" />
         <module name="notification-service" />
         <module name="websocket-service" />
       </profile>
@@ -19,8 +21,10 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="core-service" options="-parameters" />
       <module name="discovery-service" options="-parameters" />
+      <module name="email-service" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
       <module name="notification-service" options="-parameters" />
+      <module name="vnpay-service" options="-parameters" />
       <module name="websocket-service" options="-parameters" />
     </option>
   </component>

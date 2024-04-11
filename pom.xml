@@ -23,6 +23,8 @@
     <module>gateway-service</module>
     <module>discovery-service</module>
     <module>websocket-service</module>
+      <module>vnpay-service</module>
+      <module>email-service</module>
   </modules>
 
   <properties>
