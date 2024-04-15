@@ -63,7 +63,8 @@ spring:
           uri: lb://authentication-service
           predicates:
             - Path=/api/auth/**,
-                  /api/auth/validate
+              /api/auth/validate,
+              /login-google/auth-google/**,
 
 eureka:
   client:

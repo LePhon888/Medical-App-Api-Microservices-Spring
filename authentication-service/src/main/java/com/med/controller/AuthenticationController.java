@@ -95,6 +95,7 @@ public class AuthenticationController {
     @GetMapping("/re-send-verify")
     public ResponseEntity reSendVerify(@RequestParam("email") String email) throws MessagingException, JsonProcessingException {
         User user = this.userService.getUserByEmail(email);
+        System.out.println("emailemailemail " + email);
         if (user != null && !user.isEnabled()) {
             this.userService.reSendVerify(email);
             return new ResponseEntity<>(HttpStatus.OK);

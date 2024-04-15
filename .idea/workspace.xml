@@ -5,60 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9a23f64-de90-42c1-810f-3aee534a85ff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/authentication-service/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/AuthenticationServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/config/JwtAuthenticationEntryPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/config/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/config/JwtHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/config/PasswordEncode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/controller/AuthenticationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/dto/UserResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/model/RefreshToken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/repository/RefreshTokenRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/service/RefreshTokenService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/config/PasswordEncode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/med/gatewayservice/config/AppConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/med/gatewayservice/config/WebClientConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/med/gatewayservice/filter/AuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/med/gatewayservice/filter/RouteValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/controller/GoogleController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/service/GoogleSignInService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/91ba7d62-341d-4e7a-b03d-89086badea78.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/91ba7d62-341d-4e7a-b03d-89086badea78.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/AppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/AppointmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/GoogleSignInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/GoogleSignInController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/model/CustomUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/model/CustomUserDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/oauth2/CustomOAuth2User.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/oauth2/CustomOAuth2User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/oauth2/CustomOAuth2UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/oauth2/CustomOAuth2UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/oauth2/OAuth2LoginSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/oauth2/OAuth2LoginSuccessHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/security/JwtAuthenticationEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/security/JwtAuthenticationEntryPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/security/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/security/JwtHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/security/JwtHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/email-service/src/main/java/com/med/emailservice/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/email-service/src/main/java/com/med/emailservice/service/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/email-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/email-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/medical/gatewayservice/GatewayServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/med/gatewayservice/GatewayServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/controller/AuthenticationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/test/java/com/medical/gatewayservice/GatewayServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/test/java/com/med/gatewayservice/GatewayServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vnpay-service/src/main/java/com/med/vnpayservice/controller/VNPayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/vnpay-service/src/main/java/com/med/vnpayservice/controller/VNPayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vnpay-service/src/main/java/com/med/vnpayservice/service/VNPayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/vnpay-service/src/main/java/com/med/vnpayservice/service/VNPayService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,9 +197,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.EmailServiceApplication" />
         <item itemvalue="Spring Boot.AuthenticationServiceApplication" />
         <item itemvalue="Spring Boot.GatewayServiceApplication" />
+        <item itemvalue="Spring Boot.EmailServiceApplication" />
         <item itemvalue="Spring Boot.VNPayServiceApplication" />
       </list>
     </recent_temporary>
@@ -301,6 +258,7 @@
       <workItem from="1713014029633" duration="6458000" />
       <workItem from="1713064066806" duration="26172000" />
       <workItem from="1713151330210" duration="23839000" />
+      <workItem from="1713188728626" duration="6692000" />
     </task>
     <servers />
   </component>
