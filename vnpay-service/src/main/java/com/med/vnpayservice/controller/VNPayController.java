@@ -37,7 +37,7 @@ public class VNPayController {
         vnp_Params.put("vnp_Command", vnp_Command);
         vnp_Params.put("vnp_TmnCode", vnp_TmnCode);
 
-        vnp_Params.put("vnp_Amount", String.valueOf(amount*100));
+        vnp_Params.put("vnp_Amount", String.valueOf(amount * 100));
         vnp_Params.put("vnp_CurrCode", "VND");
         vnp_Params.put("vnp_IpAddr", VNPayConfig.getIpAddress(request));
         vnp_Params.put("vnp_BankCode", "NCB");
@@ -92,17 +92,27 @@ public class VNPayController {
 
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
+
     @GetMapping("/payment-response")
-    public ResponseEntity updatePaidAppointment( @RequestParam("vnp_OrderInfo") String orderInfo,
-                                                 @RequestParam("vnp_PayDate") String paymentTime) {
+    public ResponseEntity updatePaidAppointment(@RequestParam("vnp_OrderInfo") String orderInfo,
+                                                @RequestParam("vnp_PayDate") String paymentTime) {
         try {
-            vnpayService.updatePaidAppointment(orderInfo, paymentTime);
+//            vnpayService.updatePaidAppointment(orderInfo, paymentTime);
+            vnpayService.updatePaidAppointment(orderInfo, paymentTime).subscribe(
+                    response -> {
+                        System.out.println("Response: " + response);
+                    },
+                    error -> {
+                        System.err.println("Error: " + error);
+                    }
+            );
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
+
     public static String convertToFormattedDateTime(String input) {
         try {
             // Extract components from the input string

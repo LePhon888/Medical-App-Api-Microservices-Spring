@@ -1,4 +1,4 @@
-package com.medical.gatewayservice;
+package com.med.gatewayservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

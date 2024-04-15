@@ -13,6 +13,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("SELECT u FROM User u WHERE u.email = :email")
     User getUserByEmail(@Param("email") String email);
 
-    @Query("SELECT u FROM User u WHERE u.verificationCode = :verificationCode")
-    public User findByVerificationCode(@Param("verificationCode") String verificationCode);
+    @Query("SELECT u FROM User u WHERE u.code = :code")
+    public User findByVerificationCode(@Param("code") String code);
 }

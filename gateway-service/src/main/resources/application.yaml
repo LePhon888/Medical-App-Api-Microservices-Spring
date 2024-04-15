@@ -19,7 +19,7 @@ spring:
         - id: core-service
           uri: lb://core-service
           predicates:
-            - Path=/api/hours/**,
+            - Path=/api/hours,
               /auth/**,
               /api/doctors/**,
               /api/doctor-detail/**,
@@ -39,6 +39,9 @@ spring:
               /api/category,
               /api/weight,
               /api/weight/**,
+          filters:
+            - AuthenticationFilter
+
 
         - id: websocket-service
           uri: lb://websocket-service
@@ -55,6 +58,12 @@ spring:
           uri: lb://vnpay-service
           predicates:
             - Path=/api/payment/**
+
+        - id: authentication-service
+          uri: lb://authentication-service
+          predicates:
+            - Path=/api/auth/**,
+                  /api/auth/validate
 
 eureka:
   client:
