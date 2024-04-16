@@ -5,6 +5,7 @@
 package com.med.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.api.client.util.DateTime;
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -14,6 +15,7 @@ import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
@@ -76,9 +78,6 @@ public class User implements Serializable {
     @Enumerated(EnumType.STRING)
     private Provider provider;
     @Basic
-    @Column(name = "verification_code", length = 64, nullable = true)
-    private String verificationCode;
-    @Basic
     @Column(name = "enabled", nullable = true)
     private boolean enabled;
     @Basic
@@ -87,5 +86,11 @@ public class User implements Serializable {
     @Transient
     @JsonIgnore
     private MultipartFile file;
+
+    @Column(name = "code")
+    private Integer code;
+
+    @Column(name = "created_date_code")
+    private Date createdDateCode;
 
 }

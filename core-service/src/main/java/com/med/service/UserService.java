@@ -15,11 +15,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
+//import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,15 +34,13 @@ import java.time.ZoneId;
 import java.util.*;
 
 @Service
-public class UserService implements UserDetailsService {
-    @Autowired
+//public class UserService implements UserDetailsService {
+public class UserService {
+@Autowired
     private UserRepository userRepository;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-
-    @Autowired
-    private UserDetailsService userDetailsService;
 
     @Autowired
     private JavaMailSender mailSender;
@@ -78,100 +76,100 @@ public class UserService implements UserDetailsService {
         return passwordEncoder.matches(password, u.getPassword());
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
-    }
-    public void processOAuthPostLogin(DefaultOidcUser oidcUser) throws ParseException {
-        User existUser = userRepository.getUserByEmail(oidcUser.getEmail());
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        return null;
+//    }
+//    public void processOAuthPostLogin(DefaultOidcUser oidcUser) throws ParseException {
+//        User existUser = userRepository.getUserByEmail(oidcUser.getEmail());
+//
+//        if (existUser == null) {
+//            User newUser = new User();
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//            String birthdate = oidcUser.getBirthdate();
+//            if (birthdate != null) {
+//                Date date = dateFormat.parse(birthdate);
+//                newUser.setBirthday(date);
+//            }
+//
+//            newUser.setFirstName(oidcUser.getFullName());
+//            if (oidcUser.getGender() != null)
+//                newUser.setGender(Integer.valueOf(oidcUser.getGender()));
+//            newUser.setPhoneNumber(oidcUser.getPhoneNumber());
+//            newUser.setEmail(oidcUser.getEmail());
+//            newUser.setIsActive((short) 1);
+//            newUser.setUserRole("ROLE_PATIENT");
+//            newUser.setProvider(Provider.GOOGLE);
+//            userRepository.save(newUser);
+//        }
+//    }
+//    public void register(Map<String, String> params, String siteURL)
+//            throws UnsupportedEncodingException, MessagingException {
+//        User u = new User();
+//        u.setEmail(params.get("email"));
+//        u.setFirstName(params.get("firstName"));
+//        u.setPassword(this.passwordEncoder.encode(params.get("password")));
+//        u.setUserRole("ROLE_PATIENT");
+//        u.setProvider(Provider.LOCAL);
+//        u.setIsActive((short) 1);
+//
+//        //"java.util.Random@775824f"
+//        String randomCode = new Random(64).toString().substring(17);
+//        System.out.println("randomCode " + randomCode);
+//        u.setCode(Integer.valueOf(randomCode));
+//        u.setEnabled(false);
+//
+//        this.userRepository.save(u);
+//
+//        sendVerificationEmail(u, siteURL);
+//    }
 
-        if (existUser == null) {
-            User newUser = new User();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String birthdate = oidcUser.getBirthdate();
-            if (birthdate != null) {
-                Date date = dateFormat.parse(birthdate);
-                newUser.setBirthday(date);
-            }
-
-            newUser.setFirstName(oidcUser.getFullName());
-            if (oidcUser.getGender() != null)
-                newUser.setGender(Integer.valueOf(oidcUser.getGender()));
-            newUser.setPhoneNumber(oidcUser.getPhoneNumber());
-            newUser.setEmail(oidcUser.getEmail());
-            newUser.setIsActive((short) 1);
-            newUser.setUserRole("ROLE_PATIENT");
-            newUser.setProvider(Provider.GOOGLE);
-            userRepository.save(newUser);
-        }
-    }
-    public void register(Map<String, String> params, String siteURL)
-            throws UnsupportedEncodingException, MessagingException {
-        User u = new User();
-        u.setEmail(params.get("email"));
-        u.setFirstName(params.get("firstName"));
-        u.setPassword(this.passwordEncoder.encode(params.get("password")));
-        u.setUserRole("ROLE_PATIENT");
-        u.setProvider(Provider.LOCAL);
-        u.setIsActive((short) 1);
-
-        //"java.util.Random@775824f"
-        String randomCode = new Random(64).toString().substring(17);
-        System.out.println("randomCode " + randomCode);
-        u.setVerificationCode(randomCode);
-        u.setEnabled(false);
-
-        this.userRepository.save(u);
-
-        sendVerificationEmail(u, siteURL);
-    }
-
-    private void sendVerificationEmail(User user, String siteURL)
-            throws MessagingException, UnsupportedEncodingException {
-        String toAddress = user.getEmail();
-        String fromAddress = "lephon888@gmail.com";
-        String senderName = "Medical App";
-        String subject = "Xác thực tài khoản Medical App";
-        String content = "Gửi [[name]],<br>"
-                + "Vui lòng nhấn vào vefiry để hoàn tất quá trình đăng ký tài khoản của bạn:<br>"
-                + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
-                + "Cảm ơn,<br>"
-                + "Medical App.";
-
-        MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message);
-
-        helper.setFrom(fromAddress, senderName);
-        helper.setTo(toAddress);
-        helper.setSubject(subject);
-
-        content = content.replace("[[name]]", user.getFirstName());
-//        String verifyURL = siteURL + "/auth/verify?code=" + user.getVerificationCode();
-
-//        String verifyURL = "http://192.168.1.4:8080" + "/auth/verify?code=" + user.getVerificationCode();
-        String verifyURL = "http://192.168.43.97" + "/auth/verify?code=" + user.getVerificationCode();
-
-
-        content = content.replace("[[URL]]", verifyURL);
-
-        helper.setText(content, true);
-
-        mailSender.send(message);
-
-    }
-    public boolean verify(String verificationCode) {
-        User user = this.userRepository.findByVerificationCode(verificationCode);
-
-        if (user == null || user.isEnabled()) {
-            return false;
-        } else {
-            user.setVerificationCode(verificationCode);
-            user.setEnabled(true);
-            this.userRepository.save(user);
-
-            return true;
-        }
-    }
+//    private void sendVerificationEmail(User user, String siteURL)
+//            throws MessagingException, UnsupportedEncodingException {
+//        String toAddress = user.getEmail();
+//        String fromAddress = "lephon888@gmail.com";
+//        String senderName = "Medical App";
+//        String subject = "Xác thực tài khoản Medical App";
+//        String content = "Gửi [[name]],<br>"
+//                + "Vui lòng nhấn vào vefiry để hoàn tất quá trình đăng ký tài khoản của bạn:<br>"
+//                + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
+//                + "Cảm ơn,<br>"
+//                + "Medical App.";
+//
+//        MimeMessage message = mailSender.createMimeMessage();
+//        MimeMessageHelper helper = new MimeMessageHelper(message);
+//
+//        helper.setFrom(fromAddress, senderName);
+//        helper.setTo(toAddress);
+//        helper.setSubject(subject);
+//
+//        content = content.replace("[[name]]", user.getFirstName());
+////        String verifyURL = siteURL + "/auth/verify?code=" + user.getVerificationCode();
+//
+////        String verifyURL = "http://192.168.1.4:8080" + "/auth/verify?code=" + user.getVerificationCode();
+//        String verifyURL = "http://192.168.43.97" + "/auth/verify?code=" + user.getVerificationCode();
+//
+//
+//        content = content.replace("[[URL]]", verifyURL);
+//
+//        helper.setText(content, true);
+//
+//        mailSender.send(message);
+//
+//    }
+//    public boolean verify(String verificationCode) {
+//        User user = this.userRepository.findByVerificationCode(verificationCode);
+//
+//        if (user == null || user.isEnabled()) {
+//            return false;
+//        } else {
+//            user.setVerificationCode(verificationCode);
+//            user.setEnabled(true);
+//            this.userRepository.save(user);
+//
+//            return true;
+//        }
+//    }
 
     public boolean delete(int id) {
         if (userRepository.existsById(id)) {

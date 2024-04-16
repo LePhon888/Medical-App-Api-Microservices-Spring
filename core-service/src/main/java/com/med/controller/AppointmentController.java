@@ -1,5 +1,6 @@
 package com.med.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.med.dto.AppointmentPatient;
 import com.med.model.*;
 import com.med.service.*;
@@ -24,6 +25,7 @@ public class AppointmentController {
 
     private static final Logger logger = LoggerFactory.getLogger(AppointmentController.class);
 
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
     private AppointmentService appointmentService;
@@ -95,10 +97,10 @@ public class AppointmentController {
     }
 
     @PutMapping("/update-paid")
-    public ResponseEntity updateIsPaid(@RequestParam("id") Integer id,
+    public ResponseEntity updateIsPaid(@RequestParam("id") String id,
                                        @RequestParam("date") String paymentTime) {
         try {
-            Optional<Appointment> optionalAppointment = Optional.ofNullable(appointmentService.getById(id));
+            Optional<Appointment> optionalAppointment = Optional.ofNullable(appointmentService.getById(Integer.parseInt(id)));
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date parsedDate = dateFormat.parse(convertToFormattedDateTime(paymentTime));
 
@@ -109,8 +111,19 @@ public class AppointmentController {
 
                 appointment.setPaymentTime(parsedDate);
                 Appointment savedAppointment = appointmentService.update(appointment);
+
                 if (savedAppointment != null) {
-                    kafkaTemplate.send(emailTopic, String.valueOf(savedAppointment.getId()));
+                    Map<String, String> detailAppointment = new HashMap<>();
+                    detailAppointment.put("appointmentId", String.valueOf(savedAppointment.getId()));
+                    detailAppointment.put("date", String.valueOf(savedAppointment.getDate()));
+                    detailAppointment.put("hour", savedAppointment.getHour().getHour());
+                    detailAppointment.put("doctor", savedAppointment.getDoctor().getUser().getLastName() + " " + savedAppointment.getDoctor().getUser().getFirstName());
+                    detailAppointment.put("doctorEmail", savedAppointment.getDoctor().getUser().getEmail());
+                    detailAppointment.put("reason", savedAppointment.getReason());
+                    detailAppointment.put("user", savedAppointment.getUser().getLastName() + " " + savedAppointment.getUser().getFirstName());
+                    detailAppointment.put("userEmail", savedAppointment.getUser().getEmail());
+
+                    kafkaTemplate.send(emailTopic, objectMapper.writeValueAsString(detailAppointment));
                 }
 
 //                this.appointmentService.sendConfirmAppointmentMail(appointment);
