@@ -100,7 +100,6 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean" />
-      <command value="mvn install" />
     </option>
   </component>
   <component name="RunDashboard">
