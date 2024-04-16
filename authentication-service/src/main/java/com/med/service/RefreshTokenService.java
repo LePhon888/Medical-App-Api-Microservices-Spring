@@ -6,7 +6,10 @@ import com.med.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -19,10 +22,14 @@ public class RefreshTokenService {
     private UserRepository userRepository;
 
     public RefreshToken createRefreshToken(String email) {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime expiry = now.plusMonths(3);
+        Timestamp expiryDate = Timestamp.from(expiry.atZone(ZoneId.systemDefault()).toInstant());
+
         RefreshToken refreshToken = RefreshToken.builder()
                 .user(userRepository.getUserByEmail(email))
                 .token(UUID.randomUUID().toString())
-                .expiryDate(Instant.now().plusMillis(600000))
+                .expiryDate(expiryDate)
                 .build();
         return refreshTokenRepository.save(refreshToken);
     }
@@ -34,7 +41,9 @@ public class RefreshTokenService {
 
 
     public RefreshToken verifyExpiration(RefreshToken token) {
-        if (token.getExpiryDate().compareTo(Instant.now()) < 0) {
+        Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+
+        if (token.getExpiryDate().before(currentTimestamp)) {
             refreshTokenRepository.delete(token);
             throw new RuntimeException("Refresh token was expired. Please make a new signin request");
         }

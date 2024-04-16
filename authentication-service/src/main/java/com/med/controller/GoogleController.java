@@ -7,7 +7,9 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.med.config.JwtHelper;
+import com.med.model.RefreshToken;
 import com.med.service.GoogleSignInService;
+import com.med.service.RefreshTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -17,7 +19,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -29,15 +35,26 @@ public class GoogleController {
 
     @Autowired
     private JwtHelper jwtHelper;
+    @Autowired
+    private RefreshTokenService refreshTokenService;
     @PostMapping("/auth-google")
-    public ResponseEntity<String> verifyGoogleLogin(@RequestBody Map<String, Object> requestBody) {
+    public ResponseEntity<Map<String, String>> verifyGoogleLogin(@RequestBody Map<String, Object> requestBody) {
         Map<String, Object> user = (Map<String, Object>) requestBody.get("user");
-        System.out.println("requestBodyrequestBody " + requestBody);
+
         if (this.googleSignInService.verify(requestBody)) {
             String token = this.jwtHelper.generateToken((String) user.get("email"));
-            return new ResponseEntity<>(token, HttpStatus.OK);
+            RefreshToken refreshToken = this.refreshTokenService.createRefreshToken((String) requestBody.get("email"));
+            java.sql.Timestamp expiryDateAccessToken = new java.sql.Timestamp(System.currentTimeMillis() + JwtHelper.JWT_TOKEN_VALIDITY * 1000);
+
+
+            Map<String, String> tokens = new HashMap<>();
+            tokens.put("accessToken", token);
+            tokens.put("refreshToken", refreshToken.getToken());
+            tokens.put("expiredDateRefreshToken", String.valueOf(refreshToken.getExpiryDate()));
+            tokens.put("expiredDateAccessToken", String.valueOf(expiryDateAccessToken));
+            return new ResponseEntity<>(tokens, HttpStatus.OK);
         }
         else
-            return new ResponseEntity<>("Error", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 }

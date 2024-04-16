@@ -3,6 +3,7 @@ package com.med.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 
 @Getter
@@ -27,6 +28,6 @@ public class RefreshToken {
     private User user;
 
     @Column(name = "`expiry _date`")
-    private Instant expiryDate;
+    private Timestamp expiryDate;
 
 }
