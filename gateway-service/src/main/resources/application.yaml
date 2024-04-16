@@ -28,7 +28,6 @@ spring:
               /api/appointment/**,
               /api/user/**,
               /api/scrape/**,
-              /login-google/auth-google/**,
               /api/medicine/**,
               /api/medicine-unit/**,
               /api/medication-schedule/**,

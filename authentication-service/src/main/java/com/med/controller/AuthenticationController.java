@@ -18,6 +18,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
+import java.security.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,7 +47,7 @@ public class AuthenticationController {
     public ResponseEntity<Map<String, String>> login(@RequestBody Map<String, String> params) {
         Boolean authResult = this.userService.authUser(
                 params.get("email"),
-                params.get("password"));
+                String.valueOf(params.get("password")));
         User user = this.userService.getUserByEmail(params.get("email"));
         Boolean enable = user.isEnabled();
         if (authResult) {
@@ -50,8 +55,12 @@ public class AuthenticationController {
                 Map<String, String> tokens = new HashMap<>();
                 String accessToken = this.jwtHelper.generateToken(params.get("email"));
                 RefreshToken refreshToken = this.refreshTokenService.createRefreshToken(params.get("email"));
+                java.sql.Timestamp expiryDateAccessToken = new java.sql.Timestamp(System.currentTimeMillis() + JwtHelper.JWT_TOKEN_VALIDITY * 1000);
+
                 tokens.put("accessToken", accessToken);
                 tokens.put("refreshToken", refreshToken.getToken());
+                tokens.put("expiredDateRefreshToken", String.valueOf(refreshToken.getExpiryDate()));
+                tokens.put("expiredDateAccessToken", String.valueOf(expiryDateAccessToken));
                 return new ResponseEntity<>(tokens, HttpStatus.OK);
             }
             else
@@ -61,7 +70,7 @@ public class AuthenticationController {
         }
     }
 
-    @PostMapping("/refreshToken")
+    @PostMapping("/refresh-token")
     public ResponseEntity<Map<String, String>> refreshToken(@RequestBody Map<String, String> params) {
         Map<String, String> tokens = new HashMap<>();
         return refreshTokenService.findByToken(params.get("refreshToken"))
@@ -69,8 +78,11 @@ public class AuthenticationController {
                 .map(RefreshToken::getUser)
                 .map(userInfo -> {
                     String accessToken = this.jwtHelper.generateToken(params.get("email"));
+                    java.sql.Timestamp expiryDateAccessToken = new java.sql.Timestamp(System.currentTimeMillis() + JwtHelper.JWT_TOKEN_VALIDITY * 1000);
                     tokens.put("accessToken", accessToken);
                     tokens.put("refreshToken", params.get("refreshToken"));
+                    tokens.put("expiredDateRefreshToken", String.valueOf(refreshTokenService.findByToken(params.get("refreshToken")).get().getExpiryDate()));
+                    tokens.put("expiredDateAccessToken", String.valueOf(expiryDateAccessToken));
                     return new ResponseEntity<>(tokens, HttpStatus.OK);
                 }).orElseThrow(() -> new RuntimeException(
                         "Refresh token is not in database!"));
