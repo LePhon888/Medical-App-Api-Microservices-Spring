@@ -4,6 +4,7 @@ import com.medical.medicationservice.dto.CreateMedicationScheduleGroup;
 import com.medical.medicationservice.schedule.ReminderMedicationService;
 import com.medical.medicationservice.service.MedicationScheduleGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,9 @@ public class MedicationScheduleGroupController {
     @PostMapping("/createOrUpdate")
     public ResponseEntity<?> createMedicationScheduleGroup(@RequestBody CreateMedicationScheduleGroup payload) {
         ResponseEntity<?> response = this.service.createOrUpdate(payload);
-        reminderMedicationService.rescheduleReminderNotification();
+        if (response.getStatusCode() == HttpStatus.OK) {
+            reminderMedicationService.rescheduleReminderNotification();
+        }
         return response;
     }
 

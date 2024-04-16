@@ -7,5 +7,6 @@ public interface MedicationScheduleProjection {
     String getMedicineName();
     LocalDateTime getDateTime();
     Boolean getIsActive();
+    Integer getGroupId();
     String getGroupName();
 }

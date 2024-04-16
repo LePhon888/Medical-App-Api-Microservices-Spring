@@ -14,4 +14,5 @@ public interface MedicationScheduleDetailProjection extends Serializable {
     BigDecimal getQuantity();
     Boolean getIsUsed();
     Integer getScheduleTimeId();
+    String getGroupName();
 }

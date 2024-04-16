@@ -14,6 +14,7 @@ import lombok.Setter;
 @Table(name = "medication_schedule_group")
 public class MedicationScheduleGroup {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 

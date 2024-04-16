@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @EnableDiscoveryClient
 public class MedicationServiceApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(MedicationServiceApplication.class, args);
     }

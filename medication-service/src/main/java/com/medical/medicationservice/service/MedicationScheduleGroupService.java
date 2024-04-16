@@ -13,6 +13,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,13 +45,12 @@ public class MedicationScheduleGroupService {
                 oldGroupRecord.setHospital(payload.getHospitalName());
                 oldGroupRecord.setIsActive(payload.getIsActive());
 
-                List<Integer> oldScheduleIds =
-                        medicationScheduleRepository.getMedicationScheduleByGroupId(oldGroupRecord.getId())
+                List<Integer> oldScheduleIds = medicationScheduleRepository.getMedicationScheduleByGroupId(payload.getId())
                                 .stream().map(MedicationScheduleDTO::getId)
                                 .toList();
 
                 List<Integer> newScheduleIds =
-                        payload.getMedicationScheduleDTOList()
+                        payload.getMedicineList()
                                 .stream().map(CreateMedicationScheduleDTO::getId)
                                 .toList();
 
@@ -63,7 +63,7 @@ public class MedicationScheduleGroupService {
                 idsToDelete.forEach(medicationScheduleRepository::deleteById);
 
                 // Process new/updated schedules
-                payload.getMedicationScheduleDTOList()
+                payload.getMedicineList()
                         .forEach(item -> {
                             item.setGroupId(oldGroupRecord.getId());
                             item.setIsActive(payload.getIsActive());
@@ -84,7 +84,7 @@ public class MedicationScheduleGroupService {
 
                 MedicationScheduleGroup savedRecord = repository.save(createdRecord);
 
-                payload.getMedicationScheduleDTOList()
+                payload.getMedicineList()
                         .forEach(item -> {
                             item.setGroupId(savedRecord.getId());
                             medicationScheduleService.createOrUpdateMedicationSchedule(item);
@@ -93,6 +93,7 @@ public class MedicationScheduleGroupService {
             }
             return ResponseEntity.ok("Created or Updated MedicationScheduleGroup successfully!");
         } catch (Exception ex) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             return ResponseEntity.internalServerError().body("An error occurred while processing your request.");
         }
     }

@@ -101,11 +101,15 @@ public interface MedicationScheduleRepository extends JpaRepository<MedicationSc
         ) as dateTime,
     ms.id AS id,
     m.name AS medicineName,
-    ms.is_active as isActive
+    ms.is_active as isActive,
+    msg.id as groupId,
+    msg.name as groupName
     FROM
         medicalapp.medication_schedule ms
     INNER JOIN 
         medicalapp.medicine m ON ms.medicine_id = m.id
+    LEFT JOIN
+        medicalapp.medication_schedule_group msg on ms.group_id = msg.id
     WHERE
         ms.is_active = true
         AND (ms.user_id = :userId OR :userId IS NULL)
@@ -119,9 +123,13 @@ public interface MedicationScheduleRepository extends JpaRepository<MedicationSc
     SELECT 
         ms.id as id,
         ms.isActive as isActive,
-        ms.medicine.name as medicineName
+        ms.medicine.name as medicineName,
+        ms.groupId as groupId,
+        msg.name as groupName
     FROM 
         MedicationSchedule ms
+    LEFT JOIN 
+        MedicationScheduleGroup msg ON msg.id = ms.groupId
     WHERE 
         ms.isActive = false
         AND ms.userId = :userId 
@@ -161,12 +169,12 @@ public interface MedicationScheduleRepository extends JpaRepository<MedicationSc
         ms.selectedDays,
         ms.isActive,
         ms.groupId,
-        CASE WHEN g.name IS NULL THEN 'Thuốc lẻ' ELSE g.name END
+        msg.name
     )
     FROM
         MedicationSchedule ms
     INNER JOIN 
-        MedicationScheduleGroup g ON ms.groupId = g.id AND g.id = :groupId
+        MedicationScheduleGroup msg ON ms.groupId = msg.id AND msg.id = :groupId
     """)
-    List<MedicationScheduleDTO> getMedicationScheduleByGroupId(Integer groupId);
+    List<MedicationScheduleDTO> getMedicationScheduleByGroupId(@Param("groupId") Integer groupId);
 }

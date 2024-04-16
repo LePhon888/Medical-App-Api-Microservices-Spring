@@ -27,6 +27,7 @@ public class MedicationScheduleDTO {
     private List<ScheduleTimeDTO> scheduleTimes;
 
     public MedicationScheduleDTO(Integer id, Integer userId, Medicine medicine, MedicineUnit medicineUnit, LocalDate startDate, Integer frequency, String selectedDays, Boolean isActive, Integer groupId, String groupName) {
+        this.id = id;
         this.userId = userId;
         this.medicine = medicine;
         this.medicineUnit = medicineUnit;
