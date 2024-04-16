@@ -15,7 +15,6 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Transactional
 public class VNPayService {
-
     private final WebClient.Builder webClientBuilder;
 
     public Mono<String> updatePaidAppointment(String orderInfo, String paymentTime) {
