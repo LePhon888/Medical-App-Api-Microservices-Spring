@@ -19,7 +19,8 @@ public interface ScheduleTimeRepository extends JpaRepository<ScheduleTime, Inte
         s.time as time, 
         s.quantity,
         dt.is_used as isUsed,
-        s.id as scheduleTimeId
+        s.id as scheduleTimeId,
+        msg.name as groupName
     FROM 
         medicalapp.medication_schedule ms
     INNER JOIN 
@@ -30,6 +31,8 @@ public interface ScheduleTimeRepository extends JpaRepository<ScheduleTime, Inte
         medicalapp.medicine_unit mu on ms.unit_id = mu.id
     LEFT JOIN 
         medicalapp.schedule_time_detail dt ON dt.schedule_time_id = s.id  AND dt.date = :startDate
+    LEFT JOIN
+        medicalapp.medication_schedule_group msg on ms.group_id = msg.id
     WHERE 
         ms.user_id = :userId
         AND ms.is_active = TRUE

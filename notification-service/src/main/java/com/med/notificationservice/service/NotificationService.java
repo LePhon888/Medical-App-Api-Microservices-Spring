@@ -85,6 +85,7 @@ public class NotificationService {
                                     .setColor(notificationColor)
                                     .setIcon(notificationIcon)
                                     .setDefaultSound(true)
+                                    .setVibrateTimingsInMillis(new long[] {200, 500, 200, 500})
                                     .build())
                             .build())
                     .build();

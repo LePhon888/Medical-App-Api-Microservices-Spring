@@ -31,7 +31,7 @@ public class MedicationReminderListener {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @KafkaListener(topics = "medication-reminder-topic", groupId = "notification-medication-consumer")
+    @KafkaListener(topics = "#{'${kafka.topic.notification}'}", groupId = "notification-medication-consumer")
     public void consumeMedicationReminder(String reminderJson) {
         try {
             Map<String, Object> reminder = objectMapper.readValue(reminderJson, new TypeReference<>() {});
@@ -45,10 +45,10 @@ public class MedicationReminderListener {
                 notificationService.sendNotificationToUser(new NotificationRequest(
                         userDevice.getTokenRegistration(),
                         "Từ hộp thuốc của bạn ",
-                        String.format("Đã đến giờ uống thuốc %s: %s %s",
-                                reminder.get("medicineName"),
+                        String.format("Đã đến giờ uống thuốc: %s %s %s",
                                 reminder.get("quantity"),
-                                reminder.get("unitName")),
+                                reminder.get("unitName"),
+                                reminder.get("medicineName")),
                         imageUrl,
                         (Integer) reminder.get("userId"),
                         clickActionParams));

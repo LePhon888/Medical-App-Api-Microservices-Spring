@@ -1,3 +1,4 @@
+eureka-server: http://localhost:8761
 spring:
   application:
     name: gateway-service
@@ -5,22 +6,21 @@ spring:
     gateway:
       routes:
         - id: discovery-service
-          uri: http://localhost:8761
+          uri: ${eureka-server}
           predicates:
             - Path=/eureka
           filters:
             - SetPath=/
 
         - id: discovery-service-static
-          uri: http://localhost:8761
+          uri: ${eureka-server}
           predicates:
             - Path=/eureka/**
 
         - id: core-service
           uri: lb://core-service
           predicates:
-            - Path=/api/hours/**,
-              /auth/**,
+            - Path=/api/hours,
               /api/doctors/**,
               /api/doctor-detail/**,
               /api/rating/**,
@@ -29,17 +29,12 @@ spring:
               /api/user/**,
               /api/scrape/**,
               /login-google/auth-google/**,
-              /api/medicine/**,
-              /api/medicine-unit/**,
-              /api/medication-schedule/**,
-              /api/schedule-time/**,
-              /api/schedule-time-detail/**,
               /api/post,
               /api/post/**,
               /api/category,
               /api/weight,
               /api/weight/**,
-              /api/fee/**,
+              /api/fee/**
           filters:
             - AuthenticationFilter
 
@@ -54,6 +49,16 @@ spring:
           predicates:
             - Path=/api/notification/**,
               /api/user-device/**
+
+        - id: medication-service
+          uri: lb://medication-service
+          predicates:
+            - Path=/api/medicine/**,
+              /api/medicine-unit/**,
+              /api/medication-schedule/**,
+              /api/schedule-time/**,
+              /api/schedule-time-detail/**,
+              /api/medication-schedule-group/**
 
         - id: vnpay-service
           uri: lb://vnpay-service
