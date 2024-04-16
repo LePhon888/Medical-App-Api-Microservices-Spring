@@ -201,6 +201,7 @@
         <item itemvalue="Spring Boot.EmailServiceApplication" />
         <item itemvalue="Spring Boot.AuthenticationServiceApplication" />
         <item itemvalue="Spring Boot.GatewayServiceApplication" />
+        <item itemvalue="Spring Boot.EmailServiceApplication" />
         <item itemvalue="Spring Boot.VNPayServiceApplication" />
       </list>
     </recent_temporary>
