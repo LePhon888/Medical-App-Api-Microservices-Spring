@@ -42,6 +42,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="com.haulmont.jpb.JpaEntity" />
+        <option value="Dockerfile" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -217,8 +218,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.AuthenticationServiceApplication" />
         <item itemvalue="Spring Boot.GatewayServiceApplication" />
+        <item itemvalue="Spring Boot.AuthenticationServiceApplication" />
         <item itemvalue="Spring Boot.EmailServiceApplication" />
         <item itemvalue="Spring Boot.AuthenticationServiceApplication" />
         <item itemvalue="Spring Boot.GatewayServiceApplication" />
@@ -263,6 +264,20 @@
       <workItem from="1712230282873" duration="2521000" />
       <workItem from="1712241231195" duration="3436000" />
       <workItem from="1712289931246" duration="38000" />
+      <workItem from="1712334733984" duration="2804000" />
+      <workItem from="1712375467039" duration="14931000" />
+      <workItem from="1712412716211" duration="11215000" />
+      <workItem from="1712670961164" duration="2905000" />
+      <workItem from="1712724615758" duration="585000" />
+      <workItem from="1712738497325" duration="7068000" />
+      <workItem from="1712848660461" duration="3895000" />
+      <workItem from="1712939242270" duration="11329000" />
+      <workItem from="1712970432147" duration="1171000" />
+      <workItem from="1713008282937" duration="12483000" />
+      <workItem from="1713043725955" duration="105000" />
+      <workItem from="1713054166975" duration="11890000" />
+      <workItem from="1713145369024" duration="5469000" />
+      <workItem from="1713243083933" duration="9533000" />
       <workItem from="1712322538044" duration="6298000" />
       <workItem from="1712378193897" duration="1044000" />
       <workItem from="1712380513835" duration="18188000" />
