@@ -83,7 +83,6 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean" />
-      <command value="mvn install" />
     </option>
   </component>
   <component name="RunDashboard">
@@ -177,6 +176,7 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Spring Boot.CoreServiceApplication" />
       <item itemvalue="Spring Boot.WebsocketServiceApplication" />
       <item itemvalue="Spring Boot.CoreServiceApplication" />
       <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
