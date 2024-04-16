@@ -4,8 +4,10 @@ import com.med.dto.AppointmentPatient;
 import com.med.model.*;
 import com.med.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import org.slf4j.Logger;
@@ -38,7 +40,10 @@ public class AppointmentController {
     private FeeService feeService;
 
     @Autowired
-    private DepartmentService departmentService;
+    private KafkaTemplate<String, String> kafkaTemplate;
+
+    @Value("${kafka.topic.email}")
+    private String emailTopic;
 
 
     @PostMapping
@@ -47,7 +52,7 @@ public class AppointmentController {
         Date date = inputDateFormat.parse(appointment.get("date"));
         Appointment savedAppointment = Appointment.builder()
                 .user(userService.getById(Integer.parseInt(appointment.get("userId"))))
-                .reason( appointment.get("reason"))
+                .reason(appointment.get("reason"))
                 .hour(hourService.getById(Integer.parseInt(appointment.get("hour"))))
                 .doctor(doctorService.getById(Integer.parseInt(appointment.get("doctorId"))))
                 .fee(feeService.getNew())
@@ -56,7 +61,7 @@ public class AppointmentController {
                 .isPaid((short) 0)
                 .build();
         appointmentService.create(savedAppointment);
-            return new ResponseEntity<>(savedAppointment, HttpStatus.CREATED);
+        return new ResponseEntity<>(savedAppointment, HttpStatus.CREATED);
 
     }
 
@@ -84,26 +89,32 @@ public class AppointmentController {
         return new ResponseEntity<>(this.appointmentService.getByUserId(id), HttpStatus.OK);
     }
 
-    @PutMapping("/{id}/is-confirm")
-    public ResponseEntity updateIsConfirm(@PathVariable Integer id, @RequestParam Short isConfirm) {
+    @GetMapping("/id/{id}")
+    public ResponseEntity getById(@PathVariable Integer id) {
+        return new ResponseEntity<>(this.appointmentService.getById(id), HttpStatus.OK);
+    }
+
+    @PutMapping("/update-paid")
+    public ResponseEntity updateIsPaid(@RequestParam("id") Integer id,
+                                       @RequestParam("date") String paymentTime) {
         try {
             Optional<Appointment> optionalAppointment = Optional.ofNullable(appointmentService.getById(id));
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date parsedDate = dateFormat.parse(convertToFormattedDateTime(paymentTime));
 
             if (optionalAppointment.isPresent()) {
                 Appointment appointment = optionalAppointment.get();
-                appointment.setIsConfirm(isConfirm);
+                appointment.setIsConfirm((short) 1);
+                appointment.setIsPaid((short) 1);
 
-                Appointment updated = appointmentService.update(appointment);
-
-                if (updated != null) {
-                    if (appointment.getIsConfirm() == 1)
-                        this.appointmentService.sendConfirmAppointmentMail(appointment);
-                    return new ResponseEntity<>(HttpStatus.OK);
-                } else {
-                    return new ResponseEntity<>("Failed to update appointment", HttpStatus.INTERNAL_SERVER_ERROR);
+                appointment.setPaymentTime(parsedDate);
+                Appointment savedAppointment = appointmentService.update(appointment);
+                if (savedAppointment != null) {
+                    kafkaTemplate.send(emailTopic, String.valueOf(savedAppointment.getId()));
                 }
 
-
+//                this.appointmentService.sendConfirmAppointmentMail(appointment);
+                return new ResponseEntity<>(HttpStatus.OK);
 
             } else {
                 return new ResponseEntity<>("Appointment not found", HttpStatus.NOT_FOUND);
@@ -114,9 +125,53 @@ public class AppointmentController {
         }
     }
 
+//    @PutMapping("/{id}/is-paid")
+//    public ResponseEntity updateIsPaid(@PathVariable Integer id, @RequestParam Short isPaid) {
+//        try {
+//            Optional<Appointment> optionalAppointment = Optional.ofNullable(appointmentService.getById(id));
+//
+//            if (optionalAppointment.isPresent()) {
+//                Appointment appointment = optionalAppointment.get();
+//                appointment.setIsPaid(isPaid);
+//
+//                Appointment updated = appointmentService.update(appointment);
+//
+//                if (updated != null) {
+//                    if (appointment.getIsPaid() == 1)
+//                        this.appointmentService.sendConfirmAppointmentMail(appointment);
+//                    return new ResponseEntity<>(HttpStatus.OK);
+//                } else {
+//                    return new ResponseEntity<>("Failed to update appointment", HttpStatus.INTERNAL_SERVER_ERROR);
+//                }
+//            }
+//        } finally {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//    }
+
     @GetMapping("/count")
     public Long countAppointmentsByUserId(@RequestParam("doctorId") String doctorId,
                                           @RequestParam("userId") String userId) {
         return this.appointmentService.countAppointmentsByUserId(userId, doctorId);
+    }
+
+    public static String convertToFormattedDateTime(String input) {
+        try {
+            // Extract components from the input string
+            int year = Integer.parseInt(input.substring(0, 4));
+            int month = Integer.parseInt(input.substring(4, 6));
+            int day = Integer.parseInt(input.substring(6, 8));
+            int hour = Integer.parseInt(input.substring(8, 10));
+            int minute = Integer.parseInt(input.substring(10, 12));
+            int second = Integer.parseInt(input.substring(12, 14));
+
+            // Format the components into the desired format
+            String formattedOutput = String.format("%04d-%02d-%02d %02d:%02d:%02d", year, month, day, hour, minute, second);
+
+            return formattedOutput;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; // Handle parsing or formatting errors as needed
+        }
     }
 }

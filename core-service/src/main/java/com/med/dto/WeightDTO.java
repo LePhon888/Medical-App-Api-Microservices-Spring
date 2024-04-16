@@ -20,4 +20,5 @@ public class WeightDTO {
     private Float bmi;
     private Float bmr;
     private Float height;
+    private String classification;
 }

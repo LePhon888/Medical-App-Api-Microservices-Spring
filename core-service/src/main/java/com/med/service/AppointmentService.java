@@ -5,6 +5,7 @@ import com.med.model.Appointment;
 import com.med.model.User;
 import com.med.repository.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
@@ -24,6 +25,9 @@ public class AppointmentService {
     private JavaMailSender mailSender;
     @Autowired
     private DoctorService doctorService;
+
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     public Appointment create(Appointment appointment) {
         return appointmentRepository.save(appointment);
