@@ -90,7 +90,6 @@ public class UserService {
     public void reSendVerify(String email) throws JsonProcessingException {
         User user = this.userRepository.getUserByEmail(email);
         if (user != null && !user.isEnabled()) {
-<<<<<<< HEAD
             Random random = new Random();
             int randomCode = 100000 + random.nextInt(900000);
             user.setCode(randomCode);
@@ -100,21 +99,12 @@ public class UserService {
             userMap.put("email", user.getEmail());
             userMap.put("code", String.valueOf(user.getCode()));
             userMap.put("name", user.getLastName() + " " + user.getFirstName());
-=======
-            Map<String, String> userMap = new HashMap<>();
-            userMap.put("email", user.getEmail());
-            userMap.put("code", String.valueOf(user.getCode()));
-            userMap.put("name", user.getLastName() + user.getFirstName());
->>>>>>> 1f67777 (add filter gateway)
             kafkaTemplate.send("verifyEmail", objectMapper.writeValueAsString(userMap));
         }
     }
 
-<<<<<<< HEAD
     public User create (User u) {
         return this.userRepository.save(u);
     }
 
-=======
->>>>>>> 1f67777 (add filter gateway)
 }

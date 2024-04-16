@@ -21,10 +21,7 @@ spring:
           uri: lb://core-service
           predicates:
             - Path=/api/hours,
-<<<<<<< HEAD
-=======
               /auth/**,
->>>>>>> 1f67777 (add filter gateway)
               /api/doctors/**,
               /api/doctor-detail/**,
               /api/rating/**,
@@ -38,10 +35,6 @@ spring:
               /api/category,
               /api/weight,
               /api/weight/**,
-<<<<<<< HEAD
-              /api/fee/**
-=======
->>>>>>> 1f67777 (add filter gateway)
           filters:
             - AuthenticationFilter
 
@@ -76,12 +69,8 @@ spring:
           uri: lb://authentication-service
           predicates:
             - Path=/api/auth/**,
-<<<<<<< HEAD
               /api/auth/validate,
               /login-google/auth-google/**,
-=======
-                  /api/auth/validate
->>>>>>> 1f67777 (add filter gateway)
 
 eureka:
   client:

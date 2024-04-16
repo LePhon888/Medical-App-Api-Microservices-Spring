@@ -4,66 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="2168a6bf-7a8d-400c-a0ba-f1a695b2ea93" name="Changes" comment="" />
-=======
     <list default="true" id="d9a23f64-de90-42c1-810f-3aee534a85ff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/authentication-service/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/AuthenticationServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/config/JwtAuthenticationEntryPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/config/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/config/JwtHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/config/PasswordEncode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/controller/AuthenticationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/dto/UserResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/model/RefreshToken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/repository/RefreshTokenRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/service/RefreshTokenService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/config/PasswordEncode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/med/gatewayservice/config/AppConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/med/gatewayservice/config/WebClientConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/med/gatewayservice/filter/AuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/med/gatewayservice/filter/RouteValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/controller/GoogleController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/service/GoogleSignInService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/91ba7d62-341d-4e7a-b03d-89086badea78.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/91ba7d62-341d-4e7a-b03d-89086badea78.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/AppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/AppointmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/GoogleSignInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/GoogleSignInController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/model/CustomUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/model/CustomUserDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/oauth2/CustomOAuth2User.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/oauth2/CustomOAuth2User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/oauth2/CustomOAuth2UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/oauth2/CustomOAuth2UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/oauth2/OAuth2LoginSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/oauth2/OAuth2LoginSuccessHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/security/JwtAuthenticationEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/security/JwtAuthenticationEntryPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/security/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/security/JwtHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/security/JwtHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/email-service/src/main/java/com/med/emailservice/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/email-service/src/main/java/com/med/emailservice/service/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/email-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/email-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/medical/gatewayservice/GatewayServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/med/gatewayservice/GatewayServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/controller/AuthenticationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/test/java/com/medical/gatewayservice/GatewayServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/test/java/com/med/gatewayservice/GatewayServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vnpay-service/src/main/java/com/med/vnpayservice/controller/VNPayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/vnpay-service/src/main/java/com/med/vnpayservice/controller/VNPayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vnpay-service/src/main/java/com/med/vnpayservice/service/VNPayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/vnpay-service/src/main/java/com/med/vnpayservice/service/VNPayService.java" afterDir="false" />
     </list>
->>>>>>> 1f67777 (add filter gateway)
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,7 +41,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="com.haulmont.jpb.JpaEntity" />
-        <option value="Dockerfile" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -111,33 +63,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< HEAD
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JPA.DatabaseSchemaImportDialog": "91ba7d62-341d-4e7a-b03d-89086badea78",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "database.data.extractors.current.export.id": "SQL Inserts",
-    "database.data.extractors.current.id": "SQL Inserts",
-    "git-widget-placeholder": "khuong",
-    "jdk.selected.JAVA_MODULE": "jbr-17",
-    "last_opened_file_path": "D:/Medical-App-Api-SpringBoot/medication-service/src/main/java/com/medical/medicationservice",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "spring.configuration.checksum": "bf1f6f84d5ca21d3d65c425b4b9dcfed",
-    "vue.rearranger.settings.migration": "true"
-=======
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
@@ -159,33 +84,15 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;bf1f6f84d5ca21d3d65c425b4b9dcfed&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
->>>>>>> 1f67777 (add filter gateway)
   }
 }</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Medical-App-Api-SpringBoot\medication-service\src\main\java\com\medical\medicationservice" />
-      <recent name="D:\Medical-App-Api-SpringBoot\notification-service" />
-      <recent name="D:\Medical-App-Api-SpringBoot\websocket-service" />
-      <recent name="D:\Medical-App-Api-SpringBoot\core-service" />
-      <recent name="D:\Medical-App-Api-SpringBoot\discovery-service\src\main\resources" />
-    </key>
-    <key name="ImportMappingsDialog.RecentPackages">
-      <recent name="com.med.model" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.medical.medicationservice.dto" />
-    </key>
-  </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean" />
       <command value="mvn install" />
-      <command value="mvn spring-boot:build-image" />
-      <command value="mvn clean install" />
     </option>
   </component>
   <component name="RunDashboard">
@@ -197,24 +104,7 @@
       </set>
     </option>
   </component>
-<<<<<<< HEAD
-  <component name="RunManager" selected="Spring Boot.MedicationServiceApplication">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="authentication-service" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="authentication-service" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-=======
   <component name="RunManager" selected="Spring Boot.GatewayServiceApplication">
->>>>>>> 1f67777 (add filter gateway)
     <configuration name="AuthenticationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="authentication-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.med.AuthenticationServiceApplication" />
@@ -258,22 +148,12 @@
     <configuration name="GatewayServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="gateway-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.med.gatewayservice.GatewayServiceApplication" />
-<<<<<<< HEAD
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MedicationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="medication-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.medical.medicationservice.MedicationServiceApplication" />
-=======
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.med.gatewayservice.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
->>>>>>> 1f67777 (add filter gateway)
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -305,48 +185,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml">
-        <settings />
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="docker-deploy" factoryName="docker-image" temporary="true">
-      <deployment type="docker-image">
-        <settings />
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.broker: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="broker" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.discovery-service: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="discovery-service" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Docker.docker-compose.yml.broker: Compose Deployment" />
-      <item itemvalue="Docker.docker-compose.yml.discovery-service: Compose Deployment" />
-      <item itemvalue="Spring Boot.MedicationServiceApplication" />
       <item itemvalue="Spring Boot.WebsocketServiceApplication" />
       <item itemvalue="Spring Boot.CoreServiceApplication" />
       <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
@@ -358,11 +197,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.GatewayServiceApplication" />
         <item itemvalue="Spring Boot.AuthenticationServiceApplication" />
+        <item itemvalue="Spring Boot.GatewayServiceApplication" />
         <item itemvalue="Spring Boot.EmailServiceApplication" />
-        <item itemvalue="Spring Boot.AuthenticationServiceApplication" />
-        <item itemvalue="Spring Boot.GatewayServiceApplication" />
         <item itemvalue="Spring Boot.VNPayServiceApplication" />
       </list>
     </recent_temporary>
@@ -403,20 +240,6 @@
       <workItem from="1712230282873" duration="2521000" />
       <workItem from="1712241231195" duration="3436000" />
       <workItem from="1712289931246" duration="38000" />
-      <workItem from="1712334733984" duration="2804000" />
-      <workItem from="1712375467039" duration="14931000" />
-      <workItem from="1712412716211" duration="11215000" />
-      <workItem from="1712670961164" duration="2905000" />
-      <workItem from="1712724615758" duration="585000" />
-      <workItem from="1712738497325" duration="7068000" />
-      <workItem from="1712848660461" duration="3895000" />
-      <workItem from="1712939242270" duration="11329000" />
-      <workItem from="1712970432147" duration="1171000" />
-      <workItem from="1713008282937" duration="12483000" />
-      <workItem from="1713043725955" duration="105000" />
-      <workItem from="1713054166975" duration="11890000" />
-      <workItem from="1713145369024" duration="5469000" />
-      <workItem from="1713243083933" duration="9533000" />
       <workItem from="1712322538044" duration="6298000" />
       <workItem from="1712378193897" duration="1044000" />
       <workItem from="1712380513835" duration="18188000" />
@@ -435,19 +258,12 @@
       <workItem from="1713014029633" duration="6458000" />
       <workItem from="1713064066806" duration="26172000" />
       <workItem from="1713151330210" duration="23839000" />
-<<<<<<< HEAD
       <workItem from="1713188728626" duration="6692000" />
-=======
->>>>>>> 1f67777 (add filter gateway)
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added sentiment for Rating" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
