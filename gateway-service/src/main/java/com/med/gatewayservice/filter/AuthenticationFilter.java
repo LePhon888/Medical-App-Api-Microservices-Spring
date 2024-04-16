@@ -10,11 +10,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-<<<<<<< HEAD
-=======
-import java.util.concurrent.atomic.AtomicReference;
-
->>>>>>> 1f67777 (add filter gateway)
 @Component
 public class AuthenticationFilter extends AbstractGatewayFilterFactory<AuthenticationFilter.Config> {
 
