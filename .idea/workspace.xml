@@ -42,7 +42,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="com.haulmont.jpb.JpaEntity" />
-        <option value="Dockerfile" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -95,27 +94,10 @@
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Medical-App-Api-SpringBoot\medication-service\src\main\java\com\medical\medicationservice" />
-      <recent name="D:\Medical-App-Api-SpringBoot\notification-service" />
-      <recent name="D:\Medical-App-Api-SpringBoot\websocket-service" />
-      <recent name="D:\Medical-App-Api-SpringBoot\core-service" />
-      <recent name="D:\Medical-App-Api-SpringBoot\discovery-service\src\main\resources" />
-    </key>
-    <key name="ImportMappingsDialog.RecentPackages">
-      <recent name="com.med.model" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.medical.medicationservice.dto" />
-    </key>
-  </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean" />
       <command value="mvn install" />
-      <command value="mvn spring-boot:build-image" />
-      <command value="mvn clean install" />
     </option>
   </component>
   <component name="RunDashboard">
@@ -222,44 +204,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml">
-        <settings />
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="docker-deploy" factoryName="docker-image" temporary="true">
-      <deployment type="docker-image">
-        <settings />
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.broker: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="broker" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.discovery-service: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="discovery-service" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Spring Boot.CoreServiceApplication" />
       <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
@@ -271,8 +215,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.GatewayServiceApplication" />
         <item itemvalue="Spring Boot.AuthenticationServiceApplication" />
+        <item itemvalue="Spring Boot.GatewayServiceApplication" />
         <item itemvalue="Spring Boot.EmailServiceApplication" />
         <item itemvalue="Spring Boot.AuthenticationServiceApplication" />
         <item itemvalue="Spring Boot.GatewayServiceApplication" />
@@ -317,20 +261,6 @@
       <workItem from="1712230282873" duration="2521000" />
       <workItem from="1712241231195" duration="3436000" />
       <workItem from="1712289931246" duration="38000" />
-      <workItem from="1712334733984" duration="2804000" />
-      <workItem from="1712375467039" duration="14931000" />
-      <workItem from="1712412716211" duration="11215000" />
-      <workItem from="1712670961164" duration="2905000" />
-      <workItem from="1712724615758" duration="585000" />
-      <workItem from="1712738497325" duration="7068000" />
-      <workItem from="1712848660461" duration="3895000" />
-      <workItem from="1712939242270" duration="11329000" />
-      <workItem from="1712970432147" duration="1171000" />
-      <workItem from="1713008282937" duration="12483000" />
-      <workItem from="1713043725955" duration="105000" />
-      <workItem from="1713054166975" duration="11890000" />
-      <workItem from="1713145369024" duration="5469000" />
-      <workItem from="1713243083933" duration="9533000" />
       <workItem from="1712322538044" duration="6298000" />
       <workItem from="1712378193897" duration="1044000" />
       <workItem from="1712380513835" duration="18188000" />
@@ -357,10 +287,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added sentiment for Rating" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
