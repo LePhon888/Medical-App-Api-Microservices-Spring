@@ -112,6 +112,7 @@ public class VNPayController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
+
     public static String convertToFormattedDateTime(String input) {
         try {
             // Extract components from the input string
