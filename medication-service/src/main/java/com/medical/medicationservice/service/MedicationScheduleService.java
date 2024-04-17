@@ -7,6 +7,7 @@ import com.medical.medicationservice.model.MedicationSchedule;
 import com.medical.medicationservice.model.ScheduleTime;
 import com.medical.medicationservice.repository.MedicationScheduleRepository;
 import com.medical.medicationservice.repository.ScheduleTimeRepository;
+import com.medical.medicationservice.schedule.ReminderMedicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -101,7 +102,7 @@ public class MedicationScheduleService {
                 });
             }
 
-            reminderMedicationService.updateFixedDelay();
+            reminderMedicationService.rescheduleReminderNotification();
 
             return ResponseEntity.status(HttpStatus.CREATED).body("MedicationSchedule created or updated successfully");
         } catch (Exception e) {
