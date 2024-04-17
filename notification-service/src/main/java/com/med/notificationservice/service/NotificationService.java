@@ -7,6 +7,7 @@ import com.med.notificationservice.dto.NotificationRequest;
 import com.med.notificationservice.model.Notification;
 import com.med.notificationservice.repository.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,13 @@ public class NotificationService {
 
     @Autowired
     private FirebaseMessaging firebaseMessaging;
+
+    @Value("${notificationColor}")
+    private String notificationColor;
+
+    @Value("${notificationIcon}")
+    private String notificationIcon;
+
 
     public ResponseEntity<Integer> createNotification(NotificationRequest request) {
         try {
@@ -74,7 +82,10 @@ public class NotificationService {
                     .putAllData(request.getClickActionParams())
                     .setAndroidConfig(AndroidConfig.builder()
                             .setNotification(AndroidNotification.builder()
+                                    .setColor(notificationColor)
+                                    .setIcon(notificationIcon)
                                     .setDefaultSound(true)
+                                    .setVibrateTimingsInMillis(new long[] {200, 500, 200, 500})
                                     .build())
                             .build())
                     .build();

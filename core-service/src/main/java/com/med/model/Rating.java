@@ -36,4 +36,7 @@ public class Rating implements Serializable {
     @Basic
     @Column(name = "comment", nullable = true, length = 250)
     private String comment;
+    @Basic
+    @Column(name = "sentiment", nullable = true, length = 50)
+    private String sentiment;
 }
