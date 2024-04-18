@@ -136,6 +136,11 @@ public class AuthenticationController {
         }
     }
 
+    @GetMapping("/check-email")
+    public ResponseEntity<Boolean> checkEmail(@RequestParam("email") String email) {
+        return new ResponseEntity<>(this.userService.getUserByEmail(email) == null, HttpStatus.OK);
+    }
+
 
 
     private String getSiteURL(HttpServletRequest request) {
