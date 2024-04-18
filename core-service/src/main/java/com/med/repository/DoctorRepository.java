@@ -33,7 +33,7 @@ public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
             AND (:params IS NULL 
                 OR (
                     (d.fee.fee BETWEEN :#{#params['feeMin']} AND :#{#params['feeMax']})
-                    AND (d.department.name = :#{#params['departmentName']})
+                    AND (:#{#params['departmentName']} = '' OR d.department.name = :#{#params['departmentName']})
                     AND (:#{#params['gender']} = 2 OR d.user.gender = :#{#params['gender']})
                 )) 
             """)
