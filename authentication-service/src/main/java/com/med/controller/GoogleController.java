@@ -40,10 +40,9 @@ public class GoogleController {
     @PostMapping("/auth-google")
     public ResponseEntity<Map<String, String>> verifyGoogleLogin(@RequestBody Map<String, Object> requestBody) {
         Map<String, Object> user = (Map<String, Object>) requestBody.get("user");
-
         if (this.googleSignInService.verify(requestBody)) {
             String token = this.jwtHelper.generateToken((String) user.get("email"));
-            RefreshToken refreshToken = this.refreshTokenService.createRefreshToken((String) requestBody.get("email"));
+            RefreshToken refreshToken = this.refreshTokenService.createRefreshToken((String) user.get("email"));
             java.sql.Timestamp expiryDateAccessToken = new java.sql.Timestamp(System.currentTimeMillis() + JwtHelper.JWT_TOKEN_VALIDITY * 1000);
 
 

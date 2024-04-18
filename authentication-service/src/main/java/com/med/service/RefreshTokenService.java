@@ -25,7 +25,6 @@ public class RefreshTokenService {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime expiry = now.plusMonths(3);
         Timestamp expiryDate = Timestamp.from(expiry.atZone(ZoneId.systemDefault()).toInstant());
-
         RefreshToken refreshToken = RefreshToken.builder()
                 .user(userRepository.getUserByEmail(email))
                 .token(UUID.randomUUID().toString())

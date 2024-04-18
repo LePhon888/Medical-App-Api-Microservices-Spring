@@ -29,7 +29,6 @@ spring:
               /api/appointment/**,
               /api/user/**,
               /api/scrape/**,
-              /login-google/auth-google/**,
               /api/post,
               /api/post/**,
               /api/category,
