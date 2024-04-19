@@ -23,8 +23,6 @@ public class MedicationScheduleService {
     private MedicationScheduleRepository repository;
     @Autowired
     private ScheduleTimeRepository scheduleTimeRepository;
-    @Autowired
-    private ReminderMedicationService reminderMedicationService;
 
     public ResponseEntity<String> createOrUpdateMedicationSchedule(CreateMedicationScheduleDTO payload) {
         try {
@@ -101,8 +99,6 @@ public class MedicationScheduleService {
                     scheduleTimeRepository.save(object);
                 });
             }
-
-            reminderMedicationService.rescheduleReminderNotification();
 
             return ResponseEntity.status(HttpStatus.CREATED).body("MedicationSchedule created or updated successfully");
         } catch (Exception e) {

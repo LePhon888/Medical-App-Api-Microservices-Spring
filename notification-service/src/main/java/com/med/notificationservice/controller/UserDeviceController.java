@@ -38,7 +38,7 @@ public class UserDeviceController {
             return ResponseEntity.ok("UserDevice deleted successfully");
         } else {
             // If the UserDevice doesn't exist, return a ResponseEntity with an error message
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("UserDevice not found");
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("UserDevice not found");
         }
     }
 
