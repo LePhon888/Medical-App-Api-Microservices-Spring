@@ -42,7 +42,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build and push ${{ matrix.image_name }}
-        uses: docker/build-push-action@v4
+      uses: mr-smithers-excellent/docker-build-push@v6
         with:
           context: ${{ matrix.image_name }}
           file: ${{ matrix.image_name }}/Dockerfile

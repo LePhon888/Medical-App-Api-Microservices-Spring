@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f8f0064-03b9-4aae-be69-22529ceb7f67" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/authentication-service/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/medication-service/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vnpay-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/maven.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/maven.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="4f8f0064-03b9-4aae-be69-22529ceb7f67" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -196,7 +189,7 @@
       <workItem from="1713763276097" duration="231000" />
       <workItem from="1713841145341" duration="695000" />
       <workItem from="1713863737232" duration="372000" />
-      <workItem from="1713865397692" duration="4667000" />
+      <workItem from="1713865397692" duration="5285000" />
     </task>
     <servers />
   </component>
