@@ -41,12 +41,12 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Build and push ${{ matrix.image_name }}
-      uses: mr-smithers-excellent/docker-build-push@v6
-        with:
-          context: ${{ matrix.image_name }}
-          file: ${{ matrix.image_name }}/Dockerfile
-          image: le132/${{ matrix.image_name }}
-          push: true
-          tags: latest
+    - name: Build Docker image
+        run: |
+          docker build -t le132/${{ matrix.service }}:${{ github.sha }} ${{ matrix.service }}
+
+    - name: Push Docker image (optional)
+      if: ${{ secrets.DOCKER_USERNAME }}
+      run: |
+        docker push ${{ secrets.DOCKER_USERNAME }}/${{ matrix.service }}:${{ github.sha }}
     
