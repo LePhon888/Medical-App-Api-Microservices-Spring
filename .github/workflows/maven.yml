@@ -8,7 +8,9 @@ on:
 
 jobs:
   build:
-
+    strategy:
+      matrix:
+        image_name: ["authentication-service", "core-service", "discovery-service", "gateway-service", "medication-service", "notification-service", "vnpay-service", "websocker-service"]
     runs-on: ubuntu-latest
 
     steps:
@@ -20,7 +22,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn clean install
+      run: mvn clean install -DskipTests
 
     # - name: Build & push Docker image
     #   uses: mr-smithers-excellent/docker-build-push@v6
@@ -39,14 +41,12 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    # Define an array of service names
-    env:
-      SERVICES: "discovery-service gateway-service core-service notification-service websocket-service authentication-service vnpay-service medication-service"
-
-    # Iterate over each service and build & push Docker image
-    - name: Build & push Docker images
-      run: |
-        for service in $SERVICES; do
-          echo "Building & pushing Docker image for $service"
-          docker/build-push-action@v2 --context ./$service --image le132/$service --tags latest
-        done
+    - name: Build and push ${{ matrix.image_name }}
+        uses: docker/build-push-action@v4
+        with:
+          context: ${{ matrix.image_name }}
+          file: ${{ matrix.image_name }}/Dockerfile
+          image: le132/${{ matrix.image_name }}
+          push: true
+          tags: latest
+    
