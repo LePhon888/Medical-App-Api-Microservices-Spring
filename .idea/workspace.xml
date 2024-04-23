@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f8f0064-03b9-4aae-be69-22529ceb7f67" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/855f286c-ac67-46e5-8895-686c14ea8878.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/855f286c-ac67-46e5-8895-686c14ea8878.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/controller/GoogleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/controller/GoogleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/service/RefreshTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/service/RefreshTokenService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +14,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -41,6 +36,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Study/Devops/devops-automation&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -154,6 +150,15 @@
       <workItem from="1713343095802" duration="7980000" />
       <workItem from="1713365784320" duration="770000" />
       <workItem from="1713419300409" duration="2501000" />
+      <workItem from="1713449188792" duration="2382000" />
+      <workItem from="1713499539197" duration="4354000" />
+      <workItem from="1713540168976" duration="919000" />
+      <workItem from="1713542360162" duration="33000" />
+      <workItem from="1713586130687" duration="1406000" />
+      <workItem from="1713603537221" duration="36000" />
+      <workItem from="1713612641924" duration="84000" />
+      <workItem from="1713763276097" duration="231000" />
+      <workItem from="1713841145341" duration="695000" />
     </task>
     <servers />
   </component>
