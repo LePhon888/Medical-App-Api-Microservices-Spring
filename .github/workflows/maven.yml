@@ -42,8 +42,8 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image
-        run: docker build -t le132/${{ matrix.service }}:${{ github.sha }} ${{ matrix.service }}
+      run: docker build -t le132/${{ matrix.service }}:latest
 
     - name: Push Docker image (optional)
-        run: docker push le132/${{ matrix.service }}:${{ github.sha }}
+      run: docker push le132/${{ matrix.service }}:latest
     
