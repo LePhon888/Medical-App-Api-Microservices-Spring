@@ -1,4 +1,5 @@
-package com.med.emailservice.service;
+package com.med.notificationservice.service;
+
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

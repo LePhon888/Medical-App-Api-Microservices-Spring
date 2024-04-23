@@ -7,11 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="medication-service" />
         <module name="authentication-service" />
         <module name="vnpay-service" />
         <module name="gateway-service" />
-        <module name="email-service" />
         <module name="medication-service" />
         <module name="core-service" />
         <module name="discovery-service" />
@@ -19,6 +17,9 @@
         <module name="websocket-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="email-service" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

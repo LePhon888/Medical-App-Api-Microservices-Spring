@@ -75,3 +75,31 @@ services:
     depends_on:
       - discovery-service
       - gateway-service
+  authentication-service:
+    image: authentication-service
+    container_name: authentication-service
+    environment:
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://discovery-service:8761/eureka
+    depends_on:
+      - discovery-service
+      - gateway-service
+  vnpay-service:
+    image: vnpay-service
+    container_name: vnpay-service
+    environment:
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://discovery-service:8761/eureka
+    depends_on:
+      - discovery-service
+      - gateway-service
+  medication-service:
+    image: medication-service
+    container_name: medication-service
+    environment:
+      - server.port=8080
+      - eureka.client.service-url.defaultZone=http://discovery-service:8761/eureka
+    depends_on:
+      - broker
+      - discovery-service
+      - gateway-service
