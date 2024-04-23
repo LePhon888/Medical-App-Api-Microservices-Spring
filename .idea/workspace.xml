@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f8f0064-03b9-4aae-be69-22529ceb7f67" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/med/notificationservice/service/EmailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authentication-service/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/medication-service/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vnpay-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/maven.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/maven.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/email-service/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/email-service/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/email-service/src/main/java/com/med/emailservice/EmailServiceApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/email-service/src/main/java/com/med/emailservice/controller/EmailController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/email-service/src/main/java/com/med/emailservice/service/EmailService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/email-service/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -202,7 +196,7 @@
       <workItem from="1713763276097" duration="231000" />
       <workItem from="1713841145341" duration="695000" />
       <workItem from="1713863737232" duration="372000" />
-      <workItem from="1713865397692" duration="3965000" />
+      <workItem from="1713865397692" duration="4667000" />
     </task>
     <servers />
   </component>
