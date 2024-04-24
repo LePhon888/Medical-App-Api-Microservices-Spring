@@ -1,44 +1,26 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Project CI CD flow
+name: project cicd flow
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
   build:
-    # strategy:
-    #   matrix:
-    #     image_name: ["authentication-service", "core-service", "discovery-service", "gateway-service", "medication-service", "notification-service", "vnpay-service", "websocker-service"]
-   
+
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
     - name: Set up JDK 17
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v1
       with:
-        java-version: '17'
-        distribution: 'temurin'
+        java-version: '1.8'
+        distribution: 'adopt'
         cache: maven
     - name: Build with Maven
       run: mvn clean install
-
-    # - name: Build & push Docker image
-    #   uses: mr-smithers-excellent/docker-build-push@v6
-    #   with:
-    #     image: le132/medcare-springboot-microservices
-    #     tags: latest
-    #     registry: docker.io
-    #     dockerfile: Dockerfile
-    #     username: ${{ secrets.DOCKER_USERNAME }}
-    #     password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Login to DockerHub
-      uses: mr-smithers-excellent/docker-build-push@v6
-      with:
-        registry: docker.io
-        dockerfile: Dockerfile
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
