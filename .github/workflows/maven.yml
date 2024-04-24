@@ -45,4 +45,10 @@ jobs:
         context: ./discovery-service
         tags: latest
         
+    - name: Build & push Docker image for Gateway Service
+      uses: docker/build-push-action@v2
+      with:
+        context: ./gateway-service
+        tags: latest
+        
    
