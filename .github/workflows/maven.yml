@@ -9,9 +9,9 @@ on:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        image_name: ["authentication-service", "core-service", "discovery-service", "gateway-service", "medication-service", "notification-service", "vnpay-service", "websocker-service"]
+    # strategy:
+    #   matrix:
+    #     image_name: ["authentication-service", "core-service", "discovery-service", "gateway-service", "medication-service", "notification-service", "vnpay-service", "websocker-service"]
    
     runs-on: ubuntu-latest
 
