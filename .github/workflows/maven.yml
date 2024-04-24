@@ -42,7 +42,6 @@ jobs:
     - name: Login to DockerHub
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
-        image: le132/medcare-springboot-microservices
         registry: docker.io
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
