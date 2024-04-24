@@ -76,6 +76,6 @@ jobs:
         context: ${{ matrix.image_name }}
         file: ${{ matrix.image_name }}/Dockerfile
         push: true
-        tags: latest
-        labels: le132
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }
    
