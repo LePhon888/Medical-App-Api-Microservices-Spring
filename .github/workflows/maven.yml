@@ -43,8 +43,6 @@ jobs:
     - name: Login to DockerHub
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
-        image: le132/medcare-springboot-microservices
-        tags: latest
         registry: docker.io
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
@@ -57,59 +55,4 @@ jobs:
         image: le132/discovery-service
         tags: latest
         
-    - name: Build & push Docker image for Gateway Service
-      uses: docker/build-push-action@v2
-      with:
-        context: ./gateway-service
-        image: le132/gateway-service:latest
-        tags: latest
-
-    - name: Build & push Docker image for Core Service
-      uses: docker/build-push-action@v2
-      with:
-        context: ./core-service
-        image: le132/core-service:latest
-        tags: latest
-
-    - name: Build & push Docker image for Notification Service
-      uses: docker/build-push-action@v2
-      with:
-        context: ./notification-service
-        image: le132/notification-service:latest
-        tags: latest
-
-    - name: Build & push Docker image for Websocket Service
-      uses: docker/build-push-action@v2
-      with:
-        context: ./websocket-service
-        image: le132/websocket-service:latest
-        tags: latest
-
-    - name: Build & push Docker image for Authentication Service
-      uses: docker/build-push-action@v2
-      with:
-        context: ./authentication-service
-        image: le132/authentication-service:latest
-        tags: latest
-
-    - name: Build & push Docker image for VnPay Service
-      uses: docker/build-push-action@v2
-      with:
-        context: ./vnpay-service
-        image: le132/vnpay-service:latest
-        tags: latest
-
-    - name: Build & push Docker image for Authentication Service
-      uses: docker/build-push-action@v2
-      with:
-        context: ./authentication-service
-        image: le132/authentication-service:latest
-        tags: latest
-
-    - name: Build & push Docker image for Medication Service
-      uses: docker/build-push-action@v2
-      with:
-        context: ./medication-service
-        image: le132/medication-service:latest
-        tags: latest
-
+   
