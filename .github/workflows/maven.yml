@@ -1,13 +1,18 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
 
-name: project cicd flow
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Project CI CD flow
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -15,12 +20,93 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up JDK 17
-      uses: actions/setup-java@v1
+      uses: actions/setup-java@v3
       with:
-        java-version: '1.8'
-        distribution: 'adopt'
+        java-version: '17'
+        distribution: 'temurin'
         cache: maven
     - name: Build with Maven
       run: mvn clean install
+
+    # - name: Build & push Docker image
+    #   uses: mr-smithers-excellent/docker-build-push@v6
+    #   with:
+    #     image: le132/medcare-springboot-microservices
+    #     tags: latest
+    #     registry: docker.io
+    #     dockerfile: Dockerfile
+    #     username: ${{ secrets.DOCKER_USERNAME }}
+    #     password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Login to DockerHub
+      uses: mr-smithers-excellent/docker-build-push@v6
+      with:
+        registry: docker.io
+        dockerfile: Dockerfile
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    # - name: Build & push Docker image for Discovery Service
+    #   uses: docker/build-push-action@v2
+    #   with:
+    #     context: ./discovery-service
+    #     image: le132/discovery-service
+    #     tags: latest
+        
+    # - name: Build & push Docker image for Gateway Service
+    #   uses: docker/build-push-action@v2
+    #   with:
+    #     context: ./gateway-service
+    #     image: le132/gateway-service:latest
+    #     tags: latest
+
+    # - name: Build & push Docker image for Core Service
+    #   uses: docker/build-push-action@v2
+    #   with:
+    #     context: ./core-service
+    #     image: le132/core-service:latest
+    #     tags: latest
+
+    # - name: Build & push Docker image for Notification Service
+    #   uses: docker/build-push-action@v2
+    #   with:
+    #     context: ./notification-service
+    #     image: le132/notification-service:latest
+    #     tags: latest
+
+    # - name: Build & push Docker image for Websocket Service
+    #   uses: docker/build-push-action@v2
+    #   with:
+    #     context: ./websocket-service
+    #     image: le132/websocket-service:latest
+    #     tags: latest
+
+    # - name: Build & push Docker image for Authentication Service
+    #   uses: docker/build-push-action@v2
+    #   with:
+    #     context: ./authentication-service
+    #     image: le132/authentication-service:latest
+    #     tags: latest
+
+    # - name: Build & push Docker image for VnPay Service
+    #   uses: docker/build-push-action@v2
+    #   with:
+    #     context: ./vnpay-service
+    #     image: le132/vnpay-service:latest
+    #     tags: latest
+
+    # - name: Build & push Docker image for Authentication Service
+    #   uses: docker/build-push-action@v2
+    #   with:
+    #     context: ./authentication-service
+    #     image: le132/authentication-service:latest
+    #     tags: latest
+
+    # - name: Build & push Docker image for Medication Service
+    #   uses: docker/build-push-action@v2
+    #   with:
+    #     context: ./medication-service
+    #     image: le132/medication-service:latest
+    #     tags: latest
+
