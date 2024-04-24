@@ -30,11 +30,12 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn clean install
-    - name: Build & push Docker images with login to Docker Hub
-      uses: docker/compose@v2
+      
+    - name: Login to DockerHub
+      uses: docker/login-action@v2
       with:
-        build: true
-        push: true
+        registry: docker.io
+        dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
