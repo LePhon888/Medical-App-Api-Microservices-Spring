@@ -11,7 +11,7 @@ jobs:
   build:
     strategy:
       matrix:
-        image_name: ["authentication-service", "core-service", "discovery-service", "gateway-service", "medicaltion-service", "notification-service", "vnpay-service", "websocket-service"]
+        image_name: ["authentication-service", "core-service", "discovery-service", "gateway-service", "medication-service", "notification-service", "vnpay-service", "websocket-service"]
     runs-on: ubuntu-latest
 
     steps:
