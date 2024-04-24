@@ -52,8 +52,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <finalName>medcare-springboot-microservices</finalName>
-    </build>
 </project>
