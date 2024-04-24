@@ -1,3 +1,4 @@
+
 name: Project CI CD flow
 
 on:
@@ -11,6 +12,7 @@ jobs:
     strategy:
       matrix:
         image_name: ["authentication-service", "core-service", "discovery-service", "gateway-service", "medication-service", "notification-service", "vnpay-service", "websocker-service"]
+   
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +24,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn clean install 
+      run: mvn clean install
 
     # - name: Build & push Docker image
     #   uses: mr-smithers-excellent/docker-build-push@v6
@@ -40,10 +42,3 @@ jobs:
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-
-    # - name: Build Docker image
-    #   run: docker build -t le132/${{ matrix.service }}:latest
-
-    # - name: Push Docker image (optional)
-    #   run: docker push le132/${{ matrix.service }}:latest
-    
