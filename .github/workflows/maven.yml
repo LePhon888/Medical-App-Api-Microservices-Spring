@@ -68,4 +68,5 @@ jobs:
         file: ${{ matrix.image_name }}/Dockerfile
         push: true
         tags: latest
+        labels: le132
    
