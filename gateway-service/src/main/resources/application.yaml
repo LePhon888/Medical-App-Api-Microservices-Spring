@@ -1,6 +1,8 @@
 eureka-server: http://localhost:8761
 
 spring:
+  application:
+    name: gateway-service
   cloud:
     gateway:
       globalcors:
@@ -11,11 +13,6 @@ spring:
               - GET
               - POST
               - PUT
-spring:
-  application:
-    name: gateway-service
-  cloud:
-    gateway:
       routes:
         - id: discovery-service
           uri: ${eureka-server}
