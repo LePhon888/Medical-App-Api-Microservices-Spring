@@ -25,14 +25,14 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
   discovery-service:
-    image: discovery-service
+    image: le132/discovery-service:latest
     container_name: discovery-service
     ports:
       - "8761:8761"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
   gateway-service:
-    image: gateway-service
+    image: le132/gateway-service:latest
     container_name: gateway-service
     ports:
       - "8080:8080"
@@ -43,7 +43,7 @@ services:
     depends_on:
       - discovery-service
   core-service:
-    image: core-service
+    image: le132/core-service:latest
     container_name: core-service
     environment:
       - server.port=8080
@@ -55,7 +55,7 @@ services:
       - discovery-service
       - gateway-service
   notification-service:
-    image: notification-service
+    image: le132/notification-service:latest
     container_name: notification-service
     environment:
       - TZ=Asia/Bangkok
@@ -67,7 +67,7 @@ services:
       - discovery-service
       - gateway-service
   websocket-service:
-    image: websocket-service
+    image: le132/websocket-service:latest
     container_name: websocket-service
     environment:
       - server.port=8080
@@ -76,7 +76,7 @@ services:
       - discovery-service
       - gateway-service
   authentication-service:
-    image: authentication-service
+    image: le132/authentication-service:latest
     container_name: authentication-service
     environment:
       - server.port=8080
@@ -85,7 +85,7 @@ services:
       - discovery-service
       - gateway-service
   vnpay-service:
-    image: vnpay-service
+    image: le132/vnpay-service:latest
     container_name: vnpay-service
     environment:
       - server.port=8080
@@ -94,7 +94,7 @@ services:
       - discovery-service
       - gateway-service
   medication-service:
-    image: medication-service
+    image: le132/medication-service:latest
     container_name: medication-service
     environment:
       - server.port=8080
