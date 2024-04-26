@@ -1,4 +1,16 @@
 eureka-server: http://localhost:8761
+
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "https://localhost:3000"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
 spring:
   application:
     name: gateway-service

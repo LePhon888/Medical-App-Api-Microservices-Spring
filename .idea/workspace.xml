@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f8f0064-03b9-4aae-be69-22529ceb7f67" name="Changes" comment="" />
+    <list default="true" id="4f8f0064-03b9-4aae-be69-22529ceb7f67" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,12 +50,27 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;a8eb4809b4f7976320aeec14b0376b65&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;499a4317eb67225d468627077a71586a&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean" />
+      <command value="mvn package" />
+      <command value="mvn clean install" />
+      <command value="mvn install" />
+      <command value="mvn compile:compile" />
+      <command value="mvn -e" />
+      <command value="mvn -X" />
+    </option>
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -190,6 +209,10 @@
       <workItem from="1713841145341" duration="695000" />
       <workItem from="1713863737232" duration="372000" />
       <workItem from="1713865397692" duration="5285000" />
+      <workItem from="1713933560598" duration="4100000" />
+      <workItem from="1714028411656" duration="708000" />
+      <workItem from="1714054547691" duration="599000" />
+      <workItem from="1714109380260" duration="1816000" />
     </task>
     <servers />
   </component>
