@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 //import org.springframework.security.core.userdetails.UserDetails;
@@ -43,7 +44,7 @@ public class UserService {
     private Cloudinary cloudinary;
 
     @Autowired
-    private OtpService otpService;
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     public User getById (int id) {
         return userRepository.findById(id).orElse(null);
@@ -219,38 +220,8 @@ public class UserService {
     public CompletableFuture<ResponseEntity<String>> sendEmailOTP(String email) {
         User checkUser = userRepository.getUserByEmail(email);
         if (checkUser != null) {
-            int code = otpService.createOtp(email);
-            try {
-                MimeMessage mimeMessage = mailSender.createMimeMessage();
-                MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-                message.setTo(email);
-                message.setSubject("Mã OTP để đặt lại mật khẩu");
-                String htmlContent = String.format("""
-                <body style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
-                    <p>Xin chào,</p>
-                    
-                    <p>Bạn đã yêu cầu đặt lại mật khẩu trên ứng dụng của chúng tôi.</p>
-                    
-                    <p>Dưới đây là mã OTP của bạn:</p>
-                    
-                    <p><strong>Mã OTP:</strong> %s</p>
-                    
-                    <p>Vui lòng sử dụng mã này để hoàn tất quá trình đặt lại mật khẩu.<br>
-                    Lưu ý rằng mã OTP này chỉ có hiệu lực trong thời gian ngắn.</p>
-                    
-                    <p>Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này.</p>
-                    
-                    <p>Trân trọng,</p>
-                    <p>Medcare</p>
-                </body>
-                """, code);
-                message.setText(htmlContent, true); // Set HTML content
-                mailSender.send(mimeMessage);
-
-                return CompletableFuture.completedFuture(ResponseEntity.ok("OTP sent successfully"));
-            } catch (Exception e) {
-                return CompletableFuture.completedFuture(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to send OTP"));
-            }
+            kafkaTemplate.send("otp-send", email);
+            return CompletableFuture.completedFuture(ResponseEntity.ok("OTP sent successfully"));
         } else {
             return CompletableFuture.completedFuture(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email not found"));
         }

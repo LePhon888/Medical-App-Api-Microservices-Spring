@@ -3,6 +3,7 @@ package com.med.notificationservice.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.mail.internet.MimeMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +11,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -112,6 +114,40 @@ public class EmailService {
                 "Mã xác minh sẽ có hiệu lực trong 30 phút. Vui lòng không chia sẻ mã này cho người khác \n" +
                 "Medcare.";
         return content;
+    }
+
+    @KafkaListener(topics = "otp-email", groupId = "email")
+    public void sendOtpEmail(String object) throws JsonProcessingException {
+        Map<String, String> map = objectMapper.readValue(object, Map.class);
+        try {
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+            message.setTo(map.get("email"));
+            message.setSubject("Mã OTP để đặt lại mật khẩu");
+            String htmlContent = String.format("""
+                <body style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
+                    <p>Xin chào,</p>
+                    
+                    <p>Bạn đã yêu cầu đặt lại mật khẩu trên ứng dụng của chúng tôi.</p>
+                    
+                    <p>Dưới đây là mã OTP của bạn:</p>
+                    
+                    <p><strong>Mã OTP:</strong> %s</p>
+                    
+                    <p>Vui lòng sử dụng mã này để hoàn tất quá trình đặt lại mật khẩu.<br>
+                    Lưu ý rằng mã OTP này chỉ có hiệu lực trong thời gian ngắn.</p>
+                    
+                    <p>Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này.</p>
+                    
+                    <p>Trân trọng,</p>
+                    <p>Medcare</p>
+                </body>
+                """, map.get("code"));
+            message.setText(htmlContent, true);
+            mailSender.send(mimeMessage);
+        } catch (Exception e) {
+            log.error("Could not send e-mail", e);
+        }
     }
 
 }
