@@ -22,17 +22,17 @@ public interface ScheduleTimeRepository extends JpaRepository<ScheduleTime, Inte
         s.id as scheduleTimeId,
         msg.name as groupName
     FROM 
-        medicalapp.medication_schedule ms
+        `medication-service`.medication_schedule ms
     INNER JOIN 
-        medicalapp.schedule_time s ON ms.id = s.medication_schedule_id
+        `medication-service`.schedule_time s ON ms.id = s.medication_schedule_id
     INNER JOIN 
-        medicalapp.medicine m on ms.medicine_id = m.id
+        `medication-service`.medicine m on ms.medicine_id = m.id
     INNER JOIN 
-        medicalapp.medicine_unit mu on ms.unit_id = mu.id
+        `medication-service`.medicine_unit mu on ms.unit_id = mu.id
     LEFT JOIN 
-        medicalapp.schedule_time_detail dt ON dt.schedule_time_id = s.id  AND dt.date = :startDate
+        `medication-service`.schedule_time_detail dt ON dt.schedule_time_id = s.id  AND dt.date = :startDate
     LEFT JOIN
-        medicalapp.medication_schedule_group msg on ms.group_id = msg.id
+        `medication-service`.medication_schedule_group msg on ms.group_id = msg.id
     WHERE 
         ms.user_id = :userId
         AND ms.is_active = TRUE
@@ -74,17 +74,17 @@ public interface ScheduleTimeRepository extends JpaRepository<ScheduleTime, Inte
          MIN(s.time) as time,
          s.quantity
      FROM
-         medicalapp.medication_schedule ms
+         `medication-service`.medication_schedule ms
      INNER JOIN
-         medicalapp.schedule_time s
+         `medication-service`.schedule_time s
              ON ms.id = s.medication_schedule_id 
                      AND TIMESTAMPDIFF(MINUTE, TIMESTAMPADD(HOUR, 7, CURRENT_TIME), s.time) BETWEEN 0 AND 1
      INNER JOIN
-         medicalapp.medicine m on ms.medicine_id = m.id
+         `medication-service`.medicine m on ms.medicine_id = m.id
      INNER JOIN
-         medicalapp.medicine_unit mu on ms.unit_id = mu.id
+         `medication-service`.medicine_unit mu on ms.unit_id = mu.id
      LEFT JOIN
-         medicalapp.schedule_time_detail dt
+         `medication-service`.schedule_time_detail dt
              ON dt.schedule_time_id = s.id AND dt.date = CAST(TIMESTAMPADD(HOUR, 7, CURRENT_TIMESTAMP) AS DATE)
              AND (dt.is_used IS NULL OR dt.is_used = 0)
      WHERE

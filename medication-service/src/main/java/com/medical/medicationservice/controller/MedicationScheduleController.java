@@ -38,4 +38,9 @@ public class MedicationScheduleController {
     public MedicationScheduleDTO getMedicationScheduleById(@PathVariable(name = "id") Integer id) {
         return this.service.getMedicationScheduleById(id);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteMedicationScheduleById(@PathVariable(name = "id") Integer id) {
+        this.service.deleteMedicationScheduleById(id);
+    }
 }

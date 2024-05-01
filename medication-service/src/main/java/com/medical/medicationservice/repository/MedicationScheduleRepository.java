@@ -18,7 +18,7 @@ public interface MedicationScheduleRepository extends JpaRepository<MedicationSc
                 SELECT
                     TIMESTAMP(CAST(TIMESTAMPADD(HOUR, 7, CURRENT_TIMESTAMP) AS DATE), s.time)
                 FROM
-                    medicalapp.schedule_time s
+                    `medication-service`.schedule_time s
                 WHERE
                     s.medication_schedule_id = ms.id
                   AND ms.start_date <= CAST(TIMESTAMPADD(HOUR,7, CURRENT_TIMESTAMP) AS DATE)
@@ -92,7 +92,7 @@ public interface MedicationScheduleRepository extends JpaRepository<MedicationSc
                     )
                     END
                 FROM
-                    medicalapp.schedule_time s
+                    `medication-service`.schedule_time s
                 WHERE
                     s.medication_schedule_id = ms.id
                 ORDER BY s.time
@@ -101,15 +101,15 @@ public interface MedicationScheduleRepository extends JpaRepository<MedicationSc
         ) as dateTime,
     ms.id AS id,
     m.name AS medicineName,
-    ms.is_active as isActive,
+    -- ms.is_active as isActive, 28-Apr-24 Khuong: current have mapping error with boolean field in projection. So disable it for now
     msg.id as groupId,
     msg.name as groupName
     FROM
-        medicalapp.medication_schedule ms
+        `medication-service`.medication_schedule ms
     INNER JOIN 
-        medicalapp.medicine m ON ms.medicine_id = m.id
+        `medication-service`.medicine m ON ms.medicine_id = m.id
     LEFT JOIN
-        medicalapp.medication_schedule_group msg on ms.group_id = msg.id
+        `medication-service`.medication_schedule_group msg on ms.group_id = msg.id
     WHERE
         ms.is_active = true
         AND (ms.user_id = :userId OR :userId IS NULL)

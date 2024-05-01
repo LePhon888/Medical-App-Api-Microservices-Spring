@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@Table(name = "medicine_unit", schema = "medicalapp")
+@Table(name = "medicine_unit")
 public class MedicineUnit implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

@@ -44,7 +44,8 @@ spring:
               /api/category,
               /api/weight,
               /api/weight/**,
-              /api/fee/**
+              /api/fee/**,
+              /api/otp/**,
           filters:
             - AuthenticationFilter
 

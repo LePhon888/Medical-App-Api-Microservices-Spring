@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "schedule_time_detail", schema = "medicalapp")
+@Table(name = "schedule_time_detail")
 public class ScheduleTimeDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
