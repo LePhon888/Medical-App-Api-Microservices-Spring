@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Setter
-@Table(name = "medication_schedule", schema = "medicalapp")
+@Table(name = "medication_schedule")
 @AllArgsConstructor
 @NoArgsConstructor
 public class MedicationSchedule implements Serializable {

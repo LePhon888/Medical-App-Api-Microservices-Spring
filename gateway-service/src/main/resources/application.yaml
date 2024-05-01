@@ -44,7 +44,7 @@ spring:
               /api/category,
               /api/weight,
               /api/weight/**,
-              /api/fee/**
+              /api/fee/**,
           filters:
             - AuthenticationFilter
 
@@ -81,6 +81,7 @@ spring:
             - Path=/api/auth/**,
               /api/auth/validate,
               /login-google/auth-google/**,
+              /api/otp/**,
 
 eureka:
   client:

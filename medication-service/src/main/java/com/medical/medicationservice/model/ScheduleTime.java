@@ -13,7 +13,7 @@ import java.time.LocalTime;
 @Entity
 @Getter
 @Setter
-@Table(name = "schedule_time", schema = "medicalapp")
+@Table(name = "schedule_time")
 @AllArgsConstructor
 @NoArgsConstructor
 public class ScheduleTime implements Serializable {

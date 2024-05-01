@@ -5,19 +5,19 @@ import com.cloudinary.utils.ObjectUtils;
 import com.med.model.Provider;
 import com.med.model.User;
 import com.med.repository.UserRepository;
-import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 //import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.stereotype.Service;
@@ -25,13 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 //public class UserService implements UserDetailsService {
@@ -47,6 +42,9 @@ public class UserService {
 
     @Autowired
     private Cloudinary cloudinary;
+
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     public User getById (int id) {
         return userRepository.findById(id).orElse(null);
@@ -210,6 +208,22 @@ public class UserService {
         }
     }
 
+    public void updateUserPasswordByEmail(String email, String newPassword) {
+        User user = userRepository.getUserByEmail(email);
+        if (user != null ){
+            user.setPassword(passwordEncoder.encode(newPassword));
+            userRepository.save(user);
+        }
+    }
 
-
+    @Async
+    public CompletableFuture<ResponseEntity<String>> sendEmailOTP(String email) {
+        User checkUser = userRepository.getUserByEmail(email);
+        if (checkUser != null) {
+            kafkaTemplate.send("otp-send", email);
+            return CompletableFuture.completedFuture(ResponseEntity.ok("OTP sent successfully"));
+        } else {
+            return CompletableFuture.completedFuture(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email not found"));
+        }
+    }
 }

@@ -1,6 +1,6 @@
 package com.medical.medicationservice.controller;
 
-import com.medical.medicationservice.dto.CreateMedicationScheduleGroup;
+import com.medical.medicationservice.dto.MedicationScheduleGroupDTO;
 import com.medical.medicationservice.schedule.ReminderMedicationService;
 import com.medical.medicationservice.service.MedicationScheduleGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +20,17 @@ public class MedicationScheduleGroupController {
 
 
     @GetMapping("/{id}")
-    public CreateMedicationScheduleGroup getMedicationScheduleGroupById(@PathVariable("id") Integer id) {
+    public MedicationScheduleGroupDTO getMedicationScheduleGroupById(@PathVariable("id") Integer id) {
         return service.getById(id);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteMedicationScheduleGroupById(@PathVariable("id") Integer id) {
+        service.deleteById(id);
+    }
+
     @PostMapping("/createOrUpdate")
-    public ResponseEntity<?> createMedicationScheduleGroup(@RequestBody CreateMedicationScheduleGroup payload) {
+    public ResponseEntity<?> createMedicationScheduleGroup(@RequestBody MedicationScheduleGroupDTO payload) {
         ResponseEntity<?> response = this.service.createOrUpdate(payload);
         if (response.getStatusCode() == HttpStatus.OK) {
             reminderMedicationService.rescheduleReminderNotification();

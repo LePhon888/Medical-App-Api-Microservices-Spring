@@ -24,6 +24,10 @@ public class MedicationScheduleService {
     @Autowired
     private ScheduleTimeRepository scheduleTimeRepository;
 
+    public void deleteMedicationScheduleById(Integer id) {
+        repository.deleteById(id);
+    }
+
     public ResponseEntity<String> createOrUpdateMedicationSchedule(CreateMedicationScheduleDTO payload) {
         try {
             // Check if the user, medicine, and medicine unit exist

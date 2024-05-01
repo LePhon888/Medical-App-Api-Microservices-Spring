@@ -1,10 +1,9 @@
 package com.medical.medicationservice.service;
 
 import com.medical.medicationservice.dto.CreateMedicationScheduleDTO;
-import com.medical.medicationservice.dto.CreateMedicationScheduleGroup;
+import com.medical.medicationservice.dto.MedicationScheduleGroupDTO;
 import com.medical.medicationservice.dto.MedicationScheduleDTO;
 import com.medical.medicationservice.dto.ScheduleTimeDTO;
-import com.medical.medicationservice.model.MedicationSchedule;
 import com.medical.medicationservice.model.MedicationScheduleGroup;
 import com.medical.medicationservice.repository.MedicationScheduleGroupRepository;
 import com.medical.medicationservice.repository.MedicationScheduleRepository;
@@ -32,15 +31,19 @@ public class MedicationScheduleGroupService {
     @Autowired
     private ScheduleTimeRepository scheduleTimeRepository;
 
+    public void deleteById(Integer id) {
+        repository.deleteById(id);
+    }
+
     @Transactional
-    public ResponseEntity<?> createOrUpdate(CreateMedicationScheduleGroup payload) {
+    public ResponseEntity<?> createOrUpdate(MedicationScheduleGroupDTO payload) {
         try {
             Optional<MedicationScheduleGroup> existingGroupRecord = repository.findById(payload.getId());
 
             if (existingGroupRecord.isPresent()) {
 
                 // Proceed to updated group record
-                MedicationScheduleGroup oldGroupRecord = existingGroupRecord.get();
+               MedicationScheduleGroup oldGroupRecord = existingGroupRecord.get();
                 oldGroupRecord.setName(payload.getGroupName());
                 oldGroupRecord.setHospital(payload.getHospitalName());
                 oldGroupRecord.setIsActive(payload.getIsActive());
@@ -73,7 +76,7 @@ public class MedicationScheduleGroupService {
                 repository.save(oldGroupRecord);
 
             } else {
-                MedicationScheduleGroup createdRecord = new MedicationScheduleGroup(
+               MedicationScheduleGroup createdRecord = new MedicationScheduleGroup(
                         0,
                         payload.getGroupName(),
                         payload.getHospitalName(),
@@ -82,7 +85,7 @@ public class MedicationScheduleGroupService {
                         payload.getUserId()
                 );
 
-                MedicationScheduleGroup savedRecord = repository.save(createdRecord);
+               MedicationScheduleGroup savedRecord = repository.save(createdRecord);
 
                 payload.getMedicineList()
                         .forEach(item -> {
@@ -98,7 +101,7 @@ public class MedicationScheduleGroupService {
         }
     }
 
-    public CreateMedicationScheduleGroup getById(Integer id) {
+    public MedicationScheduleGroupDTO getById(Integer id) {
 
         Optional<MedicationScheduleGroup> checkRecord = repository.findById(id);
 
@@ -106,7 +109,7 @@ public class MedicationScheduleGroupService {
             return null;
         }
 
-        MedicationScheduleGroup record = checkRecord.get();
+       MedicationScheduleGroup record = checkRecord.get();
 
         List<CreateMedicationScheduleDTO> medicationScheduleList = new ArrayList<>();
 
@@ -131,7 +134,7 @@ public class MedicationScheduleGroupService {
 
         });
 
-        return new CreateMedicationScheduleGroup(
+        return new MedicationScheduleGroupDTO(
                 record.getId(),
                 record.getUserId(),
                 record.getName(),

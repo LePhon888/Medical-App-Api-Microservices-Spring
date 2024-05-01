@@ -1,5 +1,6 @@
 package com.med.controller;
 
+import com.azure.core.annotation.Get;
 import com.cloudinary.Cloudinary;
 import com.med.model.User;
 import com.med.service.UserService;
@@ -18,6 +19,8 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 @CrossOrigin
 @RequestMapping("/api/user")
@@ -64,6 +67,17 @@ public class UserController {
         if (deleteSuccessful)
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/email/{email}")
+    public CompletableFuture<ResponseEntity<String>> sendEmailOTP(@PathVariable(name = "email") String email) {
+        return userService.sendEmailOTP(email);
+    }
+
+    @PostMapping("/email")
+    public ResponseEntity<String> updateByEmail(@RequestBody Map<String, String> payload) {
+        userService.updateUserPasswordByEmail(payload.get("email"), payload.get("password"));
+        return ResponseEntity.ok("Update password successfully!");
     }
 
     public ResponseEntity isUserValidation(User user) {
