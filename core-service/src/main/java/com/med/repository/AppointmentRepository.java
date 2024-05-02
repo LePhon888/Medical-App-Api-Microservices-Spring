@@ -1,5 +1,6 @@
 package com.med.repository;
 
+import com.med.dto.AppointmentHourDTO;
 import com.med.dto.AppointmentPatient;
 import com.med.model.Appointment;
 import com.med.model.User;
@@ -9,6 +10,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -44,4 +48,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
             "FROM Appointment a " +
             "WHERE a.isPaid = 1 AND a.isConfirm = 1 AND a.user.id = :userId AND a.doctor.id = :doctorId")
     Long countAppointmentsByUserId(String userId, String doctorId);
+
+    @Query("SELECT new com.med.dto.AppointmentHourDTO(a.hour.id) FROM Appointment a WHERE a.isPaid = 1 AND a.isConfirm = 1 AND (:date is null or a.date = :date) AND (:doctorId is null or a.doctor.id = :doctorId) ORDER BY a.hour.id")
+    List<AppointmentHourDTO> getAppointmentHourByDate(LocalDate date, Integer doctorId);
 }

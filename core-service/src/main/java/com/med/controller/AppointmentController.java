@@ -1,11 +1,13 @@
 package com.med.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.med.dto.AppointmentHourDTO;
 import com.med.dto.AppointmentPatient;
 import com.med.model.*;
 import com.med.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -16,6 +18,8 @@ import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @CrossOrigin("*")
@@ -70,6 +74,11 @@ public class AppointmentController {
     @GetMapping
     public List<Appointment> getAll() {
         return appointmentService.getAll();
+    }
+
+    @GetMapping("/hour")
+    public List<AppointmentHourDTO> getAppointmentHourByDate(@RequestParam("date") String date, @RequestParam("doctorId") Integer doctorId) {
+        return appointmentService.getAppointmentHourByDate(LocalDate.parse(date), doctorId);
     }
 
     @GetMapping("/doctor/{userId}")

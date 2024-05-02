@@ -1,5 +1,6 @@
 package com.med.service;
 
+import com.med.dto.AppointmentHourDTO;
 import com.med.dto.AppointmentPatient;
 import com.med.model.Appointment;
 import com.med.model.User;
@@ -12,7 +13,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -126,5 +129,9 @@ public class AppointmentService {
             return (long) -1;
         }
         return this.appointmentRepository.countAppointmentsByUserId(userId, doctorId);
+    }
+
+    public List<AppointmentHourDTO> getAppointmentHourByDate(LocalDate date, Integer doctorId) {
+        return appointmentRepository.getAppointmentHourByDate(date, doctorId);
     }
 }
