@@ -4,6 +4,8 @@ import com.med.dto.DoctorDTO;
 import com.med.model.Doctor;
 import com.med.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,5 +38,8 @@ public class DoctorService {
     public DoctorDTO getDoctorById(String id) {
         return this.doctorRepository.getDoctorById(id);
     }
-
+    public List<DoctorDTO> getRandomDoctors() {
+        Page<DoctorDTO> page = doctorRepository.getRandomDoctors(PageRequest.of(0, 10));
+        return page.getContent();
+    }
 }

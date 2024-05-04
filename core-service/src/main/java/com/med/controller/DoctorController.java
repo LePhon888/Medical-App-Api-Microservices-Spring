@@ -38,4 +38,9 @@ public class DoctorController {
     public ResponseEntity getByDepartmentId (@PathVariable(value = "id") Integer id) {
         return new ResponseEntity<>(this.doctorService.getByUserId(id), HttpStatus.OK);
     }
+
+    @GetMapping("/random")
+    public List<DoctorDTO> getRandomDoctors() {
+        return this.doctorService.getRandomDoctors();
+    }
 }

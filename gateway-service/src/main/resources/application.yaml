@@ -45,6 +45,8 @@ spring:
               /api/weight,
               /api/weight/**,
               /api/fee/**,
+              /api/user-post,
+              /api/user-post/**,
           filters:
             - AuthenticationFilter
 

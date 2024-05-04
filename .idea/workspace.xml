@@ -5,18 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f8f0064-03b9-4aae-be69-22529ceb7f67" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/dto/AppointmentHourDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/UserPostController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/dto/UserPostDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/model/UserPost.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/repository/UserPostRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/UserPostService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/92829dfe-d268-42e6-80df-26d13b7a2f7d.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/855f286c-ac67-46e5-8895-686c14ea8878.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/855f286c-ac67-46e5-8895-686c14ea8878.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a650092c-b102-458d-99da-2d9878143fe0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a650092c-b102-458d-99da-2d9878143fe0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/AppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/AppointmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/repository/AppointmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/repository/AppointmentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/AppointmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/AppointmentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/DoctorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/DoctorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/repository/DoctorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/repository/DoctorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/DoctorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/DoctorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/PostService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +30,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="com.haulmont.jpb.JpaEntity" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -240,6 +246,12 @@
       <workItem from="1714622261261" duration="3084000" />
       <workItem from="1714634525573" duration="7996000" />
       <workItem from="1714656463030" duration="4812000" />
+      <workItem from="1714716827770" duration="101000" />
+      <workItem from="1714717277081" duration="1248000" />
+      <workItem from="1714727867188" duration="6358000" />
+      <workItem from="1714744534887" duration="4912000" />
+      <workItem from="1714799474451" duration="1396000" />
+      <workItem from="1714806618263" duration="10865000" />
     </task>
     <servers />
   </component>

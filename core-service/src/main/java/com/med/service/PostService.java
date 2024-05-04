@@ -41,4 +41,8 @@ public class PostService {
             throw new Exception("Post not found");
         }
     }
+
+    public Post getById(int id) {
+        return postRepository.findById(id).orElse(null);
+    }
 }
