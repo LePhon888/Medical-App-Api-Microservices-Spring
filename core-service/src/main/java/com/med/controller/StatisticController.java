@@ -10,17 +10,17 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api")
+@RequestMapping("/api/stats")
 public class StatisticController {
     @Autowired
     private StatisticService service;
 
-    @GetMapping("/stats-patient-visits/")
+    @GetMapping("/patient-visits")
     public ResponseEntity getPatientVisits(@RequestParam Map<String, Object> params) {
         return new ResponseEntity<>(this.service.countFrequentPatientVisitsByTime(params), HttpStatus.OK);
     }
 
-    @GetMapping("/stats-revenue/")
+    @GetMapping("/revenue")
     public ResponseEntity getRevenue(@RequestParam Map<String, Object> params) {
         return new ResponseEntity<>(this.service.getRevenueByTime(params), HttpStatus.OK);
     }
