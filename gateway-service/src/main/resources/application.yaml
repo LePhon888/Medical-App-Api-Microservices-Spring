@@ -47,6 +47,7 @@ spring:
               /api/fee/**,
               /api/user-post,
               /api/user-post/**,
+              /api/stats/**
           filters:
             - AuthenticationFilter
 

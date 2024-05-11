@@ -27,6 +27,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -45,6 +48,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2fEUTHJXEXrfwS5jxhcccbIsHsw" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -60,7 +66,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;khuong&quot;,
     &quot;import_schema_mapping&quot;: &quot;&lt;schema-mapping&gt;\n  &lt;databases&gt;\n    &lt;list&gt;\n      &lt;schema-mapping-item&gt;\n        &lt;source-data-source-id&gt;855f286c-ac67-46e5-8895-686c14ea8878&lt;/source-data-source-id&gt;\n        &lt;source-path&gt;schema/&amp;quot;medicalapp&amp;quot;&lt;/source-path&gt;\n        &lt;target-data-source-id&gt;92829dfe-d268-42e6-80df-26d13b7a2f7d&lt;/target-data-source-id&gt;\n        &lt;target-path&gt;schema/&amp;quot;medication-service&amp;quot;&lt;/target-path&gt;\n      &lt;/schema-mapping-item&gt;\n    &lt;/list&gt;\n  &lt;/databases&gt;\n&lt;/schema-mapping&gt;&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/Study/Devops/devops-automation&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -69,7 +75,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;database.data.views&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;499a4317eb67225d468627077a71586a&quot;,
@@ -202,11 +208,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.CoreServiceApplication" />
-        <item itemvalue="Spring Boot.GatewayServiceApplication" />
-        <item itemvalue="Spring Boot.AuthenticationServiceApplication" />
         <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
         <item itemvalue="Spring Boot.VNPayServiceApplication" />
+        <item itemvalue="Spring Boot.GatewayServiceApplication" />
+        <item itemvalue="Spring Boot.CoreServiceApplication" />
+        <item itemvalue="Spring Boot.AuthenticationServiceApplication" />
       </list>
     </recent_temporary>
   </component>
