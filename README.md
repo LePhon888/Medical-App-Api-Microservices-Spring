@@ -74,5 +74,5 @@
      alt="z5433179347082_4997214f7d4c764371f3cd540c001ce9" 
      width="300" 
      title="Medical App API Spring Boot"/>
+![logo](https://github.com/LePhon888/Medical-App-Api-SpringBoot/assets/87175247/9f960727-ceb1-4623-ac2c-35b2d140c1fe)
 
-     ![logo](https://github.com/LePhon888/Medical-App-Api-SpringBoot/assets/87175247/e1db7d1a-a7a8-4666-8f43-05e31b27e062)
