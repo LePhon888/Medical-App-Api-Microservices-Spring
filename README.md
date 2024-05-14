@@ -202,6 +202,7 @@ Lastly, the system includes a feature for tracking weight on a monthly or weekly
 - Medicine library
 - Medication box
 - Health weight tracking
+- Weekly and monthly weight statistics"
 - Body indices BMI, BMR, calories
 - Medication schedule
 - Notification medication schedule
