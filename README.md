@@ -1,3 +1,7 @@
+<img src="https://github.com/LePhon888/Medical-App-Api-SpringBoot/assets/87175247/6bed38a2-4206-4619-a844-0c9d4f607830" 
+     alt="z5433179347082_4997214f7d4c764371f3cd540c001ce9" 
+     width="300" 
+     title="Medical App API Spring Boot"/>
 <img src="https://github.com/LePhon888/Medical-App-Api-SpringBoot/assets/87175247/b3417a90-fe93-460f-8f93-6772e40a66c8" 
      alt="z5427946855396_0de3bda3cf449af3690d0926a18864be" 
      width="300" 
@@ -73,14 +77,6 @@
 <img src="https://github.com/LePhon888/Medical-App-Api-SpringBoot/assets/87175247/49a3e3e3-bec8-41bc-bc58-28179f864ba5" 
      alt="z5433179347082_4997214f7d4c764371f3cd540c001ce9" 
      width="300" 
-<<<<<<< HEAD
      title="Medical App API Spring Boot"/>
-<img src="https://github.com/LePhon888/Medical-App-Api-SpringBoot/assets/87175247/6bed38a2-4206-4619-a844-0c9d4f607830" 
-     alt="z5433179347082_4997214f7d4c764371f3cd540c001ce9" 
-     width="300" 
-     title="Medical App API Spring Boot"/>
+
      
-=======
-     title="Medical App API Spring Boot"/>
->>>>>>> 2b767d4 (fix)
->>>>>>> 246f400 (fix)
