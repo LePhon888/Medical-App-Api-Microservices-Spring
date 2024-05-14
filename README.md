@@ -4,7 +4,13 @@
   <h1>Research on Using Microservices Architecture to Develop a Patient Health Monitoring System</h1>
   
   <p>
-Microservices
+Our team applied Microservices architecture to implement the system, using Spring Boot for the API. The system's database is built on the MySQL platform, ensuring the security and reliability necessary for a health monitoring and medical information system.
+
+One feature we are particularly proud of is the Chatbot, designed to provide health advice to patients. This Chatbot offers basic medical information and guides on self-care measures. This feature enhances convenience and attention to users' health.
+
+Additionally, we have developed an API for chat functionality between doctors and patients, enabling patients to communicate with doctors when needed. Furthermore, we have built a news aggregation function for health and medical care that users can read daily. Users can also make video calls with doctors to receive consultations.
+
+Lastly, the system includes a feature for tracking weight on a monthly or weekly basis, calculating BMI, BMR, and calories for users.
   </p>
   
   
@@ -47,21 +53,9 @@ Microservices
   * [Tech Stack](#space_invader-tech-stack)
   * [Features](#dart-features)
   * [Color Reference](#art-color-reference)
-  * [Environment Variables](#key-environment-variables)
 - [Getting Started](#toolbox-getting-started)
-  * [Prerequisites](#bangbang-prerequisites)
   * [Installation](#gear-installation)
-  * [Running Tests](#test_tube-running-tests)
-  * [Run Locally](#running-run-locally)
-  * [Deployment](#triangular_flag_on_post-deployment)
-- [Usage](#eyes-usage)
-- [Roadmap](#compass-roadmap)
-- [Contributing](#wave-contributing)
-  * [Code of Conduct](#scroll-code-of-conduct)
-- [FAQ](#grey_question-faq)
-- [License](#warning-license)
 - [Contact](#handshake-contact)
-- [Acknowledgements](#gem-acknowledgements)
 
 
 
@@ -204,141 +198,16 @@ Microservices
 | Secondary Color | ![#393E46](https://via.placeholder.com/10/39B68D?text=+) #39B68D |
 | Text Color | ![#EEEEEE](https://via.placeholder.com/10/4e4e4e?text=+) #4e4e4e |
 
-
-<!-- Env Variables -->
-### :key: Environment Variables
-
-To run this project, you will need to add the following environment variables to your .env file
-
-`API_KEY`
-
-`ANOTHER_API_KEY`
-
 <!-- Getting Started -->
 ## 	:toolbox: Getting Started
 
-<!-- Prerequisites -->
-### :bangbang: Prerequisites
-
-This project uses Yarn as package manager
-
-```bash
- npm install --global yarn
-```
-
-<!-- Installation -->
 ### :gear: Installation
 
-Install my-project with npm
+Install with Docker Compose
 
 ```bash
-  yarn install my-project
-  cd my-project
+docker compose up -d
 ```
-   
-<!-- Running Tests -->
-### :test_tube: Running Tests
-
-To run tests, run the following command
-
-```bash
-  yarn test test
-```
-
-<!-- Run Locally -->
-### :running: Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/Louis3797/awesome-readme-template.git
-```
-
-Go to the project directory
-
-```bash
-  cd my-project
-```
-
-Install dependencies
-
-```bash
-  yarn install
-```
-
-Start the server
-
-```bash
-  yarn start
-```
-
-
-<!-- Deployment -->
-### :triangular_flag_on_post: Deployment
-
-To deploy this project run
-
-```bash
-  yarn deploy
-```
-
-
-<!-- Usage -->
-## :eyes: Usage
-
-Use this space to tell a little more about your project and how it can be used. Show additional screenshots, code samples, demos or link to other resources.
-
-
-```javascript
-import Component from 'my-project'
-
-function App() {
-  return <Component />
-}
-```
-
-<!-- Roadmap -->
-## :compass: Roadmap
-
-* [x] Todo 1
-* [ ] Todo 2
-
-
-<!-- Contributing -->
-## :wave: Contributing
-
-<a href="https://github.com/Louis3797/awesome-readme-template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" />
-</a>
-
-
-Contributions are always welcome!
-
-See `contributing.md` for ways to get started.
-
-
-<!-- Code of Conduct -->
-### :scroll: Code of Conduct
-
-Please read the [Code of Conduct](https://github.com/Louis3797/awesome-readme-template/blob/master/CODE_OF_CONDUCT.md)
-
-<!-- FAQ -->
-## :grey_question: FAQ
-
-- Question 1
-
-  + Answer 1
-
-- Question 2
-
-  + Answer 2
-
-
-<!-- License -->
-## :warning: License
-
-Distributed under the no License. See LICENSE.txt for more information.
-
 
 <!-- Contact -->
 ## :handshake: Contact
@@ -346,18 +215,7 @@ Distributed under the no License. See LICENSE.txt for more information.
 Khuong Huynh - Phon Le
 
 
-Project Link: [https://github.com/Louis3797/awesome-readme-template](https://github.com/Louis3797/awesome-readme-template)
-
-
-<!-- Acknowledgments -->
-## :gem: Acknowledgements
-
-Use this section to mention useful resources and libraries that you have used in your projects.
-
- - [Shields.io](https://shields.io/)
- - [Awesome README](https://github.com/matiassingers/awesome-readme)
- - [Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#travel--places)
- - [Readme Template](https://github.com/othneildrew/Best-README-Template)
+Project Link: [https://github.com/LePhon888/Medical-App-Api-SpringBoot](https://github.com/LePhon888/Medical-App-Api-SpringBoot)
 
 
 ![logo](https://github.com/LePhon888/Medical-App-Api-SpringBoot/assets/87175247/9f960727-ceb1-4623-ac2c-35b2d140c1fe)
