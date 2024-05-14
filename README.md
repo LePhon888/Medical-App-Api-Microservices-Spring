@@ -151,17 +151,18 @@ Lastly, the system includes a feature for tracking weight on a monthly or weekly
 <details>
   <summary>Client</summary>
   <ul>
-    <li><a href="https://www.typescriptlang.org/">React Native</a></li>
+    <li><a href="https://reactnative.dev/">React Native</a></li>
   </ul>
 </details>
 
 <details>
   <summary>Server</summary>
   <ul>
-    <li><a href="https://www.typescriptlang.org/">Spring Boot</a></li>
-    <li><a href="https://expressjs.com/">Spring Cloud</a></li>
-    <li><a href="https://go.dev/">Apache Kafka</a></li>
-    <li><a href="https://nestjs.com/">Firebase Cloud Messaging</a></li>
+    <li><a href="https://spring.io/projects/spring-boot/">Spring Boot</a></li>
+    <li><a href="https://spring.io/projects/spring-data-jpa">Spring Data JPA</a></li>
+    <li><a href="https://spring.io/projects/spring-cloud">Spring Cloud</a></li>
+    <li><a href="https://spring.io/projects/spring-kafka">Apache Kafka</a></li>
+    <li><a href="https://firebase.google.com/docs/cloud-messaging">Firebase Cloud Messaging</a></li>
   </ul>
 </details>
 
@@ -176,9 +177,9 @@ Lastly, the system includes a feature for tracking weight on a monthly or weekly
 <summary>DevOps</summary>
   <ul>
     <li><a href="https://www.docker.com/">Docker</a></li>
-    <li><a href="https://www.jenkins.io/">Docker Compose</a></li>
-    <li><a href="https://circleci.com/">Github Actions</a></li>
-    <li><a href="https://circleci.com/">Google Cloud Platform</a></li>
+    <li><a href="https://docs.docker.com/compose/">Docker Compose</a></li>
+    <li><a href="https://docs.github.com/en/actions">Github Actions</a></li>
+    <li><a href="https://cloud.google.com/">Google Cloud Platform</a></li>
   </ul>
 </details>
 
