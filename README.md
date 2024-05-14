@@ -186,9 +186,26 @@ Lastly, the system includes a feature for tracking weight on a monthly or weekly
 <!-- Features -->
 ### :dart: Features
 
-- Feature 1
-- Feature 2
-- Feature 3
+- Login
+- Registration
+- Verify account
+- Forgot password
+- Google OAuth2 login
+- Daily news
+- Save news
+- Chat
+- Video call
+- Chatbot AI
+- Register appointment
+- Online payment
+- Appointment history
+- Medicine library
+- Medication box
+- Health weight tracking
+- Body indices BMI, BMR, calories
+- Medication schedule
+- Notification medication schedule
+- Doctor rating
 
 <!-- Color Reference -->
 ### :art: Color Reference
