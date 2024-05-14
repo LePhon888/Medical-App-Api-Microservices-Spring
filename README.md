@@ -49,6 +49,7 @@ Lastly, the system includes a feature for tracking weight on a monthly or weekly
 # :notebook_with_decorative_cover: Table of Contents
 
 - [About the Project](#star2-about-the-project)
+  * [Architecture](#camera-architecture)
   * [Screenshots](#camera-screenshots)
   * [Tech Stack](#space_invader-tech-stack)
   * [Features](#dart-features)
@@ -58,10 +59,12 @@ Lastly, the system includes a feature for tracking weight on a monthly or weekly
 - [Contact](#handshake-contact)
 
 
-
 <!-- About the Project -->
 ## :star2: About the Project
 
+<!-- Architecture -->
+### :camera: Architecture
+![image](https://github.com/LePhon888/Medical-App-Api-SpringBoot/assets/87175247/3cc17d41-1ad3-4e82-acb3-98128624fb4b)
 
 <!-- Screenshots -->
 ### :camera: Screenshots
