@@ -1,6 +1,51 @@
 version: '3'
-
 services:
+
+  mysql-core:
+    container_name: mysql-core
+    image: mysql:8.0
+    restart: always
+    ports:
+      - '5761:3306'
+    volumes:
+      - db_core:/var/lib/mysql
+      - ./coredb.sql:/docker-entrypoint-initdb.d/coredb.sql
+    environment:
+      - MYSQL_DATABASE=core-service
+      - MYSQL_ROOT_PASSWORD=@b86aH123456
+      - MYSQL_USER=MedAppAdmin
+      - MYSQL_PASSWORD=@b86aH123456
+
+  mysql-medication:
+    container_name: mysql-medication
+    image: mysql:8.0
+    restart: always
+    ports:
+      - '5762:3306'
+    volumes:
+      - db_medication:/var/lib/mysql
+      - ./medicationdb.sql:/docker-entrypoint-initdb.d/medicationdb.sql
+    environment:
+      - MYSQL_DATABASE=medication-service
+      - MYSQL_ROOT_PASSWORD=@b86aH123456
+      - MYSQL_USER=MedAppAdmin
+      - MYSQL_PASSWORD=@b86aH123456
+
+  mysql-notification:
+    container_name: mysql-notification
+    image: mysql:8.0
+    restart: always
+    ports:
+      - '5763:3306'
+    volumes:
+      - db_notification:/var/lib/mysql
+      - ./notificationdb.sql:/docker-entrypoint-initdb.d/notificationdb.sql
+    environment:
+      - MYSQL_DATABASE=notification-service
+      - MYSQL_ROOT_PASSWORD=@b86aH123456
+      - MYSQL_USER=MedAppAdmin
+      - MYSQL_PASSWORD=@b86aH123456
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.0.1
     container_name: zookeeper
@@ -9,6 +54,7 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
+
   broker:
     image: confluentinc/cp-kafka:7.0.1
     container_name: broker
@@ -24,6 +70,7 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+
   discovery-service:
     image: le132/discovery-service:latest
     container_name: discovery-service
@@ -31,6 +78,7 @@ services:
       - "8761:8761"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+
   gateway-service:
     image: le132/gateway-service:latest
     container_name: gateway-service
@@ -42,30 +90,39 @@ services:
       - eureka.client.service-url.defaultZone=http://discovery-service:8761/eureka
     depends_on:
       - discovery-service
+
   core-service:
     image: le132/core-service:latest
     container_name: core-service
+    restart: always
     environment:
       - server.port=8080
       - eureka.client.service-url.defaultZone=http://discovery-service:8761/eureka
       - spring.kafka.bootstrap-servers=broker:29092
       - TZ=Asia/Bangkok
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-core:3306/core-service?createDatabaseIfNotExist=true
     depends_on:
       - broker
       - discovery-service
       - gateway-service
+      - mysql-core
+
   notification-service:
     image: le132/notification-service:latest
     container_name: notification-service
+    restart: always
     environment:
       - TZ=Asia/Bangkok
       - server.port=8080
       - eureka.client.service-url.defaultZone=http://discovery-service:8761/eureka
       - spring.kafka.bootstrap-servers=broker:29092
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-notification:3306/notification-service?createDatabaseIfNotExist=true
     depends_on:
       - broker
       - discovery-service
       - gateway-service
+      - mysql-notification
+
   websocket-service:
     image: le132/websocket-service:latest
     container_name: websocket-service
@@ -75,17 +132,22 @@ services:
     depends_on:
       - discovery-service
       - gateway-service
+
   authentication-service:
     image: le132/authentication-service:latest
     container_name: authentication-service
+    restart: always
     environment:
       - server.port=8080
       - eureka.client.service-url.defaultZone=http://discovery-service:8761/eureka
       - spring.kafka.bootstrap-servers=broker:29092
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-core:3306/core-service?createDatabaseIfNotExist=true
     depends_on:
       - discovery-service
       - gateway-service
       - broker
+      - mysql-core
+
   vnpay-service:
     image: le132/vnpay-service:latest
     container_name: vnpay-service
@@ -95,14 +157,23 @@ services:
     depends_on:
       - discovery-service
       - gateway-service
+
   medication-service:
     image: le132/medication-service:latest
     container_name: medication-service
+    restart: always
     environment:
       - server.port=8080
       - eureka.client.service-url.defaultZone=http://discovery-service:8761/eureka
       - spring.kafka.bootstrap-servers=broker:29092
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-medication:3306/medication-service?createDatabaseIfNotExist=true
     depends_on:
       - broker
       - discovery-service
       - gateway-service
+      - mysql-medication
+
+volumes:
+  db_core:
+  db_medication:
+  db_notification:
