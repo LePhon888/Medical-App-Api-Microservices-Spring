@@ -14,7 +14,7 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     List<Post> getPostByCategoryId(@Param("catId") int catId, Pageable pageable);
     List<Post> findTop10ByOrderByCreatedDateDesc();
 
-    @Query(value = "SELECT * FROM Post ORDER BY RAND()", nativeQuery = true)
+    @Query("SELECT * FROM Post ORDER BY RAND()")
     Page<Post> getRandomPosts(Pageable pageable);
 
 }
