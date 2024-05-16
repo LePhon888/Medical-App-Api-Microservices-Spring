@@ -235,11 +235,11 @@ docker compose up -d
 
 <!-- Demo System -->
 ## :trophy: Demo System
-[https://34.16.179.91:8080/api/hours](https://34.16.179.91:8080/api/hours)
+[http://34.16.221.17:8080/api/hours](http://34.16.221.17:8080/api/hours)
 
 <!-- Demo -->
 ## :rotating_light: Demo Chatbot
-[https://34.16.179.91:8000/docs](https://34.16.179.91:8000/docs)
+[http://34.16.221.17:8000/docs](http://34.16.221.17:8000/docs)
 
 <!-- Contact -->
 ## :handshake: Contact
