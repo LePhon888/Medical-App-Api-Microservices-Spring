@@ -7,7 +7,7 @@
     <list default="true" id="4f8f0064-03b9-4aae-be69-22529ceb7f67" name="Changes" comment="fix notification service">
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,8 +83,8 @@
       <command value="mvn package" />
       <command value="mvn clean install" />
       <command value="mvn compile:compile" />
-      <command value="mvn -e" />
       <command value="mvn -X" />
+      <command value="mvn -e" />
       <command value="mvn install" />
     </option>
   </component>
@@ -252,6 +252,7 @@
       <workItem from="1715839394137" duration="14600000" />
       <workItem from="1715856491324" duration="892000" />
       <workItem from="1715858310571" duration="260000" />
+      <workItem from="1715862252465" duration="512000" />
     </task>
     <servers />
   </component>
