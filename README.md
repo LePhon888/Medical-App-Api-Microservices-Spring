@@ -235,9 +235,9 @@ docker compose up -d
 
 <!-- Demo System -->
 ## :trophy: Demo System
-[Demo with Swagger](http://34.16.221.17:8080/swagger-ui.html)
-You can change service:
-![image](https://github.com/LePhon888/Medical-App-Api-Microservices-Spring/assets/87175247/5cb12a66-8eb6-475d-ba2c-0c3a1ddd51ec)
+[Demo with Swagger](http://34.16.221.17:8080/swagger-ui.html)<br /><br />
+You can change service:<br /><br />
+![image](https://github.com/LePhon888/Medical-App-Api-Microservices-Spring/assets/87175247/5cb12a66-8eb6-475d-ba2c-0c3a1ddd51ec)<br />
 
 
 <!-- Demo -->
