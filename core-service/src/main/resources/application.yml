@@ -1,0 +1,10 @@
+openapi:
+  service:
+    title: core-service doc
+    version: 1.0.0
+    url: http://localhost:8080 #api gateway url
+springdoc:
+  api-docs:
+    path: /core-service/v3/api-docs
+  swagger-ui:
+    path: /core-service/swagger-ui.html

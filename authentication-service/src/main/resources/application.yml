@@ -1,0 +1,10 @@
+openapi:
+  service:
+    title: authentication-service doc
+    version: 1.0.0
+    url: http://localhost:8080 #api gateway url
+springdoc:
+  api-docs:
+    path: /authentication-service/v3/api-docs
+  swagger-ui:
+    path: /authentication-service/swagger-ui.html

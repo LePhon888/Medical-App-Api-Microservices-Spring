@@ -5,12 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f8f0064-03b9-4aae-be69-22529ceb7f67" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/config/OpenApiConfigs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authentication-service/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/config/OpenApiConfigs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core-service/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/medication-service/src/main/java/com/medical/medicationservice/config/OpenApiConfigs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/medication-service/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/med/notificationservice/config/OpenApiConfigs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-service/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vnpay-service/src/main/java/com/med/vnpayservice/config/OpenApiConfigs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vnpay-service/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/websocket-service/src/main/java/com/medical/websocketservice/config/OpenApiConfigs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/websocket-service/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/dto/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/dto/UserResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/src/main/java/com/med/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/medication-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/medication-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vnpay-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/vnpay-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vnpay-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/vnpay-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websocket-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/websocket-service/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,6 +272,9 @@
       <workItem from="1715442245573" duration="1117000" />
       <workItem from="1715478408159" duration="1622000" />
       <workItem from="1715488576988" duration="4432000" />
+      <workItem from="1715773902585" duration="113000" />
+      <workItem from="1715839394137" duration="14600000" />
+      <workItem from="1715856491324" duration="892000" />
     </task>
     <servers />
   </component>

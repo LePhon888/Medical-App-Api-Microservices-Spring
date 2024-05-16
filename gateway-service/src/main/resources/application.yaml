@@ -30,7 +30,8 @@ spring:
         - id: core-service
           uri: lb://core-service
           predicates:
-            - Path=/api/hours,
+            - Path=/core-service/v3/api-docs,
+              /api/hours,
               /auth/**,
               /api/doctors/**,
               /api/doctor-detail/**,
@@ -47,7 +48,7 @@ spring:
               /api/fee/**,
               /api/user-post,
               /api/user-post/**,
-              /api/stats/**
+              /api/stats/**,
           filters:
             - AuthenticationFilter
 
@@ -55,18 +56,21 @@ spring:
         - id: websocket-service
           uri: lb://websocket-service
           predicates:
-            - Path=/ws/**
+            - Path=/websocket-service/v3/api-docs,
+              /ws/**
 
         - id: notification-service
           uri: lb://notification-service
           predicates:
-            - Path=/api/notification/**,
+            - Path=/notification-service/v3/api-docs,
+              /api/notification/**,
               /api/user-device/**
 
         - id: medication-service
           uri: lb://medication-service
           predicates:
-            - Path=/api/medicine/**,
+            - Path=/medication-service/v3/api-docs,
+              /api/medicine/**,
               /api/medicine-unit/**,
               /api/medication-schedule/**,
               /api/schedule-time/**,
@@ -76,12 +80,14 @@ spring:
         - id: vnpay-service
           uri: lb://vnpay-service
           predicates:
-            - Path=/api/payment/**
+            - Path=/vnpay-service/v3/api-docs,
+              /api/payment/**
 
         - id: authentication-service
           uri: lb://authentication-service
           predicates:
-            - Path=/api/auth/**,
+            - Path=/authentication-service/v3/api-docs,
+              /api/auth/**,
               /api/auth/validate,
               /login-google/auth-google/**,
               /api/otp/**,
@@ -90,6 +96,32 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
+
+
+springdoc:
+  enable-native-support: true
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /authentication-service/v3/api-docs
+        name: Authentication Service
+      - url: /core-service/v3/api-docs
+        name: Core Service
+      - url: /notification-service/v3/api-docs
+        name: Notification Service
+      - url: /medication-service/v3/api-docs
+        name: Medication Service
+      - url: /vnpay-service/v3/api-docs
+        name: Payment Service
+      - url: /v3/api-docs
+        name: API Gateway Service
+#      - url: /websocket-service/v3/api-docs
+#        name: Websocket Service
+
 
 logging:
   pattern:

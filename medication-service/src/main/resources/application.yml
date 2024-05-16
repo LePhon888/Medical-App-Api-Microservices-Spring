@@ -1,0 +1,10 @@
+openapi:
+  service:
+    title: medication-service doc
+    version: 1.0.0
+    url: http://localhost:8080 #api gateway url
+springdoc:
+  api-docs:
+    path: /medication-service/v3/api-docs
+  swagger-ui:
+    path: /medication-service/swagger-ui.html
