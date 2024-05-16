@@ -19,7 +19,7 @@ import java.util.List;
 public class OpenApiConfigs {
     @Bean
     public OpenAPI customOpenAPI() {
-        final String url = "http://localhost:8080";
+        final String url = "http://34.16.221.17:8080";
         final String serviceTitle = "Payment Service";
         final String serviceVersion = "1.0.0";
         final String securitySchemeName = "bearerAuth";
