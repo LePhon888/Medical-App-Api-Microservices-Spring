@@ -235,7 +235,7 @@ docker compose up -d
 
 <!-- Demo System -->
 ## :trophy: Demo System
-[http://34.16.221.17:8080/api/hours](http://34.16.221.17:8080/api/hours)
+[Demo with Swagger](http://34.16.221.17:8080/swagger-ui.html)
 
 <!-- Demo -->
 ## :rotating_light: Demo Chatbot
