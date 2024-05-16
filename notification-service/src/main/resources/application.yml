@@ -7,4 +7,4 @@ springdoc:
   api-docs:
     path: /notification-service/v3/api-docs
   swagger-ui:
-    path: /medication-service/swagger-ui.html
+    path: /notification-service/swagger-ui.html
