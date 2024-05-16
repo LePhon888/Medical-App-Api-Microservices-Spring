@@ -235,7 +235,7 @@ docker compose up -d
 
 <!-- Demo System -->
 ## :trophy: Demo System
-[https://34.16.179.91:8000/api/hours](https://34.16.179.91:8080/api/hours)
+[https://34.16.179.91:8080/api/hours](https://34.16.179.91:8080/api/hours)
 
 <!-- Demo -->
 ## :rotating_light: Demo Chatbot
