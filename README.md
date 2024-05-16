@@ -56,6 +56,7 @@ Lastly, the system includes a feature for tracking weight on a monthly or weekly
   * [Color Reference](#art-color-reference)
 - [Getting Started](#toolbox-getting-started)
   * [Installation](#gear-installation)
+- [Demo Chatbot](#rotating_light-demo-chatbot)
 - [Contact](#handshake-contact)
 
 
@@ -230,6 +231,10 @@ Install with Docker Compose
 ```bash
 docker compose up -d
 ```
+
+<!-- Demo -->
+## :rotating_light: Demo Chatbot
+[https://34.16.179.91:8000/docs](https://34.16.179.91:8000/docs)
 
 <!-- Contact -->
 ## :handshake: Contact
