@@ -6,9 +6,9 @@
   <p>
 Our team applied Microservices architecture to implement the system, using Spring Boot for the API. The system's database is built on the MySQL platform, ensuring the security and reliability necessary for a health monitoring and medical information system.
 
-One feature we are particularly proud of is the Chatbot, designed to provide health advice to patients. This Chatbot offers basic medical information and guides on self-care measures. This feature enhances convenience and attention to users' health.
+The Chatbot AI offers health advice, enabling patients to ask about illnesses. This Chatbot offers basic medical information and guides on self-care measures. This feature enhances convenience and attention to users' health.
 
-Additionally, we have developed an API for chat functionality between doctors and patients, enabling patients to communicate with doctors when needed. Furthermore, we have built a news aggregation function for health and medical care that users can read daily. Users can also make video calls with doctors to receive consultations.
+Additionally, we have built a news aggregation function for health and medical care that users can read daily. Users can also make video calls with doctors to receive consultations.
 
 Lastly, the system includes a feature for tracking weight on a monthly or weekly basis, calculating BMI, BMR, and calories for users.
   </p>
@@ -66,7 +66,7 @@ Lastly, the system includes a feature for tracking weight on a monthly or weekly
 
 <!-- Architecture -->
 ### :camera: Architecture
-![image](https://github.com/LePhon888/Medical-App-Api-SpringBoot/assets/87175247/3cc17d41-1ad3-4e82-acb3-98128624fb4b)
+![image](https://github.com/LePhon888/Medical-App-Api-Microservices-Spring/assets/87175247/8abf9c8d-f464-4466-a15a-9ae4e5598f95)
 
 <!-- Screenshots -->
 ### :camera: Screenshots
