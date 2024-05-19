@@ -242,7 +242,7 @@ You can change service:<br /><br />
 
 <!-- Demo -->
 ## :rotating_light: Demo Chatbot
-[http://34.16.221.17:8000/docs](http://34.16.221.17:8000/docs)
+[http://34.16.221.17:8000/docs](http://34.125.74.42:8000/docs)
 
 <!-- Contact -->
 ## :handshake: Contact
