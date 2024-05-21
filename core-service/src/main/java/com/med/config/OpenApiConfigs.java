@@ -18,7 +18,7 @@ import java.util.List;
 public class OpenApiConfigs {
     @Bean
     public OpenAPI customOpenAPI() {
-        final String url = "http://34.16.221.17:8080";
+        final String url = "http://34.125.74.42:8080";
         final String serviceTitle = "Core Service";
         final String serviceVersion = "1.0.0";
         final String securitySchemeName = "bearerAuth";
