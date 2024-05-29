@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -78,6 +79,11 @@ public class ReminderMedicationService {
     @PostConstruct
     public void initializeScheduler() {
         // Call updateFixedDelay method to initialize scheduling duration
+        this.rescheduleReminderNotification();
+    }
+
+    @Scheduled(cron = "0 0 0 * * ?") // Reschedule after 12AM Daily
+    public void rescheduleNotifyMedicationSchedule() {
         this.rescheduleReminderNotification();
     }
 

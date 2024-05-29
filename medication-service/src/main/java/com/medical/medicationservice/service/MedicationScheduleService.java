@@ -120,7 +120,7 @@ public class MedicationScheduleService {
     }
 
     public List<MedicationScheduleProjection> getNextScheduleToReminder() {
-        return this.repository.getMedicationScheduleByUserId(null, 99);
+        return this.repository.getNotifyMedicationSchedule();
     }
 
     public MedicationScheduleDTO getMedicationScheduleById(Integer id) {

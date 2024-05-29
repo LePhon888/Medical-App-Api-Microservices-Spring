@@ -119,6 +119,50 @@ public interface MedicationScheduleRepository extends JpaRepository<MedicationSc
         """, nativeQuery = true)
     List<MedicationScheduleProjection> getMedicationScheduleByUserId(@Param("userId") Integer userId, @Param("limit") Integer limit);
 
+    @Query(value = """
+    SELECT  (
+             -- Check if there are time that greater than current date time
+                SELECT
+                    TIMESTAMP(CAST(TIMESTAMPADD(HOUR, 7, CURRENT_TIMESTAMP) AS DATE), s.time)
+                FROM
+                    `medication-service`.schedule_time s
+                WHERE
+                    s.medication_schedule_id = ms.id
+                  AND ms.start_date <= CAST(TIMESTAMPADD(HOUR,7, CURRENT_TIMESTAMP) AS DATE)
+                  AND s.time > TIMESTAMPADD(HOUR,7, CURRENT_TIME)
+                  AND (
+                      -- This is for the daily so we only compare the time part
+                      (ms.frequency = 1)
+                       OR
+                       -- Check if the current date is belong to the frequency
+                      (ms.frequency > 1 AND DATEDIFF(CAST(TIMESTAMPADD(HOUR,7, CURRENT_TIMESTAMP) AS DATE), ms.start_date) % ms.frequency = 0)
+                       OR
+                        -- Check if the current date in schedule selected days
+                      (ms.frequency IS NULL AND FIND_IN_SET(DAYOFWEEK(CAST(TIMESTAMPADD(HOUR,7, CURRENT_TIMESTAMP) AS DATE)), ms.selected_days) > 0)
+                  )
+                ORDER BY s.time
+                LIMIT 1
+        ) as dateTime,
+    ms.id AS id,
+    m.name AS medicineName,
+    msg.id as groupId,
+    msg.name as groupName
+    FROM
+        `medication-service`.medication_schedule ms
+    INNER JOIN 
+        `medication-service`.medicine m ON ms.medicine_id = m.id
+    LEFT JOIN
+        `medication-service`.medication_schedule_group msg on ms.group_id = msg.id
+    WHERE
+        ms.is_active = true
+    HAVING
+        dateTime IS NOT NULL
+    ORDER BY
+        dateTime
+        """, nativeQuery = true)
+    List<MedicationScheduleProjection> getNotifyMedicationSchedule();
+
+
     @Query("""
     SELECT 
         ms.id as id,
