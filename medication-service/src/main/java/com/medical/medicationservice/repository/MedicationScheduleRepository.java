@@ -22,7 +22,7 @@ public interface MedicationScheduleRepository extends JpaRepository<MedicationSc
                 WHERE
                     s.medication_schedule_id = ms.id
                   AND ms.start_date <= CAST(TIMESTAMPADD(HOUR,7, CURRENT_TIMESTAMP) AS DATE)
-                  AND s.time > TIMESTAMPADD(HOUR,7, CURRENT_TIME)
+                  AND s.time >= CAST(TIMESTAMPADD(HOUR,7, CURRENT_TIMESTAMP) AS TIME)
                   AND (
                       -- This is for the daily so we only compare the time part
                       (ms.frequency = 1)
@@ -129,7 +129,7 @@ public interface MedicationScheduleRepository extends JpaRepository<MedicationSc
                 WHERE
                     s.medication_schedule_id = ms.id
                   AND ms.start_date <= CAST(TIMESTAMPADD(HOUR,7, CURRENT_TIMESTAMP) AS DATE)
-                  AND s.time > TIMESTAMPADD(HOUR,7, CURRENT_TIME)
+                  AND s.time >= CAST(TIMESTAMPADD(HOUR,7, CURRENT_TIMESTAMP) AS TIME)
                   AND (
                       -- This is for the daily so we only compare the time part
                       (ms.frequency = 1)
