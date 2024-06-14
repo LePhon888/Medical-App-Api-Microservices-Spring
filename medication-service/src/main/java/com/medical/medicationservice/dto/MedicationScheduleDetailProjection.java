@@ -5,10 +5,12 @@ import org.springframework.beans.factory.annotation.Value;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public interface MedicationScheduleDetailProjection {
     Integer getId();
+    Integer getUserId();
     String getMedicineName();
     String getUnitName();
     LocalTime getTime();
@@ -17,5 +19,5 @@ public interface MedicationScheduleDetailProjection {
     Boolean getIsUsed();
     Integer getScheduleTimeId();
     String getGroupName();
-
+    LocalDate getDate();
 }
