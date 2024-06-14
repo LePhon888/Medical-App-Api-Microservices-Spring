@@ -1,5 +1,6 @@
 package com.med.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.med.dto.AppointmentHourDTO;
 import com.med.dto.AppointmentPatient;
@@ -11,6 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.scheduling.TaskScheduler;
 import org.springframework.web.bind.annotation.*;
 
 import org.slf4j.Logger;
@@ -18,8 +20,8 @@ import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @CrossOrigin("*")
@@ -50,6 +52,9 @@ public class AppointmentController {
 
     @Value("${kafka.topic.email}")
     private String emailTopic;
+
+    @Autowired
+    private TaskScheduler taskScheduler;
 
 
     @PostMapping
@@ -131,8 +136,24 @@ public class AppointmentController {
                     detailAppointment.put("reason", savedAppointment.getReason());
                     detailAppointment.put("user", savedAppointment.getUser().getLastName() + " " + savedAppointment.getUser().getFirstName());
                     detailAppointment.put("userEmail", savedAppointment.getUser().getEmail());
-
                     kafkaTemplate.send(emailTopic, objectMapper.writeValueAsString(detailAppointment));
+
+                    // Schedule the reminder appointment
+                    LocalDateTime nextScheduleDateTime = LocalDateTime.of(new java.sql.Date(savedAppointment.getDate().getTime()).toLocalDate(), LocalTime.parse(savedAppointment.getHour().getHour()));
+                    // Send 5 minutes before appointment
+                    LocalDateTime now = LocalDateTime.now().minusMinutes(5);
+                    long delayInSeconds = Duration.between(now, nextScheduleDateTime).getSeconds();
+                    taskScheduler.schedule(() -> {
+                        try {
+                            detailAppointment.put("doctorId", String.valueOf(savedAppointment.getDoctor().getUser().getId()));
+                            detailAppointment.put("patientId", String.valueOf(savedAppointment.getUser().getId()));
+                            detailAppointment.put("screen", "AppointmentList");
+                            kafkaTemplate.send("appointment-topic", objectMapper.writeValueAsString(detailAppointment));
+                        } catch (JsonProcessingException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }, Instant.now().plusSeconds(delayInSeconds));
+
                 }
 
 //                this.appointmentService.sendConfirmAppointmentMail(appointment);

@@ -45,10 +45,11 @@ public class MedicationReminderListener {
                 notificationService.sendNotificationToUser(new NotificationRequest(
                         userDevice.getTokenRegistration(),
                         "Từ hộp thuốc của bạn ",
-                        String.format("Đã đến giờ uống thuốc: %s %s %s",
+                        String.format("Đã đến giờ uống %s %s %s vào lúc %s",
                                 reminder.get("quantity"),
                                 reminder.get("unitName"),
-                                reminder.get("medicineName")),
+                                reminder.get("medicineName"),
+                                reminder.get("time")),
                         imageUrl,
                         (Integer) reminder.get("userId"),
                         clickActionParams));

@@ -68,11 +68,14 @@ public interface ScheduleTimeRepository extends JpaRepository<ScheduleTime, Inte
 
     @Query(value = """ 
     SELECT
-         ms.user_id as id,
+         ms.id as id,
+         ms.user_id as userId,
          m.name as medicineName,
          mu.name as unitName,
          MIN(s.time) as time,
-         s.quantity
+         s.quantity,
+         s.id as scheduleTimeId,
+         CAST((TIMESTAMPADD(HOUR, 7, CURRENT_TIMESTAMP)) AS DATE) as date
      FROM
          `medication-service`.medication_schedule ms
      INNER JOIN
@@ -99,11 +102,15 @@ public interface ScheduleTimeRepository extends JpaRepository<ScheduleTime, Inte
          )
      GROUP BY
          id,
+         user_id,
          medicineName,
          unitName,
-         s.quantity
+         s.quantity,
+         scheduleTimeId,
+         date
      ORDER BY
          time
     """, nativeQuery = true)
     List<MedicationScheduleDetailProjection> getScheduleTimeToSendNotification();
+
 }
