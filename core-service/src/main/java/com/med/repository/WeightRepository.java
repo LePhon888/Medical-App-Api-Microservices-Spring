@@ -29,8 +29,14 @@ public interface WeightRepository extends JpaRepository<Weight, Integer>{
             "ORDER BY w.id")
     List<WeightDTO> getWeightsByUserIdMonth(@Param("userId") Integer userId, @Param("startDate") LocalDate startDate);
 
+    @Query("SELECT new com.med.dto.WeightDTO(w.id, w.number, w.date, w.user.id , w.time, w.bmi, w.bmr, w.height, w.classification) " +
+            "FROM Weight w " +
+            "WHERE w.user.id = :userId AND w.time = (SELECT max(w1.time) FROM Weight w1 WHERE w1.user.id = :userId AND w1.date = w.date) AND w.date >= :startDate " +
+            "ORDER BY w.id")
+    List<WeightDTO> getWeightsByUserIdYear(@Param("userId") Integer userId, @Param("startDate") LocalDate startDate);
+
     @Query("SELECT new com.med.dto.WeightDTO(w.id, w.number, w.date, w.user.id, w.time, w.bmi, w.bmr, w.height, w.classification) " +
-            "FROM Weight w WHERE w.user.id = :userId ORDER BY w.date DESC")
+            "FROM Weight w WHERE w.user.id = :userId ORDER BY w.date DESC, w.time DESC")
     List<WeightDTO> getNewWeight(@Param("userId") Integer userId, Pageable pageable);
 
 }

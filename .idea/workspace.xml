@@ -5,9 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f8f0064-03b9-4aae-be69-22529ceb7f67" name="Changes" comment="fix notification service">
+      <change afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/dto/UserDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7e8b4aef-fa25-4971-bf50-9aa7d1649268.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7e8b4aef-fa25-4971-bf50-9aa7d1649268/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7e8b4aef-fa25-4971-bf50-9aa7d1649268/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7e8b4aef-fa25-4971-bf50-9aa7d1649268/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7e8b4aef-fa25-4971-bf50-9aa7d1649268/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c15bb9b7-e0e8-4e0d-affc-3bd920a5f9e3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c15bb9b7-e0e8-4e0d-affc-3bd920a5f9e3/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c15bb9b7-e0e8-4e0d-affc-3bd920a5f9e3/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c15bb9b7-e0e8-4e0d-affc-3bd920a5f9e3/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c15bb9b7-e0e8-4e0d-affc-3bd920a5f9e3/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/authentication-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/WeightController.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/controller/WeightController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/repository/WeightRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/repository/WeightRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/WeightService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/java/com/med/service/WeightService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/core-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/medication-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/medication-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vnpay-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/vnpay-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websocket-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/websocket-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,11 +108,11 @@
     <option name="myCommands">
       <command value="mvn clean" />
       <command value="mvn package" />
-      <command value="mvn clean install" />
       <command value="mvn compile:compile" />
       <command value="mvn -X" />
       <command value="mvn -e" />
       <command value="mvn install" />
+      <command value="mvn clean install" />
     </option>
   </component>
   <component name="RunDashboard">
@@ -195,9 +222,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.GatewayServiceApplication" />
         <item itemvalue="Spring Boot.CoreServiceApplication" />
         <item itemvalue="Spring Boot.AuthenticationServiceApplication" />
+        <item itemvalue="Spring Boot.GatewayServiceApplication" />
         <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
         <item itemvalue="Spring Boot.VNPayServiceApplication" />
       </list>
@@ -253,6 +280,19 @@
       <workItem from="1715856491324" duration="892000" />
       <workItem from="1715858310571" duration="260000" />
       <workItem from="1715862252465" duration="628000" />
+      <workItem from="1718202747836" duration="2498000" />
+      <workItem from="1718205820701" duration="2271000" />
+      <workItem from="1718250159847" duration="14967000" />
+      <workItem from="1718339528057" duration="1380000" />
+      <workItem from="1718354530618" duration="1018000" />
+      <workItem from="1718357681481" duration="3661000" />
+      <workItem from="1718375820643" duration="1420000" />
+      <workItem from="1718463444886" duration="1384000" />
+      <workItem from="1718722802798" duration="1971000" />
+      <workItem from="1718787550535" duration="2371000" />
+      <workItem from="1718805794517" duration="3582000" />
+      <workItem from="1718858368584" duration="4715000" />
+      <workItem from="1718873053122" duration="3974000" />
     </task>
     <servers />
   </component>

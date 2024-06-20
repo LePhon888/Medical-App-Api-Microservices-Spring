@@ -43,6 +43,12 @@ public class WeightController {
         return new ResponseEntity<>(weightService.getWeightsByUserIdMonth(id), HttpStatus.OK);
     }
 
+
+    @GetMapping("/year/{id}")
+    public ResponseEntity<List<WeightDTO>> getWeightsByUserIdYear(@PathVariable(name = "id") Integer id) {
+        return new ResponseEntity<>(weightService.getWeightsByUserIdYear(id), HttpStatus.OK);
+    }
+
     @GetMapping("/new/{id}")
     public ResponseEntity<List<WeightDTO>> getNewWeight(@PathVariable(name = "id") Integer id) {
         return new ResponseEntity<>(weightService.getNewWeight(id), HttpStatus.OK);
@@ -94,6 +100,21 @@ public class WeightController {
                 .bmi((float) (Math.ceil(bmi * 100) / 100))
                 .bmr((float) (Math.ceil(bmr * 100) / 100))
                 .classification(classification)
+                .build();
+        return new ResponseEntity<>(weightService.saveWeight(newWeight), HttpStatus.OK);
+    }
+
+    @PostMapping("/child")
+    public ResponseEntity<WeightDTO> saveWeightChild(@RequestBody Map<String, Integer> weight) {
+        LocalDate currentDate = LocalDate.now();
+        LocalTime currentTime = LocalTime.now();
+
+        Weight newWeight = Weight.builder()
+                .number(Float.valueOf(weight.get("number")))
+                .date(currentDate)
+                .user(userService.getById(Integer.parseInt(String.valueOf(weight.get("userId")))))
+                .time(currentTime)
+                .height(Float.valueOf(weight.get("height")))
                 .build();
         return new ResponseEntity<>(weightService.saveWeight(newWeight), HttpStatus.OK);
     }

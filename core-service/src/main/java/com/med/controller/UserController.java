@@ -2,6 +2,7 @@ package com.med.controller;
 
 import com.azure.core.annotation.Get;
 import com.cloudinary.Cloudinary;
+import com.med.dto.UserDTO;
 import com.med.model.User;
 import com.med.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,5 +114,24 @@ public class UserController {
 
             return new ResponseEntity<>(HttpStatus.OK);
         }
+    }
+
+    @GetMapping("/parent/{id}")
+    public ResponseEntity<List<UserDTO>> getParent(@PathVariable(name = "id") Integer id) {
+        return new ResponseEntity<>(userService.findByParentId(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/parent")
+    public ResponseEntity<User> createChildren(@RequestBody Map<String, String> user) {
+        System.out.println("useruseruseruseruser " + user);
+        User u = User.builder()
+                .firstName(user.get("firstName"))
+                .lastName(user.get("lastName"))
+                .birthday(java.sql.Date.valueOf(user.get("birthday")))
+                .userRole("ROLE_PATIENT")
+                .isActive((short) 1)
+                .parent(userService.getById(Integer.parseInt(user.get("parentId"))))
+                .build();
+        return new ResponseEntity<>(userService.create(u), HttpStatus.OK);
     }
 }

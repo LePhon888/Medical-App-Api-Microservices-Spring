@@ -28,6 +28,8 @@ public class WeightService {
 
     private LocalDate startDateMonth = currentDate.minusMonths(1);
 
+    private LocalDate startDateYear = currentDate.minusYears(1);
+
 
     public List<WeightDTO> getWeightsByUserId(Integer userId) {
         return weightRepository.getWeightsByUserId(userId);
@@ -41,8 +43,12 @@ public class WeightService {
         return weightRepository.getWeightsByUserIdMonth(userId, startDateMonth);
     }
 
+    public List<WeightDTO> getWeightsByUserIdYear(Integer userId) {
+        return weightRepository.getWeightsByUserIdYear(userId, startDateYear);
+    }
+
+
     public List<WeightDTO> getNewWeight(Integer userId) {
-        System.out.println("startDateWeekstartDateWeek " + startDateWeek + " " + startDateMonth);
         return weightRepository.getNewWeight(userId, PageRequest.of(0, 1));
     }
 

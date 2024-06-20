@@ -1,4 +1,5 @@
 package com.med.service;
+import com.med.dto.UserDTO;
 import net.coobird.thumbnailator.Thumbnails;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
@@ -226,4 +227,9 @@ public class UserService {
             return CompletableFuture.completedFuture(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email not found"));
         }
     }
+
+    public List<UserDTO> findByParentId(int parentId) {
+        return this.userRepository.findByParentId(parentId);
+    }
+
 }

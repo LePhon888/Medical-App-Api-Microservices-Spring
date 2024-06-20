@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="medicalapp@medicalapp.mysql.database.azure.com" uuid="7e8b4aef-fa25-4971-bf50-9aa7d1649268">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://medicalapp.mysql.database.azure.com:3306/medicalapp</jdbc-url>
-      <vm-options>&quot;-Djdk.tls.disabledAlgorithms=SSLv3, TLSv1.1, RC4, DES, MD5withRSA, DH keySize &lt; 1024, EC keySize &lt; 224, 3DES_EDE_CBC, anon, NULL&quot;</vm-options>
-      <working-dir>$ProjectFileDir$</working-dir>
-      <driver-properties>
-        <property name="enabledTLSProtocols" value="TLSv1, TLSv1.1, TLSv1.2, TLSv1.3" />
-      </driver-properties>
-    </data-source>
-    <data-source source="LOCAL" name="medication-service@medcare.mysql.database.azure.com" uuid="c15bb9b7-e0e8-4e0d-affc-3bd920a5f9e3">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://medcare.mysql.database.azure.com:3306/medication-service</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-      <driver-properties>
-        <property name="enabledTLSProtocols" value="TLSv1, TLSv1.1, TLSv1.2, TLSv1.3" />
-      </driver-properties>
-    </data-source>
     <data-source source="LOCAL" name="@localhost" uuid="d7e663b0-84e4-4352-9ece-a9d9188c11b2">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
@@ -31,6 +10,13 @@
       <driver-properties>
         <property name="enabledTLSProtocols" value="TLSv1, TLSv1.1, TLSv1.2, TLSv1.3" />
       </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="core-service" uuid="b44831ae-e895-40a8-a243-e3fed52734a3">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://34.66.33.6:5761/core-service</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
 </project>
