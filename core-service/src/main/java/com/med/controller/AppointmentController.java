@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.TaskScheduler;
@@ -196,6 +197,68 @@ public class AppointmentController {
     public Long countAppointmentsByUserId(@RequestParam("doctorId") String doctorId,
                                           @RequestParam("userId") String userId) {
         return this.appointmentService.countAppointmentsByUserId(userId, doctorId);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteById(@PathVariable("id") Integer id) {
+        if (id == null) {
+            return ResponseEntity.badRequest().body("Record not found.");
+        }
+
+        this.appointmentService.deleteById(id);
+
+        return ResponseEntity.ok("delete success");
+    }
+
+    @GetMapping("/off-duty")
+    public ResponseEntity getOffDutyScheduleByDoctorId(@RequestParam Map<String, String> params) {
+        try {
+            Integer doctorId = Integer.valueOf(params.get("doctorId"));
+            LocalDate fromDate = null;
+            LocalDate toDate = null;
+
+            String fromDateStr = params.get("fromDate");
+            String toDateStr = params.get("toDate");
+
+            if (fromDateStr != null && !fromDateStr.isEmpty()) {
+                fromDate = LocalDate.parse(fromDateStr);
+            }
+
+            if (toDateStr != null && !toDateStr.isEmpty()) {
+                toDate = LocalDate.parse(toDateStr);
+            }
+
+            return ResponseEntity.ok(appointmentService.getOffDutyScheduleByDoctorId(doctorId, fromDate, toDate));
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
+
+    }
+
+    @PostMapping("/off-duty")
+    public ResponseEntity createOffDutyAppointment(@RequestBody Map<String, String> payload) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = dateFormat.parse(payload.get("date"));
+            Doctor doctor = doctorService.getByUserId(Integer.parseInt(payload.get("doctorId")));
+            String[] hourIds = payload.get("hourIds").split("#");
+
+            for (String hourId : hourIds) {
+                Appointment savedAppointment = Appointment.builder()
+                        .hour(hourService.getById(Integer.parseInt(hourId)))
+                        .doctor(doctor)
+                        .date(date)
+                        .isConfirm((short) 0)
+                        .isPaid((short) 0)
+                        .build();
+                appointmentService.create(savedAppointment);
+            }
+
+            return ResponseEntity.status(HttpStatus.CREATED).body("create successfully!");
+
+        } catch (Exception ex) {
+            return ResponseEntity.internalServerError().body(ex.getMessage());
+        }
     }
 
     public static String convertToFormattedDateTime(String input) {

@@ -7,6 +7,7 @@ import com.med.repository.HourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -18,6 +19,9 @@ public class HourService {
     }
     public List<Hour> getAll () {
         return hourRepository.findAll();
+    }
+    public List<Hour> getOffDutyHoursByDoctorIdAndDate(Integer doctorId, LocalDate date) {
+        return hourRepository.getOffDutyHoursByDoctorIdAndDate(doctorId, date);
     }
 
 }
