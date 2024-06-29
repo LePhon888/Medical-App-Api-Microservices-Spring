@@ -1,6 +1,7 @@
 package com.med.repository;
 
 import com.med.dto.AppointmentHourDTO;
+import com.med.dto.AppointmentOffDuty;
 import com.med.dto.AppointmentPatient;
 import com.med.model.Appointment;
 import com.med.model.User;
@@ -51,4 +52,14 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 
     @Query("SELECT new com.med.dto.AppointmentHourDTO(a.hour.id) FROM Appointment a WHERE a.isPaid = 1 AND a.isConfirm = 1 AND (:date is null or a.date = :date) AND (:doctorId is null or a.doctor.id = :doctorId) ORDER BY a.hour.id")
     List<AppointmentHourDTO> getAppointmentHourByDate(LocalDate date, Integer doctorId);
+
+    @Query("""
+    SELECT new com.med.dto.AppointmentOffDuty(a.id, a.date, a.hour.hour)
+    FROM Appointment a
+    WHERE a.user IS NULL 
+    AND a.doctor.user.id = :doctorId 
+    AND (:fromDate IS NULL OR a.date between :fromDate AND :toDate)
+    ORDER BY a.date DESC, a.hour.id
+    """)
+    List<AppointmentOffDuty> getOffDutyScheduleByDoctorId(Integer doctorId, LocalDate fromDate, LocalDate toDate);
 }

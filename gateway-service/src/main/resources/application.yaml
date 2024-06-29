@@ -31,7 +31,7 @@ spring:
           uri: lb://core-service
           predicates:
             - Path=/core-service/v3/api-docs,
-              /api/hours,
+              /api/hours/**,
               /auth/**,
               /api/doctors/**,
               /api/doctor-detail/**,

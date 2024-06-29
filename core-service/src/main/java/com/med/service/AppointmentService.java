@@ -1,6 +1,7 @@
 package com.med.service;
 
 import com.med.dto.AppointmentHourDTO;
+import com.med.dto.AppointmentOffDuty;
 import com.med.dto.AppointmentPatient;
 import com.med.model.Appointment;
 import com.med.model.User;
@@ -31,6 +32,10 @@ public class AppointmentService {
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
+
+    public void deleteById(Integer id) {
+        this.appointmentRepository.deleteById(id);
+    }
 
     public Appointment create(Appointment appointment) {
         return appointmentRepository.save(appointment);
@@ -133,5 +138,9 @@ public class AppointmentService {
 
     public List<AppointmentHourDTO> getAppointmentHourByDate(LocalDate date, Integer doctorId) {
         return appointmentRepository.getAppointmentHourByDate(date, doctorId);
+    }
+
+    public List<AppointmentOffDuty> getOffDutyScheduleByDoctorId(Integer doctorId, LocalDate fromDate, LocalDate toDate) {
+        return this.appointmentRepository.getOffDutyScheduleByDoctorId(doctorId, fromDate, toDate);
     }
 }
