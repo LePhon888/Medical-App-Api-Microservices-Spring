@@ -248,8 +248,8 @@ public class AppointmentController {
                         .hour(hourService.getById(Integer.parseInt(hourId)))
                         .doctor(doctor)
                         .date(date)
-                        .isConfirm((short) 0)
-                        .isPaid((short) 0)
+                        .isConfirm((short) 1)
+                        .isPaid((short) 1)
                         .build();
                 appointmentService.create(savedAppointment);
             }
