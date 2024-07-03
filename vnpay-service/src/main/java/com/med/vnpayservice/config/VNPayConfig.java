@@ -21,8 +21,8 @@ public class VNPayConfig {
     public static String vnp_TmnCode = "TODNUHPX";
     public static String secretKey = "DGKXZXHYHGSFGVZCBQFKJAQHODXIBHTS";
     public static String vnp_ApiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
-    // public static String vnp_ReturnUrl = "http://192.168.1.4:8080/api/payment/payment-response";
-    public static String vnp_ReturnUrl = "https://medcare.rickycloud.uk/backend/api/payment/payment-response";
+    public static String vnp_ReturnUrl = "http://192.168.1.4:8080/api/payment/payment-response";
+    // public static String vnp_ReturnUrl = "https://medcare.rickycloud.uk/backend/api/payment/payment-response";
 
 //    public static String vnp_ReturnUrl = "MedicallApp://medicalapp.com/path/to/resource";
 
