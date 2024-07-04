@@ -1,6 +1,7 @@
 package com.med.controller;
 
 import com.med.model.Hour;
+import com.med.service.DoctorService;
 import com.med.service.HourService;
 import jdk.jshell.Snippet;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ import java.util.Map;
 public class HourController {
     @Autowired
     private HourService hourService;
+
+    @Autowired
+    private DoctorService doctorService;
 
     @GetMapping
     public List<Hour> getAll () {
@@ -39,7 +43,7 @@ public class HourController {
             }
 
             // doctorId here is come from user entity not coming from doctor entity
-            Integer doctorId = Integer.parseInt(doctorIdStr);
+            Integer doctorId = doctorService.getByUserId(Integer.parseInt(doctorIdStr)).getId();
             LocalDate date = LocalDate.parse(dateStr);
 
             List<Hour> offDutyHours = this.hourService.getOffDutyHoursByDoctorIdAndDate(doctorId, date);
