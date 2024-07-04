@@ -23,7 +23,7 @@ public interface HourRepository extends JpaRepository<Hour, Integer> {
              FROM appointment a
              WHERE a.date = :date AND a.doctor_id = :doctorId
          )
-   \s""", nativeQuery = true)
+   """, nativeQuery = true)
     List<Hour> getOffDutyHoursByDoctorIdAndDate(@Param("doctorId") Integer doctorId, @Param("date") LocalDate date);
 
 }
