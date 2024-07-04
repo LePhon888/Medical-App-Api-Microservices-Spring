@@ -142,8 +142,7 @@ public class AppointmentController {
                     // Schedule the reminder appointment
                     LocalDateTime nextScheduleDateTime = LocalDateTime.of(new java.sql.Date(savedAppointment.getDate().getTime()).toLocalDate(), LocalTime.parse(savedAppointment.getHour().getHour()));
                     // Send 5 minutes before appointment
-                    LocalDateTime now = LocalDateTime.now().minusMinutes(5);
-                    long delayInSeconds = Duration.between(now, nextScheduleDateTime).getSeconds();
+                    long delayInSeconds = Duration.between(LocalDateTime.now(), nextScheduleDateTime).getSeconds();
                     taskScheduler.schedule(() -> {
                         try {
                             detailAppointment.put("doctorId", String.valueOf(savedAppointment.getDoctor().getUser().getId()));
@@ -153,7 +152,7 @@ public class AppointmentController {
                         } catch (JsonProcessingException e) {
                             throw new RuntimeException(e);
                         }
-                    }, Instant.now().plusSeconds(delayInSeconds));
+                    }, Instant.now().plusSeconds(delayInSeconds).minusSeconds(300));
 
                 }
 
