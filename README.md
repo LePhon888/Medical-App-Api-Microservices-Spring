@@ -56,8 +56,6 @@ Lastly, the system includes a feature for tracking weight on a monthly or weekly
   * [Color Reference](#art-color-reference)
 - [Getting Started](#toolbox-getting-started)
   * [Installation](#gear-installation)
-- [Demo Patient Health Monitoring System](#trophy-demo-system)
-- [Demo Chatbot](#rotating_light-demo-chatbot)
 - [Contact](#handshake-contact)
 
 
@@ -232,17 +230,6 @@ Install with Docker Compose
 ```bash
 docker compose up -d
 ```
-
-<!-- Demo System -->
-## :trophy: Demo System
-[Demo with Swagger](http://34.16.231.67:8080/swagger-ui.html)<br /><br />
-You can change service:<br /><br />
-![image](https://github.com/LePhon888/Medical-App-Api-Microservices-Spring/assets/87175247/5cb12a66-8eb6-475d-ba2c-0c3a1ddd51ec)<br />
-
-
-<!-- Demo -->
-## :rotating_light: Demo Chatbot
-[http://34.16.231.67:8000/docs](http://34.16.231.67:8000/docs)
 
 <!-- Contact -->
 ## :handshake: Contact
