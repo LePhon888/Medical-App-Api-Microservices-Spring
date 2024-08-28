@@ -67,6 +67,7 @@ Lastly, the system includes a feature for tracking weight on a monthly or weekly
 <!-- Architecture -->
 ### :camera: Architecture
 ![image](https://github.com/LePhon888/Medical-App-Api-Microservices-Spring/assets/87175247/8abf9c8d-f464-4466-a15a-9ae4e5598f95)
+![Microservices-Architecture V2 drawio](https://github.com/user-attachments/assets/a77b0163-0335-4d96-9028-97cdf07281da)
 
 <!-- Screenshots -->
 ### :camera: Screenshots
